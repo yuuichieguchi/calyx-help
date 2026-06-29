@@ -4,8 +4,8 @@ description: Help site for Calyx, a native macOS terminal built on libghostty wi
 template: splash
 hero:
   image:
-    file: ../../../assets/screenshot.png
-    alt: Calyx screenshot
+    file: ../../../assets/logo.png
+    alt: Calyx
   tagline: A macOS terminal that pairs libghostty with a Liquid Glass UI.
   actions:
     - text: Get Started
@@ -23,6 +23,10 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import screenshot from '../../../assets/screenshot.png';
+
+<Image src={screenshot} alt="Calyx screenshot" />
 
 <CardGrid>
   <Card title="Getting Started" icon="rocket">

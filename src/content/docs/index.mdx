@@ -4,8 +4,8 @@ description: macOS 26+ 向けターミナル Calyx のヘルプサイト。イ�
 template: splash
 hero:
   image:
-    file: ../../assets/screenshot.png
-    alt: Calyx の画面例
+    file: ../../assets/logo.png
+    alt: Calyx
   tagline: Liquid Glass UI と libghostty を組み合わせた macOS ターミナルのヘルプ。
   actions:
     - text: 使い始める
@@ -23,6 +23,10 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import screenshot from '../../assets/screenshot.png';
+
+<Image src={screenshot} alt="Calyx の画面例" />
 
 <CardGrid>
   <Card title="はじめに" icon="rocket">
