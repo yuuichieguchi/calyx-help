@@ -1,18 +1,18 @@
 ---
 title: Calyx Help
-description: macOS 26+ 向けターミナル Calyx のヘルプサイト。インストール、使い方、規約・ポリシーをまとめています。
+description: Help site for Calyx, a native macOS terminal built on libghostty with a Liquid Glass UI.
 template: splash
 hero:
   image:
     file: ../../assets/logo.png
     alt: Calyx
-  tagline: Liquid Glass UI と libghostty を組み合わせた macOS ターミナルのヘルプ。
+  tagline: Official help for Calyx — usage, settings, and policies.
   actions:
-    - text: 使い始める
+    - text: Get Started
       link: /getting-started/
       icon: right-arrow
       variant: primary
-    - text: ショートカット一覧
+    - text: Keyboard Shortcuts
       link: /reference/shortcuts/
       icon: external
       variant: minimal
@@ -23,22 +23,35 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
-import { Image } from 'astro:assets';
-import screenshot from '../../assets/screenshot.png';
 
-<Image src={screenshot} alt="Calyx の画面例" />
+<style is:global>{`
+  .sl-markdown-content .card-grid .card { position: relative; }
+  .sl-markdown-content .card-grid .card .body { min-height: 2lh; }
+  .sl-markdown-content .card-grid .card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    font-size: 0;
+    color: transparent;
+    text-decoration: none;
+  }
+`}</style>
 
 <CardGrid>
-  <Card title="はじめに" icon="rocket">
-    インストールから初回起動までを案内します。[はじめに](/getting-started/)
+  <Card title="Getting Started" icon="rocket">
+    <a class="card-link" href="/getting-started/" aria-label="Getting Started">Getting Started</a>
+    Install Calyx and walk through the first launch.
   </Card>
-  <Card title="使い方" icon="open-book">
-    タブ、スプリット、コマンドパレット、AI エージェント連携など機能別の説明。[使い方](/usage/)
+  <Card title="Usage" icon="open-book">
+    <a class="card-link" href="/usage/" aria-label="Usage">Usage</a>
+    Tabs, splits, command palette, AI agent integration, and more.
   </Card>
-  <Card title="リファレンス" icon="document">
-    キーボードショートカット一覧と既知の制限。[リファレンス](/reference/)
+  <Card title="Reference" icon="document">
+    <a class="card-link" href="/reference/" aria-label="Reference">Reference</a>
+    Keyboard shortcut cheatsheet and known limitations.
   </Card>
-  <Card title="規約・ポリシー" icon="approve-check">
-    利用規約、プライバシーポリシー、ライセンス。[規約・ポリシー](/legal/)
+  <Card title="Terms & Policies" icon="approve-check">
+    <a class="card-link" href="/legal/" aria-label="Terms & Policies">Terms & Policies</a>
+    Terms of use, privacy policy, and license.
   </Card>
 </CardGrid>

@@ -1,40 +1,39 @@
 ---
-title: コマンドパレットと入力補助
-description: コマンドパレット、クイックターミナル、コンポーズオーバーレイの使い方。
+title: Command palette & input helpers
+description: The command palette, quick terminal, and compose overlay.
 sidebar:
   order: 3
 ---
 
-Calyx には、入力や操作を補助する三つの仕組みがあります。
+Calyx offers three input-assist mechanisms.
 
-## コマンドパレット
+## Command palette
 
-`Cmd+Shift+P` で開きます。
-Calyx の全コマンドがここに集まっており、機能名やキーワードで絞り込めます。
-ショートカットを覚えていない操作も、コマンドパレット経由で呼び出せます。
+Open with `Cmd+Shift+P`.
+Every Calyx command lives here and is filterable by name or keyword.
+Use it to reach actions you don't have a shortcut for.
 
-たとえば次のような操作はここからも実行できます。
+Examples of commands reachable from the palette:
 
 - **Enable AI Agent IPC** / **Disable AI Agent IPC**
 - **Install CLI to PATH**
-- テーマ関連のコマンド
-- 各種ウィンドウ・タブ操作
+- Theme-related commands
+- Window and tab actions
 
-## クイックターミナル
+## Quick terminal
 
-システム全体で有効なドロップダウン式のターミナルです。
-グローバルキーバインドでどこからでも呼び出せます（キーは Settings から設定）。
-通常のウィンドウとは別に動くので、編集中のアプリを離れずに一時的なコマンドを実行できます。
+A system-wide drop-down terminal toggled by a global keybind (configure the key in Settings).
+It runs alongside your regular windows, so you can run a one-off command without leaving the app you're in.
 
-## コンポーズオーバーレイ
+## Compose overlay
 
-`Cmd+Shift+E` でターミナル上に浮かぶテキストエディタを開きます。
-長いコマンドや AI への指示など、複数行の入力を落ち着いて書けます。
+Press `Cmd+Shift+E` to float a text editor on top of the terminal.
+Useful for writing long commands or AI prompts comfortably.
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| ターミナルに送信 | `Enter` |
-| 改行を入れる | `Shift+Enter` |
-| オーバーレイを閉じる | `Escape` |
+| Send to terminal | `Enter` |
+| Insert newline | `Shift+Enter` |
+| Close overlay | `Escape` |
 
-[デモ動画](https://www.youtube.com/watch?v=qhwYnk8adF4) で動作を確認できます。
+See the [demo video](https://www.youtube.com/watch?v=qhwYnk8adF4).

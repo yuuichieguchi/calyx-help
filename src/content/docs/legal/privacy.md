@@ -1,92 +1,91 @@
 ---
-title: プライバシーポリシー
-description: Calyx が扱うデータと外部通信についての説明。
+title: Privacy Policy
+description: What Calyx handles and what it sends over the network.
 sidebar:
   order: 3
 ---
 
-最終更新日: 2026 年 6 月 29 日
+Last updated: June 29, 2026
 
-Calyx は、ローカルで完結する macOS ターミナルアプリケーションです。
-本ページでは、Calyx が取り扱うデータと外部通信について説明します。
+Calyx is a macOS terminal application that runs locally.
+This page describes the data Calyx handles and the network traffic it generates.
 
-## 利用者情報の収集
+## User information collected
 
-Calyx は、利用者の識別情報、行動ログ、クラッシュレポート等を一切収集しません。
-解析（アナリティクス）やテレメトリの送信は行いません。
+Calyx does not collect any user identifiers, usage logs, or crash reports.
+No analytics or telemetry is sent.
 
-開発者は、Calyx の起動時刻・利用機能・入力内容を把握する手段を持っていません。
+The developer has no way to observe your launch times, feature usage, or input.
 
-## ローカルに保存される情報
+## Information stored locally
 
-Calyx は、起動状態の復元と機能の動作のために、利用者のマシン内に次の情報を保存します。
-これらは利用者のマシンの外には送信されません。
+Calyx stores the following on your machine to restore state and run features.
+None of it is sent off your machine.
 
-- 開いていたタブ、スプリット、各タブの作業ディレクトリ（セッション復元用）
-- ターミナルのスクロールバック（メモリ上、ターミナルセッション内）
-- AI エージェント連携用の設定（`~/.claude.json` ほか各エージェント設定ファイル）
-- ブラウザサーバーの接続情報（`~/.config/calyx/browser.json`）
-- LSP プロキシ用の言語サーバープロセス（バックグラウンドで動作）
-- ブラウザタブのストレージ（タブを閉じると破棄される非永続ストレージ）
+- Open tabs, splits, and per-tab working directories (for session restore)
+- Terminal scrollback (in memory, within the session)
+- AI agent integration configs (`~/.claude.json` and the equivalents for other agents)
+- Browser server connection info (`~/.config/calyx/browser.json`)
+- Background language server processes for the LSP proxy
+- Browser tab storage (non-persistent — discarded when the tab closes)
 
-## 外部との通信
+## Outbound network traffic
 
-Calyx が能動的に行う外部通信は、次のものに限られます。
+The only outbound traffic Calyx initiates is the following.
 
-### 1. 自動アップデート（Sparkle）
+### 1. Auto-update (Sparkle)
 
-直接ダウンロード版は、起動後に Appcast を取得して新しいバージョンの有無を確認します。
+The directly-downloaded build fetches the Appcast on launch to check for new versions.
 
-- 取得先: `https://yuuichieguchi.github.io/Calyx/appcast.xml`
-- 取得内容: バージョン情報、リリースノート、配布物の URL
-- 配布物は公開鍵による署名検証を行ったうえでインストールされます
+- URL: `https://yuuichieguchi.github.io/Calyx/appcast.xml`
+- Content: version info, release notes, and download URLs
+- Downloads are verified against a public key signature before installation
 
-### 2. リリースアセットのダウンロード
+### 2. Release asset download
 
-更新を受け入れた場合、Calyx は GitHub Releases から最新版の配布物をダウンロードします。
-これは利用者が更新ダイアログで承認した時点で発生します。
+When you accept an update, Calyx downloads the new build from GitHub Releases.
+This happens only after you confirm in the update dialog.
 
-### 3. 言語サーバーの自動インストール（任意）
+### 3. Language server auto-install (optional)
 
-Settings で **LSP Proxy** の自動インストールを有効化している場合、不足している言語サーバーをパッケージマネージャ経由でダウンロード・インストールします。
-この機能は標準では無効です。
+If you enable auto-install in Settings under **LSP Proxy**, Calyx downloads missing language servers via package managers.
+This feature is off by default.
 
-### 4. 利用者操作によるブラウザタブのアクセス
+### 4. Browser tab requests initiated by you
 
-ブラウザタブで開いた URL へのアクセスは、利用者の操作によるものであり、通常のウェブブラウザと同様の通信が発生します。
-ブラウザタブのストレージは非永続で、タブを閉じると破棄されます。
+URLs you load in a browser tab generate normal browser traffic.
+Storage is non-persistent and is discarded when the tab closes.
 
-## ローカルで稼働するサーバー
+## Locally-running servers
 
-Calyx は、自身のプロセス内に複数のローカルサーバーを内蔵します。
-これらは外部ネットワークには公開されず、ループバック (`localhost`) でのみ待ち受けます。
+Calyx hosts several servers inside its own process.
+They listen on the loopback interface (`localhost`) and are not exposed to the network.
 
-- **AI Agent IPC MCP サーバー**: 同一マシン上の AI エージェントとの通信用
-- **ブラウザ自動化サーバー**: `localhost:41840`、`calyx browser` CLI からのアクセス用
+- **AI Agent IPC MCP server**: used by AI agents on the same machine
+- **Browser automation server**: `localhost:41840`, used by the `calyx browser` CLI
 
-外部からの接続を受ける構成ではないため、ファイアウォール越しの通信は発生しません。
+They do not accept connections from outside the machine, so no firewall-crossing traffic is generated.
 
-## AI エージェントとのやり取り
+## Interactions with AI agents
 
-Calyx を介して AI エージェント（Claude Code、Codex CLI、OpenCode、Hermes など）を利用した場合、入力されたプロンプトや受信したレスポンスは Calyx を経由してターミナル上に表示されますが、Calyx 自体がそれらを記録・送信することはありません。
+When you use AI agents (Claude Code, Codex CLI, OpenCode, Hermes) through Calyx, the prompts you type and the responses you receive flow through Calyx and appear in the terminal, but Calyx itself does not record or transmit them.
 
-各エージェントがどのようなデータを外部 API に送信するかは、それぞれのエージェント提供者のプライバシーポリシーに従います。
+What each agent sends to its provider's API is governed by that agent's own privacy policy.
 
-## Diff レビューコメントの送信先
+## Diff review comments
 
-サイドバーの Git ビューで作成したレビューコメントは、利用者が **Submit Review** で送信先に指定した AI エージェントのターミナルタブにのみ送られます。
-GitHub などの外部サービスには送信されません。
+Review comments you create from the sidebar Git view are sent only to the AI agent tab you select with **Submit Review**.
+They are not sent to GitHub or any other external service.
 
-## 配布形態による違い
+## Differences by install type
 
-- **Homebrew でインストールした場合**: Sparkle による自動更新は無効で、更新は `brew upgrade` 経由になります。Appcast の取得は行いません。
-- **直接ダウンロード版**: 上記「自動アップデート」「リリースアセットのダウンロード」が発生します。
+- **Homebrew install**: Sparkle auto-update is disabled. Updates flow through `brew upgrade`. The Appcast is not fetched.
+- **Direct download**: "Auto-update" and "Release asset download" above apply.
 
-## ポリシーの変更
+## Changes to this policy
 
-本ポリシーは、機能追加や仕様変更に伴い改定されることがあります。
-改定後のポリシーは、本ヘルプサイト上での掲載をもって効力を生じます。
+This policy may be updated as features change. Updated versions take effect when published on this help site.
 
-## お問い合わせ
+## Contact
 
-プライバシーに関する質問や報告は、[GitHub Issues](https://github.com/yuuichieguchi/Calyx/issues) で受け付けています。
+Questions about privacy can be filed on [GitHub Issues](https://github.com/yuuichieguchi/Calyx/issues).

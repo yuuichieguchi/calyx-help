@@ -1,12 +1,12 @@
 ---
-title: 規約・ポリシー
-description: 利用規約、プライバシーポリシー、ライセンス情報。
+title: Terms & Policies
+description: Terms of use, privacy policy, and license information.
 sidebar:
   order: 1
 ---
 
-Calyx を利用するうえで関係する規約とポリシーをまとめています。
+The terms and policies relevant to using Calyx.
 
-- [利用規約](/legal/terms/) — Calyx の利用条件と免責
-- [プライバシーポリシー](/legal/privacy/) — Calyx が扱うデータと外部通信について
-- [ライセンス](/legal/license/) — Calyx 本体および主要な依存ソフトウェアのライセンス
+- [Terms of Use](/legal/terms/) — usage terms and disclaimers
+- [Privacy Policy](/legal/privacy/) — what Calyx handles and what it sends over the network
+- [License](/legal/license/) — Calyx and major dependency licenses

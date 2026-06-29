@@ -1,35 +1,35 @@
 ---
-title: AI エージェント連携
-description: MCP サーバーによる AI Agent IPC と LSP Proxy MCP の使い方。
+title: AI agent integration
+description: AI Agent IPC and LSP Proxy MCP via the built-in MCP server.
 sidebar:
   order: 7
 ---
 
-Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、OpenCode、Hermes など）を統合するための MCP サーバーが組み込まれています。
-タブやペインをまたいだエージェント同士の通信と、LSP のシンボル解析機能をエージェントから利用する機能の二つを提供します。
+Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes).
+It exposes two features: peer-to-peer messaging between agents across tabs/panes, and LSP-backed symbol lookup tools.
 
 ## AI Agent IPC
 
-異なるタブ・ペインで動いている AI エージェントが、お互いにメッセージをやり取りできます。
+Agents running in different tabs or panes can exchange messages with each other.
 
-### 有効化の手順
+### Enable
 
-1. コマンドパレット (`Cmd+Shift+P`) で **Enable AI Agent IPC** を実行
-2. 二つ以上のターミナルペインでエージェントを起動（Claude Code / Codex / OpenCode / Hermes のいずれか）
-3. 各インスタンスは自動的にピアとして登録され、メッセージの送受信が可能になる
+1. Open the command palette (`Cmd+Shift+P`) and run **Enable AI Agent IPC**.
+2. Start agents (Claude Code / Codex / OpenCode / Hermes) in two or more terminal panes.
+3. Each instance registers itself as a peer and can send/receive messages.
 
-設定ファイルは、インストールされているエージェントに応じて自動的に書き込まれます。
+Config files are written automatically based on which agents are installed.
 
-| エージェント | 設定ファイル |
+| Agent | Config file |
 |---|---|
 | Claude Code | `~/.claude.json` |
 | Codex CLI | `~/.codex/config.toml` |
-| OpenCode | `~/.config/opencode/opencode.json`、`AGENTS.md` |
+| OpenCode | `~/.config/opencode/opencode.json`, `AGENTS.md` |
 | Hermes | `~/.hermes/config.yaml` |
 
-設定の書き込み後、すでに起動しているエージェントは再起動して新しい MCP サーバーを読み込ませてください。
+Restart any already-running agent instances so they pick up the new MCP server.
 
-### 利用可能な MCP ツール
+### Available MCP tools
 
 - `register_peer`
 - `list_peers`
@@ -39,36 +39,36 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 - `ack_messages`
 - `get_peer_status`
 
-[デモ動画](https://www.youtube.com/watch?v=Xty0ad9gGcM) で動作を確認できます。
+See the [demo video](https://www.youtube.com/watch?v=Xty0ad9gGcM).
 
-### 無効化
+### Disable
 
-コマンドパレットで **Disable AI Agent IPC** を実行します。
+Run **Disable AI Agent IPC** from the command palette.
 
 ## LSP Proxy MCP
 
-AI Agent IPC と同じ MCP サーバー上に、言語サーバー（LSP）の機能を公開します。
-エージェントは `grep` の代わりに、シンボルを理解した結果を取得できます。
+LSP features are exposed via the same MCP server used by AI Agent IPC.
+Agents can get symbol-aware results instead of relying on `grep`.
 
-### 提供されるツール
+### Tools
 
-- `lsp_hover` — シンボル上のホバー情報
-- `lsp_definition` — 定義へジャンプ
-- `lsp_references` — 参照箇所の列挙
-- `lsp_rename` — シンボルのリネーム
-- `lsp_diagnostics` — 診断（エラー・警告）の取得
+- `lsp_hover` — hover info for a symbol
+- `lsp_definition` — jump to definition
+- `lsp_references` — list references
+- `lsp_rename` — rename a symbol
+- `lsp_diagnostics` — fetch diagnostics (errors and warnings)
 
-ほかにも複数のツールが提供されます。
+Additional tools are also provided.
 
-### セットアップ
+### Setup
 
-1. コマンドパレットで **Enable AI Agent IPC** を実行（同じ MCP サーバーを共有するため）
-2. AI エージェントを再起動するか、`calyx-ipc` MCP サーバーを再接続
-3. （任意）Settings の **LSP Proxy** から、不足している言語サーバーの自動インストールを有効化
+1. Run **Enable AI Agent IPC** from the command palette (the LSP proxy shares this server).
+2. Restart or reconnect your agent so it picks up the `calyx-ipc` MCP server.
+3. (Optional) In Settings, open **LSP Proxy** and enable auto-install for missing language servers.
 
-Calyx は言語サーバーをバックグラウンドで常駐させ、ディスク上のファイル変更を取り込みつつ、最初の `lsp_*` 呼び出し時に該当ワークスペース向けの言語サーバーを立ち上げます。
+Calyx keeps language servers running in the background, syncs file changes from disk, and starts the right server on the first `lsp_*` call for a workspace.
 
-### 対応する言語サーバー
+### Supported languages
 
-TypeScript、Python、Rust、Go、Swift などをサポートします。
-個別の言語の自動インストール対応状況は Settings の **LSP Proxy** で確認できます。
+TypeScript, Python, Rust, Go, Swift, and others.
+Per-language auto-install support is shown in Settings under **LSP Proxy**.

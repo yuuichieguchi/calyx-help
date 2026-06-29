@@ -1,24 +1,25 @@
 ---
-title: 既知の制限
-description: 現時点で把握している不具合や仕様上の制約。
+title: Known limitations
+description: Currently-known bugs and constraints.
 sidebar:
   order: 3
 ---
 
-## カーソルクリック移動と全角文字
+## Click-to-move cursor on full-width text
 
-全角文字（日本語など）を含む行では、クリックした位置とカーソルが移動する位置がずれることがあります。
+On lines containing full-width characters (Japanese, CJK, etc.), the cursor may not land exactly where you clicked.
 
-これは Calyx 固有の問題ではなく、Ghostty の cursor-click-to-move が、クリック座標を「ターミナルセル単位の矢印キー入力」に変換する仕組みに起因します。
-全角文字が複数セルを占めるため、変換時に誤差が出ます。
+This is not a Calyx-specific issue.
+Ghostty's cursor-click-to-move translates the click position into a sequence of arrow-key inputs counted in terminal cells.
+Because full-width characters span multiple cells, the translation accumulates rounding error.
 
-回避策はありません。
-全角を多用する行ではキー入力でカーソルを移動してください。
+There's no workaround.
+On lines with many full-width characters, move the cursor with the keyboard instead.
 
-## Calyx が上書きする Ghostty 設定キー
+## Ghostty config keys overridden by Calyx
 
-Liquid Glass UI を成立させるため、次のキーは Calyx が上書きします。
-Ghostty 設定ファイルに書いても反映されません。
+To make the Liquid Glass UI work coherently, Calyx overrides the following keys.
+Setting them in the Ghostty config file has no effect.
 
 - `background-opacity`
 - `background-blur`
@@ -26,12 +27,12 @@ Ghostty 設定ファイルに書いても反映されません。
 - `font-codepoint-map`
 - `foreground`
 
-現時点で Calyx が管理しているキーの完全な一覧は、Settings の **Ghostty Config Compatibility** で確認できます。
+The current full list of Calyx-managed keys is shown in Settings under **Ghostty Config Compatibility**.
 
-## ブラウザタブの制約
+## Browser tab constraints
 
-- 対応プロトコルは http / https のみ
-- ストレージは非永続（タブを閉じると Cookie やローカルストレージは破棄）
-- ポップアップウィンドウは自動でブロック
+- http and https only
+- Non-persistent storage (cookies and local storage are discarded when the tab closes)
+- Popups are blocked automatically
 
-汎用ブラウザではなく、開発・自動化向けのビューと位置づけられています。
+It's a developer-and-automation view, not a general-purpose browser.

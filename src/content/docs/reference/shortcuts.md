@@ -1,66 +1,66 @@
 ---
-title: ショートカット一覧
-description: Calyx のキーボードショートカット早見表。
+title: Keyboard shortcuts
+description: A cheatsheet of Calyx keyboard shortcuts.
 sidebar:
   order: 2
 ---
 
-主要なキーボードショートカットの一覧です。
-Settings から個別に変更できる項目もあります。
+The main keyboard shortcuts in Calyx.
+Some can be reassigned from Settings.
 
-## グループ操作（Ctrl+Shift 系）
+## Group operations (Ctrl+Shift)
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 次のグループ | `Ctrl+Shift+]` |
-| 前のグループ | `Ctrl+Shift+[` |
-| 新しいグループ | `Ctrl+Shift+N` |
-| 現在のグループを閉じる | `Ctrl+Shift+W` |
+| Next group | `Ctrl+Shift+]` |
+| Previous group | `Ctrl+Shift+[` |
+| New group | `Ctrl+Shift+N` |
+| Close group | `Ctrl+Shift+W` |
 
-## タブ操作（Cmd 系）
+## Tab operations (Cmd)
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 新しいタブ | `Cmd+T` |
-| タブを閉じる | `Cmd+W` |
-| 番号でタブを切り替え | `Cmd+1` 〜 `Cmd+9` |
-| 次のタブ | `Cmd+Shift+]` |
-| 前のタブ | `Cmd+Shift+[` |
+| New tab | `Cmd+T` |
+| Close tab | `Cmd+W` |
+| Switch by number | `Cmd+1` – `Cmd+9` |
+| Next tab | `Cmd+Shift+]` |
+| Previous tab | `Cmd+Shift+[` |
 
-## スプリット操作
+## Split operations
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 右に分割 | `Cmd+D` |
-| 下に分割 | `Cmd+Shift+D` |
-| 隣のペインへフォーカス | `Cmd+Option+矢印キー` |
+| Split right | `Cmd+D` |
+| Split down | `Cmd+Shift+D` |
+| Focus adjacent pane | `Cmd+Option+arrow` |
 
-## 検索
+## Search
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| スクロールバック検索 | `Cmd+F` |
-| 次の一致 | `Cmd+G` |
-| 前の一致 | `Cmd+Shift+G` |
-| 検索バーを閉じる | `Escape` |
+| Find in terminal | `Cmd+F` |
+| Next match | `Cmd+G` |
+| Previous match | `Cmd+Shift+G` |
+| Close search bar | `Escape` |
 
-## 通知
+## Notifications
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 最新の未読通知タブへジャンプ | `Cmd+Shift+U` |
+| Jump to most recent unread notification tab | `Cmd+Shift+U` |
 
-## グローバル
+## Global
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| コマンドパレット | `Cmd+Shift+P` |
-| コンポーズオーバーレイの開閉 | `Cmd+Shift+E` |
+| Command palette | `Cmd+Shift+P` |
+| Toggle compose overlay | `Cmd+Shift+E` |
 
-## コンポーズオーバーレイ内
+## Inside the compose overlay
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| ターミナルに送信 | `Enter` |
-| 改行を入れる | `Shift+Enter` |
-| オーバーレイを閉じる | `Escape` |
+| Send to terminal | `Enter` |
+| Insert newline | `Shift+Enter` |
+| Close overlay | `Escape` |

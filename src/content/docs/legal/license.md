@@ -1,13 +1,13 @@
 ---
-title: ライセンス
-description: Calyx 本体および主要な依存ソフトウェアのライセンス。
+title: License
+description: Calyx and major dependency licenses.
 sidebar:
   order: 4
 ---
 
-## Calyx 本体
+## Calyx itself
 
-Calyx は MIT License の下で配布されます。
+Calyx is distributed under the MIT License.
 
 ```
 MIT License
@@ -33,31 +33,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-ソースコードは [github.com/yuuichieguchi/Calyx](https://github.com/yuuichieguchi/Calyx) で公開しています。
+The source is published at [github.com/yuuichieguchi/Calyx](https://github.com/yuuichieguchi/Calyx).
 
-## 主要な依存ソフトウェア
+## Major dependencies
 
-Calyx は次のソフトウェアを利用しています。
+Calyx uses the following software.
 
 ### libghostty (Ghostty)
 
-- ライセンス: MIT License
-- 著作権者: Mitchell Hashimoto
-- 公式サイト: [ghostty.org](https://ghostty.org/)
+- License: MIT License
+- Copyright: Mitchell Hashimoto
+- Site: [ghostty.org](https://ghostty.org/)
 - GitHub: [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty)
 
-Calyx はターミナルレンダリングとプロトコル処理の中核に libghostty を使用しています。
+Calyx uses libghostty for the terminal rendering and protocol layer.
 
 ### Sparkle
 
-- ライセンス: MIT License
-- 公式サイト: [sparkle-project.org](https://sparkle-project.org/)
+- License: MIT License
+- Site: [sparkle-project.org](https://sparkle-project.org/)
 
-macOS アプリケーションの自動アップデートに利用しています。
+Used for macOS auto-update.
 
-### その他の依存ライブラリ
+### Other dependencies
 
-Apple 公式の AppKit、SwiftUI、Metal などのフレームワークは Apple のライセンス条件に従います。
+Apple's official AppKit, SwiftUI, Metal, and other frameworks are governed by Apple's license terms.
 
-その他のオープンソースライブラリは、それぞれの著作権者のライセンスに従って利用しています。
-完全な依存関係の一覧と各ライセンス本文は、[GitHub リポジトリ](https://github.com/yuuichieguchi/Calyx) を参照してください。
+Other open-source libraries follow their respective copyright holders' licenses.
+For the complete dependency list and full license texts, see the [GitHub repository](https://github.com/yuuichieguchi/Calyx).

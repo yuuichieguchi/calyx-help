@@ -1,37 +1,36 @@
 ---
-title: ターミナル機能
-description: スクロールバック検索、ドラッグアンドドロップ、クリックでカーソル移動など、ターミナル本体の機能。
+title: Terminal features
+description: Scrollback search, drag-and-drop, click-to-move cursor.
 sidebar:
   order: 4
 ---
 
-## スクロールバック検索
+## Scrollback search
 
-`Cmd+F` でターミナルのスクロールバックを検索できます。
-一致箇所はハイライト表示され、`Cmd+G` で次、`Cmd+Shift+G` で前のヒットへ移動します。
-`Escape` で検索バーを閉じます。
+`Cmd+F` searches the terminal scrollback.
+Matches are highlighted; `Cmd+G` jumps to the next match and `Cmd+Shift+G` to the previous.
+`Escape` closes the search bar.
 
-## スムーズスクロール
+## Smooth scrolling
 
-トラックパッドはサブ行単位の CALayer 変換でフル スムーズピクセルスクロールします。
-ノッチありのマウスホイールでは、速度ベースのアニメーションが乗って滑らかに切り替わります。
-無効にしたい場合は Settings からオフにできます。
+Trackpad scrolling uses full smooth pixel scrolling via sub-row CALayer transforms.
+A notched mouse wheel adds a velocity-based animation for smoother transitions.
+You can disable it from Settings if you prefer raw line steps.
 
-## ネイティブスクロールバー
+## Native scrollbar
 
-ターミナルのスクロールバックには、システムのオーバーレイ式スクロールバーがそのまま表示されます。
+Terminal scrollback uses the system overlay scrollbar — the same one you see in other macOS apps.
 
-## ドラッグアンドドロップ
+## Drag-and-drop
 
-ターミナル上にファイル、URL、テキストをドロップすると、内容が挿入されます。
-ファイルパスはシェル向けに自動的にエスケープされるので、空白や記号を含むパスでもそのまま実行できます。
+Drop a file, URL, or text onto the terminal to insert it.
+File paths are shell-escaped automatically, so paths with spaces or special characters work without manual quoting.
 
-## カーソルクリック移動
+## Click-to-move cursor
 
-プロンプト行をクリックすると、その位置までカーソルを移動できます。
-内部的には Ghostty の cursor-click-to-move が矢印キーの連続入力に変換する仕組みのため、シェルの統合（shell integration）が有効になっている必要があります。
+Click a prompt line to reposition the cursor.
+Under the hood this is Ghostty's cursor-click-to-move, which translates clicks into arrow-key steps over terminal cells — shell integration must be enabled.
 
-:::caution[既知の制限]
-全角文字（日本語など）が混ざった行では、クリック位置とカーソル位置がずれることがあります。
-詳細は [既知の制限](/reference/known-limitations/) を参照してください。
+:::caution[Known limitation]
+On lines containing full-width characters (Japanese, CJK, etc.), the cursor may land slightly off from the click position. See [Known limitations](/reference/known-limitations/).
 :::

@@ -1,52 +1,52 @@
 ---
-title: タブ・グループ・スプリット
-description: Calyx のタブとグループ、ペイン分割の使い方。
+title: Tabs, groups, and splits
+description: Working with tabs and groups, and splitting panes in Calyx.
 sidebar:
   order: 2
 ---
 
-Calyx のウィンドウは、グループ → タブ → スプリット（ペイン）の三層で構成されます。
+A Calyx window is structured as three layers: groups → tabs → splits (panes).
 
-## タブ
+## Tabs
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 新しいタブを開く | `Cmd+T` |
-| 現在のタブを閉じる | `Cmd+W` |
-| 番号でタブを切り替える | `Cmd+1` 〜 `Cmd+9` |
-| 次のタブ | `Cmd+Shift+]` |
-| 前のタブ | `Cmd+Shift+[` |
+| New tab | `Cmd+T` |
+| Close tab | `Cmd+W` |
+| Switch by number | `Cmd+1` – `Cmd+9` |
+| Next tab | `Cmd+Shift+]` |
+| Previous tab | `Cmd+Shift+[` |
 
-タブの名前は、タブをダブルクリックすると編集できます。
-タブはタブバーまたはサイドバー上でドラッグして並び替えできます。
+Double-click a tab to rename it.
+Drag tabs in the tab bar or sidebar to reorder them.
 
-## グループ
+## Groups
 
-グループはタブをまとめる入れ物です。
-色プリセットが 10 種類あり、サイドバー上ではシェブロンで折りたたみ・展開できます。
+Groups are containers that hold tabs.
+There are 10 color presets, and groups can be collapsed or expanded from the sidebar using the chevron.
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 新しいグループ | `Ctrl+Shift+N` |
-| 現在のグループを閉じる | `Ctrl+Shift+W` |
-| 次のグループ | `Ctrl+Shift+]` |
-| 前のグループ | `Ctrl+Shift+[` |
+| New group | `Ctrl+Shift+N` |
+| Close current group | `Ctrl+Shift+W` |
+| Next group | `Ctrl+Shift+]` |
+| Previous group | `Ctrl+Shift+[` |
 
-グループ名はサイドバーの見出しをダブルクリックすると編集できます。
+Double-click a group heading in the sidebar to rename it.
 
-## スプリット（ペイン分割）
+## Splits
 
-一つのタブを縦横に分割して複数のペインを並べられます。
+You can split a tab horizontally or vertically to lay out multiple panes.
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 右方向に分割 | `Cmd+D` |
-| 下方向に分割 | `Cmd+Shift+D` |
-| 隣のペインへフォーカス移動 | `Cmd+Option+矢印キー` |
+| Split right | `Cmd+D` |
+| Split down | `Cmd+Shift+D` |
+| Focus adjacent pane | `Cmd+Option+arrow` |
 
-フォーカス移動は方向（左右上下）で指定するため、レイアウトが入り組んでいても直感的に操作できます。
+Focus moves by direction (left, right, up, down), which stays intuitive even with complex layouts.
 
-## セッションの自動復元
+## Session restore
 
-Calyx を終了すると、開いていたタブ、スプリット、各タブの作業ディレクトリが保存されます。
-次回起動時にはこの状態が復元されるので、作業を中断しても続きから再開できます。
+When you quit Calyx, the open tabs, splits, and working directory for each tab are saved.
+On the next launch, the state is restored so you can pick up where you left off.

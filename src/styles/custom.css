@@ -1,0 +1,48 @@
+/* Calyx ブランドカラー (ロゴの葉の緑) */
+:root {
+  --sl-color-accent-low: #1f3d1c;
+  --sl-color-accent: #6dc93c;
+  --sl-color-accent-high: #c8f0c8;
+  --sl-color-text-accent: #8ed762;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d6f0c8;
+  --sl-color-accent: #2e7d32;
+  --sl-color-accent-high: #1f3d1c;
+  --sl-color-text-accent: #2e7d32;
+}
+
+/* Liquid Glass 風のヒーロー背景 */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -3rem -4rem;
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(109, 201, 60, 0.22), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(109, 201, 60, 0.16), transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(46, 125, 50, 0.08), transparent 70%);
+  filter: blur(48px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+:root[data-theme='light'] .hero::before {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(46, 125, 50, 0.18), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(109, 201, 60, 0.2), transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(109, 201, 60, 0.08), transparent 70%);
+  opacity: 0.75;
+}
+
+/* ロゴ画像の周りに微細なグロー */
+.hero > img {
+  filter: drop-shadow(0 0 24px rgba(109, 201, 60, 0.25))
+    drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+}

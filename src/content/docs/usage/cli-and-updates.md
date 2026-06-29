@@ -1,44 +1,43 @@
 ---
-title: CLI と自動アップデート
-description: calyx CLI のインストール、Sparkle ベースの自動アップデート。
+title: CLI & auto-updates
+description: Installing the calyx CLI and the Sparkle-based auto-update system.
 sidebar:
   order: 9
 ---
 
-## `calyx` CLI
+## The `calyx` CLI
 
-`calyx` CLI は、`Calyx.app/Contents/Resources/bin/calyx` に同梱されています。
-ブラウザ自動化（`calyx browser ...`）や、外部からタブを開く操作などを提供します。
+The `calyx` CLI ships inside `Calyx.app/Contents/Resources/bin/calyx`.
+It provides browser scripting (`calyx browser ...`) and helpers for opening tabs from outside the app.
 
-### PATH へのインストール
+### Install into PATH
 
-コマンドパレット (`Cmd+Shift+P`) で **Install CLI to PATH** を実行すると、`/usr/local/bin/calyx` などへのシンボリックリンクが作られ、任意のターミナルから `calyx` コマンドが使えるようになります。
+Run **Install CLI to PATH** from the command palette (`Cmd+Shift+P`).
+A symlink is created at `/usr/local/bin/calyx` (or similar), making `calyx` available from any terminal.
 
-`calyx --help` で利用可能なサブコマンドの一覧を確認できます。
+Run `calyx --help` to see the available subcommands.
 
-### Finder からファイルを開く
+### Open from Finder
 
-Calyx は Info.plist に NSServices を登録しているため、Finder の右クリックメニューに **Open in Calyx** が出ます。
-フォルダや テキストファイルを Calyx で開くショートカットになります。
+Calyx registers an NSServices entry, so right-clicking a folder or text file in Finder shows **Open in Calyx**.
 
-## 自動アップデート
+## Auto-update
 
-直接ダウンロード版（`.zip` 経由でインストールしたもの）は、Sparkle が更新を確認します。
+The directly-downloaded build (installed via `.zip`) checks for updates via Sparkle.
 
 - Appcast URL: `https://yuuichieguchi.github.io/Calyx/appcast.xml`
-- 公開鍵による署名検証あり（不正な配布物を排除）
+- Updates are verified against a public key signature
 
-### 更新のタイミング
+### When updates happen
 
-Sparkle が自動で更新の有無を定期チェックします。
-新しいバージョンがある場合は、ウィンドウ内に通知が出るので、そこから更新を進められます。
+Sparkle checks periodically. When a new version is available, you'll see a notification inside the window from which you can apply the update.
 
-### Homebrew でインストールした場合
+### If you installed via Homebrew
 
-Homebrew で入れた場合は Sparkle ではなく `brew upgrade` 経由で更新します。
+Homebrew installs do not use Sparkle. Update through Homebrew instead:
 
 ```bash
 brew upgrade --cask calyx
 ```
 
-混在を避けるため、Homebrew 版と直接ダウンロード版は片方に揃えて運用することをおすすめします。
+Stick with one channel — Homebrew or direct download — to avoid mixed installs.

@@ -7,6 +7,7 @@ export default defineConfig({
     starlight({
       title: 'Calyx Help',
       logo: { src: './src/assets/logo.png', replacesTitle: false },
+      customCss: ['./src/styles/custom.css'],
       head: [
         { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' } },
         { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' } },
@@ -17,28 +18,28 @@ export default defineConfig({
       ],
       defaultLocale: 'root',
       locales: {
-        root: { label: '日本語', lang: 'ja' },
-        en: { label: 'English', lang: 'en' },
+        root: { label: 'English', lang: 'en' },
+        ja: { label: '日本語', lang: 'ja' },
       },
       sidebar: [
         {
-          label: 'はじめに',
-          translations: { en: 'Getting Started' },
+          label: 'Getting Started',
+          translations: { ja: 'はじめに' },
           items: [{ autogenerate: { directory: 'getting-started' } }],
         },
         {
-          label: '使い方',
-          translations: { en: 'Usage' },
+          label: 'Usage',
+          translations: { ja: '使い方' },
           items: [{ autogenerate: { directory: 'usage' } }],
         },
         {
-          label: 'リファレンス',
-          translations: { en: 'Reference' },
+          label: 'Reference',
+          translations: { ja: 'リファレンス' },
           items: [{ autogenerate: { directory: 'reference' } }],
         },
         {
-          label: '規約・ポリシー',
-          translations: { en: 'Terms & Policies' },
+          label: 'Terms & Policies',
+          translations: { ja: '規約・ポリシー' },
           items: [{ autogenerate: { directory: 'legal' } }],
         },
       ],

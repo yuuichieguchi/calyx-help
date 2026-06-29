@@ -1,38 +1,38 @@
 ---
-title: Git ソースコントロール
-description: サイドバーの Changes ビュー、コミットグラフ、Diff のインラインレビューコメント。
+title: Git source control
+description: Sidebar Changes view, commit graph, and inline diff review comments.
 sidebar:
   order: 8
 ---
 
-Calyx のサイドバーには、現在のリポジトリの状態を確認できる Git ビューが組み込まれています。
-ターミナルから離れずに、差分の確認とコードレビューが完結します。
+Calyx's sidebar includes a built-in Git view of the current repository.
+You can review changes and leave comments without leaving the terminal.
 
-## Changes ビュー
+## Changes view
 
-サイドバーの Changes タブでは、次の三つを確認できます。
+The Changes tab shows three things:
 
-- **作業ツリー**: ステージ済み・未ステージ・未追跡のファイル
-- **コミットグラフ**: ブランチを可視化したコミット履歴
-- **インライン Diff ビューア**: 選択したファイルの行単位の差分
+- **Working tree**: staged, unstaged, and untracked files
+- **Commit graph**: branch-visualized commit history
+- **Inline diff viewer**: per-line diff for the selected file
 
-## レビューコメント
+## Review comments
 
-Diff の行番号付近にある `+` ボタンをクリックすると、その行にインラインコメントを追加できます。
-コメントは複数つけられ、最後に **Submit Review** を実行すると、選んだ AI エージェントのタブに直接送信されます。
+Click the gutter `+` button next to a diff line to add an inline comment.
+You can add multiple comments and then click **Submit Review** to send them straight to an AI agent's terminal tab.
 
-### 送信先として選べるエージェント
+### Targets
 
 - Claude Code
 - Codex CLI
 - OpenCode
 - Hermes
 
-送信されたレビューコメントは、エージェントの対話履歴にメッセージとして入力されるため、そのまま修正タスクとして依頼できます。
+The review is delivered as a message inside the agent's conversation, ready to be taken up as a fix task.
 
-[デモ動画](https://www.youtube.com/watch?v=_O2Lr4oFf4c) で動作を確認できます。
+See the [demo video](https://www.youtube.com/watch?v=_O2Lr4oFf4c).
 
-## 想定する使い方
+## Intended workflow
 
-レビュー対象のブランチを取り込み、Diff を眺めながら気になった箇所に印を付け、まとめてエージェントに直してもらう、という流れを想定しています。
-レビューコメントは GitHub などの外部サービスには送信されません。
+Pull in a branch to review, scan the diff, mark spots that need work, and hand the batch off to an agent to fix.
+Review comments are not sent to GitHub or any external service.

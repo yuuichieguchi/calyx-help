@@ -1,49 +1,49 @@
 ---
-title: はじめに
-description: Calyx のインストール方法と初回起動の手順。
+title: Getting Started
+description: Install Calyx and walk through the first launch.
 sidebar:
   order: 1
 ---
 
-Calyx は macOS 26 (Tahoe) 以降向けのネイティブターミナルです。
-libghostty を Metal GPU で動かしつつ、Liquid Glass の UI でラップしています。
+Calyx is a native terminal for macOS 26 (Tahoe) and later.
+It runs libghostty on Metal under a Liquid Glass UI.
 
-## 動作環境
+## Requirements
 
-- macOS 26 Tahoe 以降
-- Apple Silicon と Intel の両方をサポート（ユニバーサルバイナリ）
+- macOS 26 Tahoe or later
+- Universal binary (Apple Silicon and Intel)
 
-## インストール
+## Install
 
-### Homebrew でインストールする
+### Homebrew
 
 ```bash
 brew tap yuuichieguchi/calyx
 brew install --cask calyx
 ```
 
-更新は `brew upgrade --cask calyx` で行います。
+Update with `brew upgrade --cask calyx`.
 
-### `.zip` から手動でインストールする
+### Manual `.zip` install
 
-1. [最新リリース](https://github.com/yuuichieguchi/Calyx/releases/latest) から `Calyx.zip` をダウンロード
-2. ダブルクリックで解凍
-3. `Calyx.app` を `/Applications` にドラッグ
+1. Download `Calyx.zip` from the [latest release](https://github.com/yuuichieguchi/Calyx/releases/latest).
+2. Double-click to unzip.
+3. Drag `Calyx.app` into `/Applications`.
 
-手動インストール版は Sparkle で自動更新を確認します（Homebrew 版は `brew upgrade` 経由になります）。
+The manual build checks for updates via Sparkle. The Homebrew install updates through `brew upgrade`.
 
-## 初回起動
+## First launch
 
-1. Launchpad または `/Applications/Calyx.app` から起動します。
-2. はじめてアクセスする系統のリソース（フォルダ、通知など）には macOS の権限ダイアログが表示されます。利用したい機能の範囲で許可してください。
-3. 起動直後の画面で `Cmd+Shift+P` を押すとコマンドパレットが開きます。ここから主要な操作にアクセスできます。
+1. Launch from Launchpad or `/Applications/Calyx.app`.
+2. macOS prompts you for permissions (folders, notifications) the first time Calyx touches them. Grant only what you intend to use.
+3. Press `Cmd+Shift+P` to open the command palette. Every major action is reachable from here.
 
-## CLI を PATH に通す（任意）
+## Install the CLI (optional)
 
-`calyx` CLI（ブラウザ自動化や `open` コマンドを提供）をターミナルから使えるようにするには、コマンドパレットで **Install CLI to PATH** を実行します。
-CLI 本体は `Calyx.app/Contents/Resources/bin/` に同梱されており、`/usr/local/bin/calyx` などにシンボリックリンクが作られます。
+To call the `calyx` CLI (used for browser scripting and `open`-style helpers) from any terminal, run **Install CLI to PATH** from the command palette.
+The CLI binary ships inside `Calyx.app/Contents/Resources/bin/`; the command symlinks it into `/usr/local/bin/calyx` or similar.
 
-## 次に読むもの
+## What's next
 
-- [使い方の概要](/usage/) — 機能別のガイド
-- [ショートカット一覧](/reference/shortcuts/) — キーボード操作の早見表
+- [Usage overview](/usage/) — feature-by-feature guides
+- [Keyboard shortcuts](/reference/shortcuts/) — the cheatsheet

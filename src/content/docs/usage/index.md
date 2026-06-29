@@ -1,26 +1,26 @@
 ---
-title: 使い方
-description: Calyx の機能別ガイド。タブ、スプリット、ブラウザタブ、AI エージェント連携などをまとめています。
+title: Usage
+description: Feature-by-feature guides for Calyx — tabs, splits, browser tabs, AI agent integration, and more.
 sidebar:
   order: 1
 ---
 
-このセクションでは Calyx の主要機能を、目的別に分けて説明します。
+This section walks through Calyx's major features, grouped by purpose.
 
-## 目次
+## Pages
 
-- [タブ・グループ・スプリット](/usage/tabs-and-splits/) — タブとグループの操作、ペイン分割
-- [コマンドパレットと入力補助](/usage/command-palette/) — `Cmd+Shift+P`、クイックターミナル、コンポーズオーバーレイ
-- [ターミナル機能](/usage/terminal/) — スクロールバック検索、ドラッグアンドドロップ、クリックでカーソル移動
-- [カスタマイズ](/usage/customization/) — テーマカラー、Ghostty 設定との互換性
-- [ブラウザタブと自動化](/usage/browser/) — WKWebView ベースのブラウザタブと `calyx browser` CLI
-- [AI エージェント連携](/usage/ai-agents/) — MCP IPC と LSP Proxy MCP
-- [Git ソースコントロール](/usage/git/) — サイドバーの変更ビューとレビューコメント
-- [CLI と自動アップデート](/usage/cli-and-updates/) — `calyx` CLI、Sparkle ベースの更新
-- [セキュリティと通知](/usage/security/) — クリップボード確認、セキュア入力、デスクトップ通知
+- [Tabs, groups, and splits](/usage/tabs-and-splits/) — tabs, groups, and pane splits
+- [Command palette & input helpers](/usage/command-palette/) — `Cmd+Shift+P`, quick terminal, compose overlay
+- [Terminal features](/usage/terminal/) — scrollback search, drag-and-drop, click-to-move
+- [Customization](/usage/customization/) — theme color, Ghostty config compatibility
+- [Browser tabs and automation](/usage/browser/) — WKWebView tabs and the `calyx browser` CLI
+- [AI agent integration](/usage/ai-agents/) — MCP IPC and LSP Proxy MCP
+- [Git source control](/usage/git/) — Changes view and inline review comments
+- [CLI & auto-updates](/usage/cli-and-updates/) — `calyx` CLI, Sparkle-based updates
+- [Security & notifications](/usage/security/) — clipboard prompt, Secure Keyboard Entry, desktop notifications
 
-## ヘルプ画面とコマンドパレット
+## When in doubt, open the command palette
 
-迷ったらまず `Cmd+Shift+P` を押してください。
-コマンドパレットには Calyx の全コマンドが並んでおり、機能名（例: "Split"、"Theme"、"Browser"）で絞り込めます。
-キーボードショートカットを覚えなくても、ここからすべての主要操作を呼び出せます。
+Press `Cmd+Shift+P`.
+Every Calyx command is listed there and filterable by feature name (e.g. "Split", "Theme", "Browser").
+You can drive the whole app from this palette even without memorizing shortcuts.

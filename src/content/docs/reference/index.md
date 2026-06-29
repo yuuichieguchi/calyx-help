@@ -1,9 +1,9 @@
 ---
-title: リファレンス
-description: ショートカット一覧、既知の制限など、リファレンス情報のまとめ。
+title: Reference
+description: Cheatsheets and known limitations.
 sidebar:
   order: 1
 ---
 
-- [ショートカット一覧](/reference/shortcuts/) — キーボード操作の早見表
-- [既知の制限](/reference/known-limitations/) — 現時点で把握している不具合や制約
+- [Keyboard shortcuts](/reference/shortcuts/) — the cheatsheet
+- [Known limitations](/reference/known-limitations/) — current bugs and constraints

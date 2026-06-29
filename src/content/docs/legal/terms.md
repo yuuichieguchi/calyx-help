@@ -1,49 +1,49 @@
 ---
-title: 利用規約
-description: Calyx の利用条件と免責事項。
+title: Terms of Use
+description: Terms and disclaimers for using Calyx.
 sidebar:
   order: 2
 ---
 
-最終更新日: 2026 年 6 月 29 日
+Last updated: June 29, 2026
 
-Calyx は [MIT License](/legal/license/) の下で配布されているオープンソースソフトウェアです。
-本規約は、Calyx（以下「本ソフトウェア」）の利用条件を定めるものです。
+Calyx is open-source software distributed under the [MIT License](/legal/license/).
+These terms set out the conditions under which Calyx (the "Software") may be used.
 
-## 1. ライセンスの適用
+## 1. License
 
-本ソフトウェアの利用、複製、改変、再配布は MIT License の条件に従います。
-MIT License の全文は [ライセンス](/legal/license/) ページに掲載しています。
+Use, copying, modification, and redistribution of the Software are governed by the MIT License.
+The full text appears on the [License](/legal/license/) page.
 
-## 2. 提供形態
+## 2. Provision
 
-本ソフトウェアは「現状のまま (AS IS)」提供されます。
-著作権者および提供者は、商品性、特定目的への適合性、第三者の権利非侵害について、明示・黙示を問わず一切の保証を行いません。
+The Software is provided "AS IS".
+The copyright holders and providers disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, and non-infringement.
 
-## 3. 免責
+## 3. Disclaimer
 
-本ソフトウェアの利用、または利用不能から生じる損害について、著作権者および提供者はいかなる責任も負いません。
-これは契約、不法行為、その他の法的根拠を問わず適用されます。
+The copyright holders and providers are not liable for any damages arising from the use of, or inability to use, the Software.
+This applies regardless of legal theory — contract, tort, or otherwise.
 
-## 4. 利用者の責任
+## 4. User responsibility
 
-利用者は次の事項を自身の責任で行うものとします。
+You are responsible for:
 
-- 自身の環境への導入と設定
-- 本ソフトウェアを通じて取り扱うデータの安全管理
-- 本ソフトウェアと組み合わせて利用する第三者サービス・ツール（AI エージェント、言語サーバー、ウェブサービスなど）の規約遵守
+- installing and configuring the Software on your machines
+- safely handling data accessed through the Software
+- complying with the terms of any third-party services or tools used alongside the Software (AI agents, language servers, web services, etc.)
 
-## 5. 第三者ソフトウェアの取り扱い
+## 5. Third-party software
 
-Calyx は [libghostty](https://github.com/ghostty-org/ghostty)（MIT License）をはじめ、複数のオープンソースソフトウェアを利用しています。
-各依存ソフトウェアのライセンスは、それぞれの著作権者の定めに従います。
-詳細は [ライセンス](/legal/license/) を参照してください。
+Calyx uses several open-source projects, notably [libghostty](https://github.com/ghostty-org/ghostty) (MIT License).
+Each dependency is governed by its own copyright holders' license terms.
+See the [License](/legal/license/) page for details.
 
-## 6. 規約の変更
+## 6. Changes to these terms
 
-本規約は、本ソフトウェアの仕様変更または法令対応のため、予告なく改定されることがあります。
-改定後の規約は、本ヘルプサイト上での掲載をもって効力を生じます。
+These terms may be updated without prior notice in response to feature changes or legal requirements.
+Updated terms take effect when published on this help site.
 
-## 7. お問い合わせ
+## 7. Contact
 
-不具合の報告や機能要望は、[GitHub Issues](https://github.com/yuuichieguchi/Calyx/issues) で受け付けています。
+Please file bug reports and feature requests via [GitHub Issues](https://github.com/yuuichieguchi/Calyx/issues).

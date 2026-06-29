@@ -1,34 +1,34 @@
 ---
-title: セキュリティと通知
-description: クリップボード貼り付け確認、セキュア入力、デスクトップ通知の説明。
+title: Security & notifications
+description: Clipboard paste confirmation, Secure Keyboard Entry, and desktop notifications.
 sidebar:
   order: 10
 ---
 
-## クリップボード貼り付け確認
+## Clipboard paste confirmation
 
-クリップボードに危険な可能性のある内容（改行を含むテキストなど）があるとき、Calyx は貼り付け前に確認ダイアログを表示します。
-意図しないコマンド実行を防ぐためのガードです。
+When the clipboard contains potentially unsafe content (for instance, text with embedded newlines), Calyx asks for confirmation before pasting.
+This guards against accidentally executing pasted commands.
 
-挙動は Ghostty の `clipboard-paste-protection` 設定に従います。
-無効にしたい場合は Ghostty 設定ファイル `~/.config/ghostty/config` で調整してください。
+The behavior follows Ghostty's `clipboard-paste-protection` setting.
+To disable it, edit `~/.config/ghostty/config`.
 
-## セキュア入力
+## Secure Keyboard Entry
 
-**Secure Keyboard Entry** を有効にすると、他のアプリが Calyx のキーストロークを横取りできなくなります。
-パスワードや SSH のパスフレーズなど、機密性の高い入力を行うときに使います。
+Enable **Secure Keyboard Entry** to prevent other apps from intercepting Calyx's keystrokes.
+Use it when entering sensitive input such as passwords or SSH passphrases.
 
-アプリメニューから切り替えられます。
+Toggle from the app menu.
 
-## デスクトップ通知
+## Desktop notifications
 
-Calyx は OSC 9 / 99 / 777 のエスケープシーケンスに対応し、シェルや CLI ツールからの通知を macOS の通知センターに送れます。
-連続発火を抑えるためのレートリミットを内蔵しています。
+Calyx supports OSC 9 / 99 / 777 escape sequences and forwards notifications to macOS Notification Center.
+A built-in rate limit prevents notification floods.
 
-### 未読通知タブへジャンプ
+### Jump to unread notification tab
 
-| 操作 | ショートカット |
+| Action | Shortcut |
 |---|---|
-| 最新の未読通知タブへジャンプ | `Cmd+Shift+U` |
+| Jump to the most recent unread notification tab | `Cmd+Shift+U` |
 
-複数タブで作業しているときに、通知が出たタブをすぐに開けます。
+Useful when you have many tabs open and one of them just pinged you.
