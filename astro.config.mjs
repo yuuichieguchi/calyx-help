@@ -6,7 +6,12 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Calyx Help',
-      logo: { src: './src/assets/logo.svg', replacesTitle: false },
+      logo: { src: './src/assets/logo.png', replacesTitle: false },
+      head: [
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' } },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
+      ],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/yuuichieguchi/Calyx' },
       ],
