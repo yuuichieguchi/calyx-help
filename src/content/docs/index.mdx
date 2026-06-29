@@ -1,11 +1,37 @@
 ---
 title: Calyx Help
-description: macOS 向けターミナル Calyx のヘルプサイト
+description: macOS 26+ 向けターミナル Calyx のヘルプサイト。インストール、使い方、規約・ポリシーをまとめています。
 template: splash
 hero:
-  tagline: Calyx の使い方・規約・ポリシー
+  tagline: Liquid Glass UI と libghostty を組み合わせた macOS ターミナルのヘルプ。
   actions:
     - text: 使い始める
       link: /getting-started/
       icon: right-arrow
+      variant: primary
+    - text: ショートカット一覧
+      link: /reference/shortcuts/
+      icon: external
+      variant: minimal
+    - text: GitHub
+      link: https://github.com/yuuichieguchi/Calyx
+      icon: external
+      variant: minimal
 ---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="はじめに" icon="rocket">
+    インストールから初回起動までを案内します。[はじめに](/getting-started/)
+  </Card>
+  <Card title="使い方" icon="open-book">
+    タブ、スプリット、コマンドパレット、AI エージェント連携など機能別の説明。[使い方](/usage/)
+  </Card>
+  <Card title="リファレンス" icon="document">
+    キーボードショートカット一覧と既知の制限。[リファレンス](/reference/)
+  </Card>
+  <Card title="規約・ポリシー" icon="approve-check">
+    利用規約、プライバシーポリシー、ライセンス。[規約・ポリシー](/legal/)
+  </Card>
+</CardGrid>
