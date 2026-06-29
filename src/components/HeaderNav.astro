@@ -1,0 +1,28 @@
+---
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+
+const { locale } = Astro.locals.starlightRoute;
+const prefix = locale === 'ja' ? '/ja' : '';
+
+const items =
+  locale === 'ja'
+    ? [
+        { href: `${prefix}/getting-started/`, label: 'はじめに' },
+        { href: `${prefix}/usage/`, label: '使い方' },
+        { href: `${prefix}/reference/`, label: 'リファレンス' },
+        { href: `${prefix}/legal/`, label: '規約・ポリシー' },
+      ]
+    : [
+        { href: '/getting-started/', label: 'Getting Started' },
+        { href: '/usage/', label: 'Usage' },
+        { href: '/reference/', label: 'Reference' },
+        { href: '/legal/', label: 'Policies' },
+      ];
+---
+
+<nav class="header-nav" aria-label="Sections">
+  {items.map(({ href, label }) => (
+    <a href={href}>{label}</a>
+  ))}
+</nav>
+<Default><slot /></Default>

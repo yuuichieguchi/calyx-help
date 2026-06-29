@@ -1,12 +1,12 @@
 ---
-title: Calyx Help
-description: macOS 26+ 向けターミナル Calyx のヘルプサイト。インストール、使い方、規約・ポリシーをまとめています。
+title: Official help for Calyx
+description: Calyx の使い方、設定、規約をまとめた公式ヘルプ。
 template: splash
 hero:
   image:
     file: ../../../assets/logo.png
     alt: Calyx
-  tagline: Calyx の使い方、設定、規約をまとめた公式ヘルプ。
+  tagline: usage, settings, and policies
   actions:
     - text: 使い始める
       link: /ja/getting-started/
@@ -21,37 +21,3 @@ hero:
       icon: external
       variant: minimal
 ---
-
-import { Card, CardGrid } from '@astrojs/starlight/components';
-
-<style is:global>{`
-  .sl-markdown-content .card-grid .card { position: relative; }
-  .sl-markdown-content .card-grid .card .body { min-height: 2lh; }
-  .sl-markdown-content .card-grid .card-link {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    font-size: 0;
-    color: transparent;
-    text-decoration: none;
-  }
-`}</style>
-
-<CardGrid>
-  <Card title="はじめに" icon="rocket">
-    <a class="card-link" href="/ja/getting-started/" aria-label="はじめに">はじめに</a>
-    インストールから初回起動までを案内します。
-  </Card>
-  <Card title="使い方" icon="open-book">
-    <a class="card-link" href="/ja/usage/" aria-label="使い方">使い方</a>
-    タブ、スプリット、コマンドパレット、AI エージェント連携など機能別の説明。
-  </Card>
-  <Card title="リファレンス" icon="document">
-    <a class="card-link" href="/ja/reference/" aria-label="リファレンス">リファレンス</a>
-    キーボードショートカット一覧と既知の制限。
-  </Card>
-  <Card title="規約・ポリシー" icon="approve-check">
-    <a class="card-link" href="/ja/legal/" aria-label="規約・ポリシー">規約・ポリシー</a>
-    利用規約、プライバシーポリシー、ライセンス。
-  </Card>
-</CardGrid>

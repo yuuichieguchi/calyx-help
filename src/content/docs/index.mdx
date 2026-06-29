@@ -1,12 +1,12 @@
 ---
-title: Calyx Help
-description: Help site for Calyx, a native macOS terminal built on libghostty with a Liquid Glass UI.
+title: Official help for Calyx
+description: Official help for Calyx — usage, settings, and policies.
 template: splash
 hero:
   image:
     file: ../../assets/logo.png
     alt: Calyx
-  tagline: Official help for Calyx — usage, settings, and policies.
+  tagline: usage, settings, and policies
   actions:
     - text: Get Started
       link: /getting-started/
@@ -21,37 +21,3 @@ hero:
       icon: external
       variant: minimal
 ---
-
-import { Card, CardGrid } from '@astrojs/starlight/components';
-
-<style is:global>{`
-  .sl-markdown-content .card-grid .card { position: relative; }
-  .sl-markdown-content .card-grid .card .body { min-height: 2lh; }
-  .sl-markdown-content .card-grid .card-link {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    font-size: 0;
-    color: transparent;
-    text-decoration: none;
-  }
-`}</style>
-
-<CardGrid>
-  <Card title="Getting Started" icon="rocket">
-    <a class="card-link" href="/getting-started/" aria-label="Getting Started">Getting Started</a>
-    Install Calyx and walk through the first launch.
-  </Card>
-  <Card title="Usage" icon="open-book">
-    <a class="card-link" href="/usage/" aria-label="Usage">Usage</a>
-    Tabs, splits, command palette, AI agent integration, and more.
-  </Card>
-  <Card title="Reference" icon="document">
-    <a class="card-link" href="/reference/" aria-label="Reference">Reference</a>
-    Keyboard shortcut cheatsheet and known limitations.
-  </Card>
-  <Card title="Terms & Policies" icon="approve-check">
-    <a class="card-link" href="/legal/" aria-label="Terms & Policies">Terms & Policies</a>
-    Terms of use, privacy policy, and license.
-  </Card>
-</CardGrid>

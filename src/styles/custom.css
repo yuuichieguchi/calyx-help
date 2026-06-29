@@ -1,9 +1,11 @@
-/* Calyx ブランドカラー (ロゴの葉の緑) */
+/* Calyx ブランドカラー (ロゴの葉の緑) とフォント */
 :root {
   --sl-color-accent-low: #1f3d1c;
   --sl-color-accent: #6dc93c;
   --sl-color-accent-high: #c8f0c8;
   --sl-color-text-accent: #8ed762;
+  --sl-font: 'Inter', system-ui, -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --sl-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
 :root[data-theme='light'] {
@@ -13,7 +15,7 @@
   --sl-color-text-accent: #2e7d32;
 }
 
-/* Liquid Glass 風のヒーロー背景 */
+/* ----- Hero (splash) ----- */
 .hero {
   position: relative;
   isolation: isolate;
@@ -41,8 +43,51 @@
   opacity: 0.75;
 }
 
-/* ロゴ画像の周りに微細なグロー */
 .hero > img {
-  filter: drop-shadow(0 0 24px rgba(109, 201, 60, 0.25))
+  filter:
+    drop-shadow(0 0 24px rgba(109, 201, 60, 0.25))
     drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+}
+
+/* ----- Header navigation (SocialIcons の手前に差し込み) ----- */
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+  margin-right: 0.5rem;
+}
+
+@media (min-width: 62rem) {
+  .header-nav {
+    display: flex;
+  }
+}
+
+.header-nav a {
+  font-family: var(--sl-font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.header-nav a:hover,
+.header-nav a:focus-visible {
+  color: var(--sl-color-text-accent);
+  border-bottom-color: var(--sl-color-text-accent);
+}
+
+:root[data-theme='light'] .header-nav a {
+  color: rgba(31, 61, 28, 0.72);
+}
+
+:root[data-theme='light'] .header-nav a:hover,
+:root[data-theme='light'] .header-nav a:focus-visible {
+  color: var(--sl-color-accent);
+  border-bottom-color: var(--sl-color-accent);
 }
