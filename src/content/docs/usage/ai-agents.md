@@ -35,8 +35,7 @@ Restart any already-running agent instances so they pick up the new MCP server.
 - `list_peers`
 - `send_message`
 - `broadcast`
-- `receive_messages`
-- `ack_messages`
+- `receive_messages` — deletes each returned message from the inbox, so any message is delivered exactly once
 - `get_peer_status`
 
 See the [demo video](https://www.youtube.com/watch?v=Xty0ad9gGcM).
@@ -44,6 +43,20 @@ See the [demo video](https://www.youtube.com/watch?v=Xty0ad9gGcM).
 ### Disable
 
 Run **Disable AI Agent IPC** from the command palette.
+
+## Agents Sidebar
+
+The sidebar includes an **Agents** tab that shows every connected AI agent in the current window along with its live status.
+
+Each agent row shows:
+
+- A state dot: red (waiting on the user), yellow (working), green (idle), blue (done).
+- An unread message badge, if the agent has queued output the user has not yet seen.
+- A last-seen timestamp.
+
+Click a row to focus the pane running that agent.
+
+The view supports Claude Code, Codex CLI, OpenCode, and Hermes. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
 
 ## LSP Proxy MCP
 

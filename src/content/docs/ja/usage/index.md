@@ -14,7 +14,7 @@ sidebar:
 - [ターミナル機能](/ja/usage/terminal/) — スクロールバック検索、ドラッグアンドドロップ、クリックでカーソル移動
 - [カスタマイズ](/ja/usage/customization/) — テーマカラー、Ghostty 設定との互換性
 - [ブラウザタブと自動化](/ja/usage/browser/) — WKWebView ベースのブラウザタブと `calyx browser` CLI
-- [AI エージェント連携](/ja/usage/ai-agents/) — MCP IPC と LSP Proxy MCP
+- [AI エージェント連携](/ja/usage/ai-agents/) — MCP IPC、エージェントサイドバー、LSP Proxy MCP
 - [Git ソースコントロール](/ja/usage/git/) — サイドバーの変更ビューとレビューコメント
 - [CLI と自動アップデート](/ja/usage/cli-and-updates/) — `calyx` CLI、Sparkle ベースの更新
 - [セキュリティと通知](/ja/usage/security/) — クリップボード確認、セキュア入力、デスクトップ通知

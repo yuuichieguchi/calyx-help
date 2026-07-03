@@ -14,7 +14,7 @@ This section walks through Calyx's major features, grouped by purpose.
 - [Terminal features](/usage/terminal/) — scrollback search, drag-and-drop, click-to-move
 - [Customization](/usage/customization/) — theme color, Ghostty config compatibility
 - [Browser tabs and automation](/usage/browser/) — WKWebView tabs and the `calyx browser` CLI
-- [AI agent integration](/usage/ai-agents/) — MCP IPC and LSP Proxy MCP
+- [AI agent integration](/usage/ai-agents/) — MCP IPC, Agents sidebar, and LSP Proxy MCP
 - [Git source control](/usage/git/) — Changes view and inline review comments
 - [CLI & auto-updates](/usage/cli-and-updates/) — `calyx` CLI, Sparkle-based updates
 - [Security & notifications](/usage/security/) — clipboard prompt, Secure Keyboard Entry, desktop notifications

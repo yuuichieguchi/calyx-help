@@ -35,8 +35,7 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 - `list_peers`
 - `send_message`
 - `broadcast`
-- `receive_messages`
-- `ack_messages`
+- `receive_messages` — 返却したメッセージを受信箱から自動的に削除するため、同じメッセージが二度届くことはありません
 - `get_peer_status`
 
 [デモ動画](https://www.youtube.com/watch?v=Xty0ad9gGcM) で動作を確認できます。
@@ -44,6 +43,20 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 ### 無効化
 
 コマンドパレットで **Disable AI Agent IPC** を実行します。
+
+## エージェントサイドバー
+
+サイドバーの **Agents** タブには、現在のウィンドウで動いている AI エージェントとそのステータスが一覧で並びます。
+
+各行に次の情報が表示されます。
+
+- ステータスドット。赤 (ユーザー入力待ち)、黄 (処理中)、緑 (待機)、青 (完了) の四色。
+- 未読メッセージバッジ。エージェントの新しい出力をユーザーがまだ確認していないときに出ます。
+- 最終確認時刻。
+
+行をクリックすると、そのエージェントが動いているペインにフォーカスが移ります。
+
+対応するのは Claude Code、Codex CLI、OpenCode、Hermes の四つです。コマンドパレットで **Enable AI Agent IPC** を実行してからペインでエージェントを起動すれば、自動的にサイドバーに並びます。
 
 ## LSP Proxy MCP
 
