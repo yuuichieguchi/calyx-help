@@ -21,6 +21,12 @@ Run `calyx --help` to see the available subcommands.
 
 Calyx registers an NSServices entry, so right-clicking a folder or text file in Finder shows **Open in Calyx**.
 
+## The `calyx-session` CLI
+
+Persistent sessions are managed by a second bundled binary, `calyx-session` (`Calyx.app/Contents/Resources/bin/calyx-session`).
+It is on `PATH` inside Calyx terminals and provides subcommands such as `ls`, `attach`, `new`, `kill`, `history`, and `remote-install`.
+See [Persistent sessions](/usage/sessions/) for how they are used.
+
 ## Auto-update
 
 The directly-downloaded build (installed via `.zip`) checks for updates via Sparkle.

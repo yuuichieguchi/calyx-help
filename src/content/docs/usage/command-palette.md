@@ -17,6 +17,7 @@ Examples of commands reachable from the palette:
 
 - **Enable AI Agent IPC** / **Disable AI Agent IPC**
 - **Install CLI to PATH**
+- **Session Browser…**, **Detach Session**, and other session commands
 - Theme-related commands
 - Window and tab actions
 

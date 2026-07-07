@@ -58,6 +58,11 @@ Click a row to focus the pane running that agent.
 
 The view supports Claude Code, Codex CLI, OpenCode, and Hermes. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
 
+## Resuming agents in persistent sessions
+
+With persistent sessions enabled, reattaching a session can offer to resume the agent CLI conversation that was running in it.
+See [Persistent sessions](/usage/sessions/) for the toggles.
+
 ## LSP Proxy MCP
 
 LSP features are exposed via the same MCP server used by AI Agent IPC.
@@ -77,11 +82,11 @@ Additional tools are also provided.
 
 1. Run **Enable AI Agent IPC** from the command palette (the LSP proxy shares this server).
 2. Restart or reconnect your agent so it picks up the `calyx-ipc` MCP server.
-3. (Optional) In Settings, open **LSP Proxy** and enable auto-install for missing language servers.
+3. (Optional) In Settings, open the **LSP** pane and enable auto-install for missing language servers.
 
 Calyx keeps language servers running in the background, syncs file changes from disk, and starts the right server on the first `lsp_*` call for a workspace.
 
 ### Supported languages
 
 TypeScript, Python, Rust, Go, Swift, and others.
-Per-language auto-install support is shown in Settings under **LSP Proxy**.
+Per-language auto-install support is shown in Settings under the **LSP** pane.

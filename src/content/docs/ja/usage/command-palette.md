@@ -17,6 +17,7 @@ Calyx の全コマンドがここに集まっており、機能名やキーワ�
 
 - **Enable AI Agent IPC** / **Disable AI Agent IPC**
 - **Install CLI to PATH**
+- **Session Browser…** や **Detach Session** などのセッション操作
 - テーマ関連のコマンド
 - 各種ウィンドウ・タブ操作
 

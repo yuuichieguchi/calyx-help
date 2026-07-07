@@ -56,6 +56,7 @@ Settings から個別に変更できる項目もあります。
 |---|---|
 | コマンドパレット | `Cmd+Shift+P` |
 | コンポーズオーバーレイの開閉 | `Cmd+Shift+E` |
+| Session Browser を開く | `Cmd+Shift+B` |
 
 ## コンポーズオーバーレイ内
 

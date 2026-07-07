@@ -5,6 +5,9 @@ sidebar:
   order: 5
 ---
 
+Settings のウィンドウは **Appearance**、**Sessions**、**LSP** の三つのペインに分かれています。
+このページで扱う項目は Appearance ペインにあります。
+
 ## テーマカラー
 
 Liquid Glass UI のテーマカラーは、Settings から変更できます。

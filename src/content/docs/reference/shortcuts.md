@@ -56,6 +56,7 @@ Some can be reassigned from Settings.
 |---|---|
 | Command palette | `Cmd+Shift+P` |
 | Toggle compose overlay | `Cmd+Shift+E` |
+| Session Browser | `Cmd+Shift+B` |
 
 ## Inside the compose overlay
 

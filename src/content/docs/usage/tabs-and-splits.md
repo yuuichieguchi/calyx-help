@@ -50,3 +50,5 @@ Focus moves by direction (left, right, up, down), which stays intuitive even wit
 
 When you quit Calyx, the open tabs, splits, and working directory for each tab are saved.
 On the next launch, the state is restored so you can pick up where you left off.
+This restores the layout with fresh shells — running processes are not preserved.
+To keep the shells themselves alive across a quit or crash, see [Persistent sessions](/usage/sessions/).

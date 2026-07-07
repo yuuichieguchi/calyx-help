@@ -5,6 +5,9 @@ sidebar:
   order: 5
 ---
 
+Settings is organized into three panes: **Appearance**, **Sessions**, and **LSP**.
+The items on this page live in the Appearance pane.
+
 ## Theme color
 
 The Liquid Glass theme color is set from Settings.

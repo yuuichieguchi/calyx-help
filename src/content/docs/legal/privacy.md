@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: June 29, 2026
+Last updated: July 7, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -23,6 +23,8 @@ Calyx stores the following on your machine to restore state and run features.
 None of it is sent off your machine.
 
 - Open tabs, splits, and per-tab working directories (for session restore)
+- Persistent-session bookkeeping kept by the local `calyx-session` daemon (session list and working directories) — only when persistent sessions are enabled (off by default)
+- Session history files under `~/.calyx/state/history/` — only when **Persist session history to disk** is enabled (off by default)
 - Terminal scrollback (in memory, within the session)
 - AI agent integration configs (`~/.claude.json` and the equivalents for other agents)
 - Browser server connection info (`~/.config/calyx/browser.json`)
@@ -56,6 +58,11 @@ This feature is off by default.
 URLs you load in a browser tab generate normal browser traffic.
 Storage is non-persistent and is discarded when the tab closes.
 
+### 5. Remote session SSH connections initiated by you
+
+Creating or attaching to a remote session, and `calyx-session remote-install`, spawn `ssh` to the host you choose.
+Remote sessions generate no other traffic, and nothing connects unless you initiate it.
+
 ## Locally-running servers
 
 Calyx hosts several servers inside its own process.
@@ -63,6 +70,7 @@ They listen on the loopback interface (`localhost`) and are not exposed to the n
 
 - **AI Agent IPC MCP server**: used by AI agents on the same machine
 - **Browser automation server**: `localhost:41840`, used by the `calyx browser` CLI
+- **Session daemon (`calyx-session`)**: a separate local process reachable only over a Unix domain socket; it opens no network port
 
 They do not accept connections from outside the machine, so no firewall-crossing traffic is generated.
 

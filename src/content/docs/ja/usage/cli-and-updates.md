@@ -21,6 +21,12 @@ sidebar:
 Calyx は Info.plist に NSServices を登録しているため、Finder の右クリックメニューに **Open in Calyx** が出ます。
 フォルダや テキストファイルを Calyx で開くショートカットになります。
 
+## `calyx-session` CLI
+
+永続セッションは、もう一つの同梱バイナリ `calyx-session`（`Calyx.app/Contents/Resources/bin/calyx-session`）が管理します。
+Calyx 内のターミナルでは PATH が通っており、`ls`、`attach`、`new`、`kill`、`history`、`remote-install` などのサブコマンドを提供します。
+使い方は[永続セッション](/ja/usage/sessions/)を参照してください。
+
 ## 自動アップデート
 
 直接ダウンロード版（`.zip` 経由でインストールしたもの）は、Sparkle が更新を確認します。

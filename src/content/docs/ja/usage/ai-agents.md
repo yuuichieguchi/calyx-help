@@ -58,6 +58,11 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 
 対応するのは Claude Code、Codex CLI、OpenCode、Hermes の四つです。コマンドパレットで **Enable AI Agent IPC** を実行してからペインでエージェントを起動すれば、自動的にサイドバーに並びます。
 
+## 永続セッションでのエージェント再開
+
+永続セッションを有効にしている場合、再接続時にそのセッションで動いていたエージェント CLI の会話再開を提案できます。
+設定項目は[永続セッション](/ja/usage/sessions/)を参照してください。
+
 ## LSP Proxy MCP
 
 AI Agent IPC と同じ MCP サーバー上に、言語サーバー（LSP）の機能を公開します。
@@ -77,11 +82,11 @@ AI Agent IPC と同じ MCP サーバー上に、言語サーバー（LSP）の�
 
 1. コマンドパレットで **Enable AI Agent IPC** を実行（同じ MCP サーバーを共有するため）
 2. AI エージェントを再起動するか、`calyx-ipc` MCP サーバーを再接続
-3. （任意）Settings の **LSP Proxy** から、不足している言語サーバーの自動インストールを有効化
+3. （任意）Settings の **LSP** ペインから、不足している言語サーバーの自動インストールを有効化
 
 Calyx は言語サーバーをバックグラウンドで常駐させ、ディスク上のファイル変更を取り込みつつ、最初の `lsp_*` 呼び出し時に該当ワークスペース向けの言語サーバーを立ち上げます。
 
 ### 対応する言語サーバー
 
 TypeScript、Python、Rust、Go、Swift などをサポートします。
-個別の言語の自動インストール対応状況は Settings の **LSP Proxy** で確認できます。
+個別の言語の自動インストール対応状況は Settings の **LSP** ペインで確認できます。
