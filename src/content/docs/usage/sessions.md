@@ -60,7 +60,7 @@ Because this writes terminal output to disk, it stays off until you enable it.
 ## Resuming agent CLIs
 
 If an agent CLI (such as Claude Code) was running in a session, reattaching can offer to resume that conversation.
-Turn on **Offer to resume agent CLI conversations** in the **Sessions** pane of Settings.
+Turn on **Offer to resume agent CLI conversations** in the **Agents** pane of Settings.
 Add **Auto-execute resume (skip confirmation)** if you want the resume command submitted without a prompt.
 
 ## The `calyx-session` CLI

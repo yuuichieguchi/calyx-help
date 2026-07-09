@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: July 7, 2026
+Last updated: July 9, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -26,6 +26,8 @@ None of it is sent off your machine.
 - Persistent-session bookkeeping kept by the local `calyx-session` daemon (session list and working directories) — only when persistent sessions are enabled (off by default)
 - Session history files under `~/.calyx/state/history/` — only when **Persist session history to disk** is enabled (off by default)
 - Terminal scrollback (in memory, within the session)
+- Command log records (command line, exit status, and captured output) — in memory only, while **Track shell commands** is on (on by default); capped per pane, never written to disk, discarded when Calyx quits
+- Shell integration scripts for command tracking (`~/Library/Application Support/Calyx/shell-integration`)
 - AI agent integration configs (`~/.claude.json` and the equivalents for other agents)
 - Browser server connection info (`~/.config/calyx/browser.json`)
 - Background language server processes for the LSP proxy

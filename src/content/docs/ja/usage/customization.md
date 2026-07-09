@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-Settings のウィンドウは **Appearance**、**Sessions**、**LSP** の三つのペインに分かれています。
+Settings のウィンドウは **Appearance**、**Sessions**、**Agents**、**LSP** の四つのペインに分かれています。
 このページで扱う項目は Appearance ペインにあります。
 
 ## テーマカラー

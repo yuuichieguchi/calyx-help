@@ -6,7 +6,7 @@ sidebar:
 ---
 
 Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes).
-It exposes two features: peer-to-peer messaging between agents across tabs/panes, and LSP-backed symbol lookup tools.
+It exposes peer-to-peer messaging between agents across tabs/panes, LSP-backed symbol lookup tools, cockpit tools for driving Calyx itself, and a terminal command log.
 
 ## AI Agent IPC
 
@@ -62,6 +62,50 @@ The view supports Claude Code, Codex CLI, OpenCode, and Hermes. Once you have ru
 
 With persistent sessions enabled, reattaching a session can offer to resume the agent CLI conversation that was running in it.
 See [Persistent sessions](/usage/sessions/) for the toggles.
+
+## Cockpit tools
+
+Agents can drive Calyx itself through the same MCP server.
+
+Three tools run immediately, without confirmation:
+
+- `pane_list` — list the terminal panes in the current window
+- `pane_split` — split a pane to the right or down
+- `tab_create` — open a new tab, optionally in a given group and working directory
+
+Three tools type into your terminal or execute app commands, so each call is gated behind your approval:
+
+- `pane_run` — run a command in a pane
+- `pane_send_keys` — send keystrokes to a pane
+- `palette_execute` — execute a command palette action
+
+When a gated tool is called, a banner appears at the top of the window showing the tool name and its target pane.
+**Allow** and **Deny** resolve only that one request; the decision is not remembered.
+**Always Allow** approves everything pending in the window and turns on auto-approval for future calls.
+A denied call returns `{"status": "denied"}` to the agent, and a request left unanswered for 55 seconds returns `{"status": "approval_timeout"}` — a normal result either way, not an error.
+
+Auto-approval can also be toggled as **Auto-approve agent commands** in the **Agents** pane of Settings.
+It is off by default, so every gated call asks first.
+
+## Terminal command log
+
+Calyx can keep a structured log of the commands run in each terminal — the command line, exit status, and captured output — and expose it to agents.
+This lets an agent read a build's output or wait for a long-running command without scraping the screen.
+
+- `terminal_list_commands` — list the recorded commands for a pane, oldest first
+- `terminal_read_output` — fetch the captured output of one command
+- `terminal_await_command` — wait until a running command finishes (default timeout 30 seconds, maximum 55; on timeout it returns `{"status": "timeout"}` and can simply be called again)
+
+### Requirements
+
+The log is fed by shell integration, currently for **zsh and fish** only.
+Calyx installs the integration automatically while **Track shell commands** (Settings, **Agents** pane) is on; the toggle is on by default and applies to newly opened terminals only.
+
+### What is stored
+
+Records are kept in memory only: up to 200 commands per pane, with captured output capped at 256 KB per pane.
+Nothing is written to disk, and the log is discarded when Calyx quits.
+Commands that run full-screen TUIs (the alternate screen) or whose output cannot be captured are reported with `output_unavailable: true`.
 
 ## LSP Proxy MCP
 

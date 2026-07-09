@@ -62,7 +62,7 @@ Settings の **Sessions** ペインで **Persist session history to disk** を�
 ## エージェント CLI の再開
 
 セッション内で Claude Code などのエージェント CLI が動いていた場合、再接続時に会話の再開を提案できます。
-Settings の **Sessions** ペインで **Offer to resume agent CLI conversations** をオンにします。
+Settings の **Agents** ペインで **Offer to resume agent CLI conversations** をオンにします。
 **Auto-execute resume (skip confirmation)** もオンにすると、確認なしで再開コマンドが送信されます。
 
 ## `calyx-session` CLI

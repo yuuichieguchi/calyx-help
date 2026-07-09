@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-Settings is organized into three panes: **Appearance**, **Sessions**, and **LSP**.
+Settings is organized into four panes: **Appearance**, **Sessions**, **Agents**, and **LSP**.
 The items on this page live in the Appearance pane.
 
 ## Theme color
