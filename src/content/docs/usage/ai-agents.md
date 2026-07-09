@@ -107,6 +107,12 @@ Records are kept in memory only: up to 200 commands per pane, with captured outp
 Nothing is written to disk, and the log is discarded when Calyx quits.
 Commands that run full-screen TUIs (the alternate screen) or whose output cannot be captured are reported with `output_unavailable: true`.
 
+Command lines and captured output are checked for known secret patterns (API tokens, passwords, `Authorization` headers, cloud provider keys, JWTs) before they are stored, and any match is replaced with `[redacted]`.
+This runs automatically and cannot be turned off.
+
+Redacting a large capture happens in the background so the terminal is never blocked waiting for it.
+While that is in progress, the command still reports as running: `terminal_read_output` returns `{"output_pending": true}` instead of the output (call it again shortly), and `terminal_list_commands` withholds the exit code and duration until redaction finishes.
+
 ## LSP Proxy MCP
 
 LSP features are exposed via the same MCP server used by AI Agent IPC.

@@ -110,6 +110,13 @@ Settings の **Agents** ペインで **Track shell commands** がオンの間、
 ディスクには書き込まれず、Calyx を終了するとログは破棄されます。
 全画面 TUI（代替スクリーン）で実行されたコマンドや、出力をキャプチャできなかったコマンドは、`output_unavailable: true` として報告されます。
 
+コマンド行とキャプチャした出力は、保存前に既知のシークレットのパターン（API トークン、パスワード、`Authorization` ヘッダー、クラウドプロバイダーのキー、JWT）と照合され、一致した箇所は `[redacted]` に置き換えられます。
+この処理は自動的に実行され、無効化はできません。
+
+大きな出力の redaction はバックグラウンドで行われるため、ターミナルが処理待ちでブロックされることはありません。
+処理が完了するまでの間、コマンドは実行中として報告されます。
+`terminal_read_output` は出力の代わりに `{"output_pending": true}` を返すので（しばらくしてから再度呼び出します）、`terminal_list_commands` は redaction が終わるまで終了コードと実行時間を伏せます。
+
 ## LSP Proxy MCP
 
 AI Agent IPC と同じ MCP サーバー上に、言語サーバー（LSP）の機能を公開します。
