@@ -87,6 +87,35 @@ A denied call returns `{"status": "denied"}` to the agent, and a request left un
 Auto-approval can also be toggled as **Auto-approve agent commands** in the **Agents** pane of Settings.
 It is off by default, so every gated call asks first.
 
+## Approving agent tool calls
+
+When several agents run in parallel, their permission prompts are scattered across panes.
+With approval routing on, Claude Code and Codex send each tool call's permission request to Calyx before running the tool, and Calyx shows it in the same banner used by cockpit tools.
+
+### Enable
+
+1. Run **Enable AI Agent IPC** from the command palette (re-run it after updating Calyx so the approval hook is installed).
+2. Turn on **Show agent tool prompts in the approval banner** in the **Agents** pane of Settings (off by default).
+3. Restart running agent CLI instances.
+
+### Using the banner
+
+The banner names the agent and tool (for example "Claude Code · Bash"), the target pane, and a one-line summary of what the tool will do.
+**Allow** and **Deny** decide that single request.
+**Always Allow \<tool\> in This Pane** auto-approves that tool for that pane only.
+The menu at the right edge offers **Allow All Pending**, which approves everything currently queued, and **Always Allow \<tool\> in All Panes**.
+Always Allow choices last only for the current IPC session and are forgotten when the pane closes or the server stops.
+
+A macOS notification is posted for each new request.
+Secrets in the notification summary are masked, while the banner itself shows the exact text so you can judge what you are approving.
+
+### Fallback behavior
+
+Nothing is ever auto-approved on failure.
+If you do not respond within about 10 minutes, or Calyx is unreachable, the agent falls back to its own in-pane prompt.
+Cancelling the tool call on the agent side clears its banner immediately.
+Supported agents: Claude Code and Codex. Other agents keep prompting in their own pane.
+
 ## Terminal command log
 
 Calyx can keep a structured log of the commands run in each terminal — the command line, exit status, and captured output — and expose it to agents.
