@@ -106,6 +106,11 @@ The banner names the agent and tool (for example "Claude Code · Bash"), the tar
 The menu at the right edge offers **Allow All Pending**, which approves everything currently queued, and **Always Allow \<tool\> in All Panes**.
 Always Allow choices last only for the current IPC session and are forgotten when the pane closes or the server stops.
 
+When more than one request is pending, previous/next chevrons and an "i / N" position label appear next to the action buttons.
+Browse the queue and decide any request in any order; deciding the displayed request advances to the nearest remaining one.
+Cockpit tool requests share the same queue.
+With a single pending request the navigator disappears and the banner looks exactly as before.
+
 A macOS notification is posted for each new request.
 Secrets in the notification summary are masked, while the banner itself shows the exact text so you can judge what you are approving.
 
