@@ -25,6 +25,8 @@ Liquid Glass UI のテーマカラーは、Settings から変更できます。
 
 Calyx は Ghostty の設定ファイル `~/.config/ghostty/config` を読み込みます。
 ほとんどのキーは保存時にホットリロードされます。
+`window-width` と `window-height` は新しく作るウィンドウのサイズに適用されます。
+復元されたウィンドウは保存時のサイズを維持します。
 
 ただし、Liquid Glass UI に関わる一部のキーは Calyx 側で上書きします。
 
@@ -38,6 +40,32 @@ Calyx は Ghostty の設定ファイル `~/.config/ghostty/config` を読み込�
 
 これらは Glass UI の見た目と整合させるため、Calyx が独自に管理しています。
 Settings の **Ghostty Config Compatibility** に、現時点で Calyx が管理しているキーの一覧が表示されます。
+
+## キーバインドアクション
+
+Ghostty 設定の `keybind` 行は Calyx でも機能します。
+標準的なターミナル操作（`new_tab`、`new_split`、`goto_split`、`goto_tab`、`toggle_fullscreen` など）に加えて、次のアプリレベルのアクションに対応しています。
+
+| アクション | 効果 |
+|---|---|
+| `toggle_split_zoom` | フォーカス中のスプリットをタブ全体に拡大し、再実行で元に戻す |
+| `prompt_surface_title` | フォーカス中のタブの名前編集を開く |
+| `set_tab_title:<title>` | フォーカス中のタブ名を設定する |
+| `copy_title_to_clipboard` | 現在のタイトルをクリップボードにコピーする |
+| `move_tab:1` / `move_tab:-1` | フォーカス中のタブを右または左に移動する |
+| `goto_window:next` / `goto_window:previous` | Calyx のウィンドウを切り替える |
+| `close_all_windows` | すべてのターミナルウィンドウを閉じる |
+| `toggle_maximize` | ウィンドウの最大化を切り替える |
+| `reset_window_size` | ウィンドウを既定サイズに戻す |
+| `toggle_command_palette` | コマンドパレットを開閉する |
+| `check_for_updates` | Calyx のアップデートを確認する |
+
+設定例:
+
+```
+keybind = super+shift+enter=toggle_split_zoom
+keybind = super+ctrl+r=prompt_surface_title
+```
 
 ## クリップボード貼り付け確認
 

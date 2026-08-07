@@ -12,12 +12,14 @@ A Calyx window is structured as three layers: groups → tabs → splits (panes)
 | Action | Shortcut |
 |---|---|
 | New tab | `Cmd+T` |
-| Close tab | `Cmd+W` |
+| Close focused pane (closes the tab when it is the last pane) | `Cmd+W` |
+| Close tab | `Cmd+Option+W` |
 | Switch by number | `Cmd+1` – `Cmd+9` |
 | Next tab | `Cmd+Shift+]` |
 | Previous tab | `Cmd+Shift+[` |
 
 Double-click a tab to rename it.
+The `prompt_surface_title` [keybind action](/usage/customization/#keybind-actions) opens the same rename editor from a custom key.
 Drag tabs in the tab bar or sidebar to reorder them.
 
 ## Groups
@@ -45,6 +47,24 @@ You can split a tab horizontally or vertically to lay out multiple panes.
 | Focus adjacent pane | `Cmd+Option+arrow` |
 
 Focus moves by direction (left, right, up, down), which stays intuitive even with complex layouts.
+
+Bind `toggle_split_zoom` in the Ghostty config to zoom the focused pane to the whole tab; the same key restores the layout.
+See [Keybind actions](/usage/customization/#keybind-actions) for how to set it up.
+
+## Windows
+
+Open as many windows as you need with **File > New Window** (`Cmd+N`).
+
+| Action | Shortcut |
+|---|---|
+| New window | `Cmd+N` |
+| Close window | `Cmd+Shift+W` |
+| Close all windows | `Cmd+Shift+Option+W` |
+| Toggle full screen | `Cmd+Enter` (or `Ctrl+Cmd+F`) |
+
+Closing the last window does not quit Calyx.
+The app keeps running, and clicking the Dock icon or choosing **File > New Window** opens a fresh window.
+The `goto_window:next` / `goto_window:previous` [keybind actions](/usage/customization/#keybind-actions) switch between windows.
 
 ## Session restore
 

@@ -22,10 +22,20 @@ Some can be reassigned from Settings.
 | Action | Shortcut |
 |---|---|
 | New tab | `Cmd+T` |
-| Close tab | `Cmd+W` |
+| Close focused pane (closes the tab when it is the last pane) | `Cmd+W` |
+| Close tab | `Cmd+Option+W` |
 | Switch by number | `Cmd+1` – `Cmd+9` |
 | Next tab | `Cmd+Shift+]` |
 | Previous tab | `Cmd+Shift+[` |
+
+## Window operations
+
+| Action | Shortcut |
+|---|---|
+| New window | `Cmd+N` |
+| Close window | `Cmd+Shift+W` |
+| Close all windows | `Cmd+Shift+Option+W` |
+| Toggle full screen | `Cmd+Enter` (or `Ctrl+Cmd+F`) |
 
 ## Split operations
 
