@@ -18,7 +18,7 @@ This section walks through Calyx's major features, grouped by purpose.
 - [Git source control](/usage/git/) — Changes view and inline review comments
 - [CLI & auto-updates](/usage/cli-and-updates/) — `calyx` CLI, Sparkle-based updates
 - [Security & notifications](/usage/security/) — clipboard prompt, Secure Keyboard Entry, desktop notifications
-- [Persistent sessions](/usage/sessions/) — daemon-backed sessions that survive quit and crash, plus SSH remote sessions
+- [Persistent sessions](/usage/sessions/) — daemon-backed sessions that survive quit and crash, SSH remote sessions, and herdr workspaces
 
 ## When in doubt, open the command palette
 

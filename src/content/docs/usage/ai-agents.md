@@ -58,6 +58,15 @@ Click a row to focus the pane running that agent.
 
 The view supports Claude Code, Codex CLI, OpenCode, and Hermes. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
 
+### herdr-hosted agents
+
+Agents running inside herdr's own panes show up here too, labeled "via herdr" in the subtitle.
+They need none of the setup native rows do: no **Enable AI Agent IPC**, no config file to write. Calyx reads them straight from herdr's own status stream, so they appear automatically whenever herdr is installed and running.
+
+herdr rows are informational only. Clicking one does nothing; open or focus that workspace from the [Session Browser](/usage/sessions/#herdr-workspaces) instead.
+
+If **AI Agent IPC** is off, herdr rows keep showing, with a note underneath that Calyx's own agents aren't being monitored until you turn it on.
+
 ## Resuming agents in persistent sessions
 
 With persistent sessions enabled, reattaching a session can offer to resume the agent CLI conversation that was running in it.

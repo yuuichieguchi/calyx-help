@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: July 10, 2026
+Last updated: August 13, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -22,7 +22,7 @@ The developer has no way to observe your launch times, feature usage, or input.
 Calyx stores the following on your machine to restore state and run features.
 None of it is sent off your machine.
 
-- Open tabs, splits, and per-tab working directories (for session restore)
+- Open tabs, splits, and per-tab working directories (for session restore) — for a tab opened from a herdr workspace, this also includes herdr's socket path and its own pane id, so the tab can reconnect after relaunch; herdr's terminal ids are never stored
 - Persistent-session bookkeeping kept by the local `calyx-session` daemon (session list and working directories) — only when persistent sessions are enabled (off by default)
 - Session history files under `~/.calyx/state/history/` — only when **Persist session history to disk** is enabled (off by default)
 - Terminal scrollback (in memory, within the session)
@@ -75,6 +75,13 @@ They listen on the loopback interface (`localhost`) and are not exposed to the n
 - **Session daemon (`calyx-session`)**: a separate local process reachable only over a Unix domain socket; it opens no network port
 
 They do not accept connections from outside the machine, so no firewall-crossing traffic is generated.
+
+## Connecting to herdr
+
+If herdr, a separate terminal multiplexer, is installed and running on your machine, Calyx detects it and connects automatically. There is no setting to turn this off; not running herdr avoids it entirely.
+
+The connection is a local Unix domain socket only (for example `~/.config/herdr/herdr.sock`), never a network connection, and nothing about it leaves your machine.
+Calyx uses it to list herdr's workspaces in the Session Browser and to show herdr-hosted agents in the Agents Sidebar.
 
 ## Interactions with AI agents
 

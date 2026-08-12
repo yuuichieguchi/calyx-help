@@ -1,6 +1,6 @@
 ---
 title: Persistent sessions
-description: Daemon-backed terminal sessions that survive quit and crash, the Session Browser, and remote sessions over SSH.
+description: Daemon-backed terminal sessions that survive quit and crash, the Session Browser, remote sessions over SSH, and herdr workspaces.
 sidebar:
   order: 11
 ---
@@ -67,3 +67,24 @@ Add **Auto-execute resume (skip confirmation)** if you want the resume command s
 
 The daemon ships with a CLI, available on `PATH` inside Calyx terminals: `calyx-session ls`, `attach`, `new`, `kill`, `history`, `remote-install`, and more.
 Everything above works from the UI; the CLI is there for scripting.
+
+## herdr workspaces
+
+Calyx can also show and open workspaces from herdr, a separate terminal multiplexer with its own background server, independent of the `calyx-session` daemon described above.
+If herdr is installed, its workspaces appear in the Session Browser automatically; if it isn't, nothing else on this page changes.
+
+Each herdr server appears as its own row, stating how many workspaces and panes it currently holds, with its workspaces listed underneath.
+
+- **New** creates a workspace on that server and opens it (herdr picks the directory: the currently focused workspace's, or your home directory if none is focused).
+- Each workspace row has its own **Attach** and **Kill**. **Attach** reads **Show** once that workspace is already open as a tab in the current window.
+
+Opening a workspace creates a Calyx tab split into one pane per herdr pane, matching herdr's own layout.
+Closing that tab, or a pane in it, only detaches Calyx from herdr; the workspace and its processes keep running on herdr's side.
+Use **Kill** in the Session Browser to actually end it.
+
+If you quit and relaunch Calyx, a herdr tab reconnects automatically as long as herdr, its socket, and that pane are all still there; otherwise the tab opens as a plain shell instead.
+
+The command palette also offers **Attach herdr TUI**, which opens herdr's own full-screen interface in a single tab instead of Calyx's native split panes.
+It appears once you've opened the Session Browser at least once, and always targets the first herdr session Calyx finds.
+
+Agents running inside herdr panes also show up in the [Agents Sidebar](/usage/ai-agents/#herdr-hosted-agents).

@@ -18,7 +18,7 @@ sidebar:
 - [Git ソースコントロール](/ja/usage/git/) — サイドバーの変更ビューとレビューコメント
 - [CLI と自動アップデート](/ja/usage/cli-and-updates/) — `calyx` CLI、Sparkle ベースの更新
 - [セキュリティと通知](/ja/usage/security/) — クリップボード確認、セキュア入力、デスクトップ通知
-- [永続セッション](/ja/usage/sessions/) — 終了やクラッシュ後も生き残るセッションと、SSH 経由のリモートセッション
+- [永続セッション](/ja/usage/sessions/) — 終了やクラッシュ後も生き残るセッションと、SSH 経由のリモートセッション、herdr ワークスペース
 
 ## ヘルプ画面とコマンドパレット
 
