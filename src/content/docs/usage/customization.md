@@ -19,7 +19,17 @@ Text color (foreground) adapts automatically:
 - **Ghostty preset**: follows Ghostty's `foreground` setting
 - **Other presets**: chooses white or black based on the theme color's luminance
 
+The toolbar above a browser tab follows the same theme color, rather than the plain macOS material it used before.
+
 See the [demo video](https://www.youtube.com/watch?v=cUYc7yzI_eM).
+
+## Reduce transparency
+
+Calyx's window chrome is one continuous sheet of glass.
+The titlebar, tab bar, sidebar, and terminal share a single surface, with no seams or hairlines drawn between them.
+
+Turning on **Reduce transparency** in System Settings under Accessibility → Display makes that whole sheet opaque, titlebar included, and drops the background gradient.
+The sidebar and the pane beside it then sit flush, with no line between them.
 
 ## Ghostty config compatibility
 

@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: August 13, 2026
+Last updated: August 18, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -28,7 +28,7 @@ None of it is sent off your machine.
 - Terminal scrollback (in memory, within the session)
 - Command log records (command line, exit status, and captured output) — in memory only, while **Track shell commands** is on (on by default); capped per pane, never written to disk, discarded when Calyx quits; known secret patterns (tokens, passwords, API keys, JWTs) are redacted before being stored
 - Shell integration scripts for command tracking (`~/Library/Application Support/Calyx/shell-integration`)
-- AI agent integration configs (`~/.claude.json` and the equivalents for other agents)
+- AI agent integration configs, written into each agent's own configuration directory (`~/.claude.json`, `~/.codex/`, `~/.config/opencode/`, `~/.hermes/`, `~/.grok/`); for pi, which has no configuration file of its own, this is instead a TypeScript extension at `~/.pi/agent/extensions/calyx.ts` that pi loads and runs
 - Browser server connection info (`~/.config/calyx/browser.json`)
 - Background language server processes for the LSP proxy
 - Browser tab storage (non-persistent — discarded when the tab closes)
@@ -85,7 +85,7 @@ Calyx uses it to list herdr's workspaces in the Session Browser and to show herd
 
 ## Interactions with AI agents
 
-When you use AI agents (Claude Code, Codex CLI, OpenCode, Hermes) through Calyx, the prompts you type and the responses you receive flow through Calyx and appear in the terminal, but Calyx itself does not record or transmit them.
+When you use AI agents (Claude Code, Codex CLI, OpenCode, Hermes, Grok, pi) through Calyx, the prompts you type and the responses you receive flow through Calyx and appear in the terminal, but Calyx itself does not record or transmit them.
 
 What each agent sends to its provider's API is governed by that agent's own privacy policy.
 

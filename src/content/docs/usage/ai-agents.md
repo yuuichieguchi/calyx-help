@@ -5,7 +5,7 @@ sidebar:
   order: 7
 ---
 
-Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes).
+Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes, Grok, pi).
 It exposes peer-to-peer messaging between agents across tabs/panes, LSP-backed symbol lookup tools, cockpit tools for driving Calyx itself, and a terminal command log.
 
 ## AI Agent IPC
@@ -15,7 +15,7 @@ Agents running in different tabs or panes can exchange messages with each other.
 ### Enable
 
 1. Open the command palette (`Cmd+Shift+P`) and run **Enable AI Agent IPC**.
-2. Start agents (Claude Code / Codex / OpenCode / Hermes) in two or more terminal panes.
+2. Start agents (Claude Code / Codex / OpenCode / Hermes / Grok / pi) in two or more terminal panes.
 3. Each instance registers itself as a peer and can send/receive messages.
 
 Config files are written automatically based on which agents are installed.
@@ -26,8 +26,24 @@ Config files are written automatically based on which agents are installed.
 | Codex CLI | `~/.codex/config.toml` |
 | OpenCode | `~/.config/opencode/opencode.json`, `AGENTS.md` |
 | Hermes | `~/.hermes/config.yaml` |
+| Grok | `~/.grok/config.toml`, `~/.grok/hooks/calyx.json` |
+| pi | `~/.pi/agent/extensions/calyx.ts` |
 
 Restart any already-running agent instances so they pick up the new MCP server.
+
+pi is the one supported agent with no MCP client configuration of its own, so Calyx reaches it through a TypeScript extension that pi loads on startup.
+That single file carries the whole integration: the sidebar row, the approval gate, and a `calyx` tool that dispatches to the MCP tools below (call it with `{"tool": "list"}` to enumerate them).
+A pi started outside Calyx, or inside a herdr pane, registers nothing.
+See [Known limitations](/reference/known-limitations/#enabling-ai-agent-ipc-on-a-pi-only-machine) for the case where pi is the only supported agent on the machine.
+
+### After updating Calyx
+
+Run **Enable AI Agent IPC** again after an update.
+Calyx repairs its own hook scripts at launch, but the MCP server entries in the files above are written only by this command, and an update can change what belongs in them.
+Hermes in particular needs the re-run. Its MCP connection is the only channel that tells Calyx which pane it runs in, so without the headers that connection carries, Hermes stays anonymous and never gets a sidebar row.
+
+Re-running is safe for config you maintain yourself.
+Calyx moves any hook entry it does not own back out of its managed block instead of replacing it, and skips writing a file at all when nothing needs to change.
 
 ### Available MCP tools
 
@@ -48,7 +64,16 @@ Run **Disable AI Agent IPC** from the command palette.
 
 The sidebar includes an **Agents** tab that shows every connected AI agent in the current window along with its live status.
 
-Each agent row shows:
+Each agent row is named after the pane it runs in, on three lines:
+
+1. The pane's title.
+2. Its working directory, shown as the last path component.
+3. The agent, for example "Claude Code" or "Grok".
+
+Anything Calyx cannot resolve reads `N/A`.
+Rows are named after the pane rather than the repository so that several agents working in one checkout stay distinguishable.
+
+Alongside the name, a row shows:
 
 - A state dot: red (waiting on the user), yellow (working), green (idle), blue (done).
 - An unread message badge, if the agent has queued output the user has not yet seen.
@@ -56,14 +81,17 @@ Each agent row shows:
 
 Click a row to focus the pane running that agent.
 
-The view supports Claude Code, Codex CLI, OpenCode, and Hermes. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
+The view supports Claude Code, Codex CLI, OpenCode, Hermes, Grok, and pi. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
 
 ### herdr-hosted agents
 
 Agents running inside herdr's own panes show up here too, labeled "via herdr" in the subtitle.
 They need none of the setup native rows do: no **Enable AI Agent IPC**, no config file to write. Calyx reads them straight from herdr's own status stream, so they appear automatically whenever herdr is installed and running.
 
-herdr rows are informational only. Clicking one does nothing; open or focus that workspace from the [Session Browser](/usage/sessions/#herdr-workspaces) instead.
+A herdr row you have already opened as a Calyx tab is clickable like any other: it focuses that pane.
+A row for a herdr pane you have not opened in Calyx has nothing to focus, so it is drawn as plain text with no hover highlight. Open that workspace from the [Session Browser](/usage/sessions/#herdr-workspaces) first.
+
+When an agent CLI exits while herdr keeps its shell pane alive, the row turns blue (done) instead of holding whatever state it had last.
 
 If **AI Agent IPC** is off, herdr rows keep showing, with a note underneath that Calyx's own agents aren't being monitored until you turn it on.
 
@@ -99,7 +127,14 @@ It is off by default, so every gated call asks first.
 ## Approving agent tool calls
 
 When several agents run in parallel, their permission prompts are scattered across panes.
-With approval routing on, Claude Code and Codex send each tool call's permission request to Calyx before running the tool, and Calyx shows it in the same banner used by cockpit tools.
+With approval routing on, a supported agent sends each tool call's permission request to Calyx before running the tool, and Calyx shows it in the same banner used by cockpit tools.
+
+Which calls reach the banner depends on the agent:
+
+- **Claude Code and Codex**: only the calls the CLI would have prompted you about itself. Anything its own permission system settles, such as a read in Plan mode or a tool you have already allowlisted, runs without a banner.
+- **Grok**: only in always-approve mode (`bypassPermissions`). In its other modes Grok keeps prompting in its own pane, so the same question is never asked twice.
+- **pi**: every tool call. pi ships no permission prompt of its own, so the banner is the only gate. With approval routing off, pi's tool calls run unreviewed.
+- **OpenCode and Hermes**: none. They keep prompting in their own pane.
 
 ### Enable
 
@@ -117,6 +152,8 @@ Always Allow choices last only for the current IPC session and are forgotten whe
 
 When more than one request is pending, previous/next chevrons and an "i / N" position label appear next to the action buttons.
 Browse the queue and decide any request in any order; deciding the displayed request advances to the nearest remaining one.
+Click the position label to see the whole queue at once: every pending request for the window, oldest first, each row reading `3. Claude Code · Bash: npm test` with a `▸` marking the one on screen.
+Picking a row jumps straight to that request, which saves paging through a backlog to reach the one you care about.
 Cockpit tool requests share the same queue.
 With a single pending request the navigator disappears and the banner looks exactly as before.
 
@@ -126,9 +163,10 @@ Secrets in the notification summary are masked, while the banner itself shows th
 ### Fallback behavior
 
 Nothing is ever auto-approved on failure.
-If you do not respond within about 10 minutes, or Calyx is unreachable, the agent falls back to its own in-pane prompt.
+If Calyx is unreachable, or you do not respond within about 10 minutes, the request expires, and what happens next depends on the agent.
+Claude Code and Codex fall back to their own in-pane prompt, so the decision comes back to you there.
+Grok in always-approve mode and pi have no prompt of their own to fall back to, so an expired request is denied.
 Cancelling the tool call on the agent side clears its banner immediately.
-Supported agents: Claude Code and Codex. Other agents keep prompting in their own pane.
 
 ## Terminal command log
 
