@@ -15,7 +15,7 @@ Use it to reach actions you don't have a shortcut for.
 
 Examples of commands reachable from the palette:
 
-- **Enable AI Agent IPC** / **Disable AI Agent IPC**
+- **Enable AI Agent IPC** / **Reconfigure AI Agent IPC** / **Disable AI Agent IPC**
 - **Install CLI to PATH**
 - **Session Browser…**, **Detach Session**, and other session commands
 - Theme-related commands

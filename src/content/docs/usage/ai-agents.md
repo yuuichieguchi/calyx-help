@@ -31,10 +31,13 @@ Config files are written automatically based on which agents are installed.
 
 Restart any already-running agent instances so they pick up the new MCP server.
 
+If you install another supported agent later, run **Reconfigure AI Agent IPC**.
+It writes that agent's config and hooks against the server that is already running, so agents already connected keep working.
+**Enable AI Agent IPC** is in the palette only while the server is stopped; once it is up, **Reconfigure AI Agent IPC** and **Disable AI Agent IPC** take its place.
+
 pi is the one supported agent with no MCP client configuration of its own, so Calyx reaches it through a TypeScript extension that pi loads on startup.
 That single file carries the whole integration: the sidebar row, the approval gate, and a `calyx` tool that dispatches to the MCP tools below (call it with `{"tool": "list"}` to enumerate them).
 A pi started outside Calyx, or inside a herdr pane, registers nothing.
-See [Known limitations](/reference/known-limitations/#enabling-ai-agent-ipc-on-a-pi-only-machine) for the case where pi is the only supported agent on the machine.
 
 ### After updating Calyx
 
@@ -82,6 +85,48 @@ Alongside the name, a row shows:
 Click a row to focus the pane running that agent.
 
 The view supports Claude Code, Codex CLI, OpenCode, Hermes, Grok, and pi. Once you have run **Enable AI Agent IPC** and started an agent in a pane, that agent appears in the sidebar automatically.
+
+### Subagent rows
+
+An agent that runs subagents shows them as child rows under its own.
+A pane row with children gains a count badge at its right edge and a disclosure chevron next to it.
+A pane whose agent reports no subagents looks exactly as it did before.
+
+Children start collapsed.
+Click the chevron to expand them.
+The chevron is a separate target from the row body, so expanding never moves focus to the pane.
+The expansion is remembered only while the sidebar stays open, and resets when you hide it or relaunch Calyx.
+
+Each child row is indented under its parent and carries a state dot in the same four colors, the subagent's type, the tool it is currently running, and how long ago it last reported.
+A CLI that reports only a subagent's lifecycle leaves the type and tool lines out rather than filling them with placeholders, so those rows are a dot and a timestamp.
+Clicking a child focuses the parent's pane, because a subagent has no pane of its own.
+
+| Agent | Subagent rows | Current tool |
+|---|---|---|
+| Claude Code | yes | yes |
+| Grok | yes | yes |
+| Codex | yes | no |
+| OpenCode | yes | no |
+| Hermes, pi, herdr panes | no | no |
+
+A child row exists only while its CLI reports the subagent.
+It disappears when that subagent stops, when the parent session ends, and when the pane closes.
+Calyx keeps no history of its own, so nothing lingers once the CLI stops reporting it.
+
+An agent CLI reads its hook configuration once, at session start.
+Subagent rows therefore appear in sessions you start after Calyx has installed the hooks, not in one that was already running.
+
+### When a row settles
+
+A row turns blue (done) when the agent's session ends.
+Most supported CLIs report their own session end.
+For the ones that do not, and for an agent that was killed or crashed, Calyx settles the row when the pane's shell returns to its prompt.
+
+That fallback has two routes.
+Ghostty's own end-of-command report covers every shell, including bash, elvish, and nushell, and needs no setup.
+Calyx's shell integration covers zsh and fish while **Track shell commands** is on, and additionally expires any approval requests still pending for that pane, so an approval banner never outlives the process that raised it.
+
+A command you suspend with Ctrl-Z does not settle the row.
 
 ### herdr-hosted agents
 

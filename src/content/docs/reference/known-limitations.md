@@ -29,13 +29,17 @@ Setting them in the Ghostty config file has no effect.
 
 The current full list of Calyx-managed keys is shown in Settings under **Ghostty Config Compatibility**.
 
-## Enabling AI Agent IPC on a pi-only machine
+## Agent rows and suspended fish jobs
 
-**Enable AI Agent IPC** writes the MCP client configs first and the pi extension afterwards.
-pi is the one supported agent with no MCP client config of its own, so on a machine where pi is the only supported agent installed, the command finds nothing to configure, reports "No agent configs found", and stops the MCP server it just started before writing `~/.pi/agent/extensions/calyx.ts`.
+Calyx settles an agent row when the pane's shell returns to its prompt, and deliberately ignores a command you suspended with Ctrl-Z.
+fish exposes no way to tell which command a stopped job belongs to, so while any job sits stopped in a fish pane, Calyx treats every later command in that pane as suspended too, and the agent row there stays live instead of settling.
+Resume the stopped job with `fg`, or end it, to clear this.
+The command log is unaffected: each command still records its own real exit code.
 
-Writing the extension by hand does not help, because it needs a running MCP server to reach.
-Install any other supported agent to work around this.
+## Codex subagent rows
+
+Calyx subscribes to the `SubagentStart` and `SubagentStop` hooks that Codex documents, but has never managed to capture one from a real Codex run.
+Subagent rows for Claude Code, Grok, and OpenCode were verified against live sessions; Codex rows may not appear.
 
 ## Browser tab constraints
 
