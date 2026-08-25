@@ -28,6 +28,10 @@ Ghostty 設定ファイルに書いても反映されません。
 
 現時点で Calyx が管理しているキーの完全な一覧は、Settings の **Ghostty Config Compatibility** で確認できます。
 
+`background-opacity-cells` もここで上書きされますが、Calyx 側から設定する手段があります。
+Settings の Appearance にある専用のスイッチから設定してください。
+詳細は [ガラスの不透明度](/ja/usage/customization/#ガラスの不透明度) を参照してください。
+
 ## fish で停止中のジョブがあるときのエージェント行
 
 Calyx はペインのシェルがプロンプトに戻った時点でエージェントの行を完了にしますが、Ctrl-Z で中断したコマンドは対象から外します。

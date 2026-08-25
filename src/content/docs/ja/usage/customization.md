@@ -23,6 +23,20 @@ Liquid Glass UI のテーマカラーは、Settings から変更できます。
 
 [デモ動画](https://www.youtube.com/watch?v=cUYc7yzI_eM) で挙動を確認できます。
 
+## ガラスの不透明度
+
+Appearance ペインの **Glass** セクションで、ウィンドウの透明度を調整します。
+その不透明度スライダーの下に **Apply opacity to cell backgrounds** があり、初期状態ではオフです。
+
+オフのままだと、不透明度が効くのはウィンドウの背景だけで、背景色が明示されたセルは不透明のまま残ります。
+エージェント CLI のプロンプト、Neovim、tmux などが、透けたウィンドウの中で不透明な板として見えるのはこのためです。
+オンにすると同じ不透明度がそれらのセルにも届き、ターミナル全体が一枚の面として見えます。
+
+切り替えはすでに開いているターミナルにも反映されるため、再起動は要りません。
+
+Calyx はこの設定を Ghostty の `background-opacity-cells` として書き出し、そのキーは引き続き Calyx が管理します。
+`~/.config/ghostty/config` に書いても反映されないため、変更はこのスイッチから行います。
+
 ## 透明度を下げる設定
 
 Calyx のウィンドウのクロームは、一枚続きのガラスとして描かれます。
@@ -50,6 +64,8 @@ Calyx は Ghostty の設定ファイル `~/.config/ghostty/config` を読み込�
 
 これらは Glass UI の見た目と整合させるため、Calyx が独自に管理しています。
 Settings の **Ghostty Config Compatibility** に、現時点で Calyx が管理しているキーの一覧が表示されます。
+このうち `background-opacity-cells` だけは、Settings の専用のスイッチから変更できます。
+詳細は [ガラスの不透明度](#ガラスの不透明度) を参照してください。
 
 ## キーバインドアクション
 

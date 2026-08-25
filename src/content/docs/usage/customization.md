@@ -23,6 +23,20 @@ The toolbar above a browser tab follows the same theme color, rather than the pl
 
 See the [demo video](https://www.youtube.com/watch?v=cUYc7yzI_eM).
 
+## Glass opacity
+
+The **Glass** section of the Appearance pane controls how transparent the window is.
+Under its opacity slider sits **Apply opacity to cell backgrounds**, off by default.
+
+Left off, the opacity applies to the window background only, and any cell with an explicit background color stays fully opaque.
+An agent CLI's prompt block, Neovim, or tmux then renders as an opaque slab inside an otherwise transparent window.
+Turned on, the same opacity reaches those cells and the whole terminal reads as one surface.
+
+The switch applies to terminals that are already open, so there is nothing to restart.
+
+Calyx writes this as Ghostty's `background-opacity-cells` and keeps that key under its own management.
+Setting it in `~/.config/ghostty/config` still has no effect: this switch is the way to change it.
+
 ## Reduce transparency
 
 Calyx's window chrome is one continuous sheet of glass.
@@ -50,6 +64,7 @@ Some keys that conflict with the Liquid Glass UI are overridden by Calyx and won
 
 These are managed by Calyx to keep the Glass UI consistent.
 The full current list is shown in Settings under **Ghostty Config Compatibility**.
+`background-opacity-cells` is the one you can still set yourself, from its own switch in Settings; see [Glass opacity](#glass-opacity).
 
 ## Keybind actions
 

@@ -101,6 +101,13 @@ Each child row is indented under its parent and carries a state dot in the same 
 A CLI that reports only a subagent's lifecycle leaves the type and tool lines out rather than filling them with placeholders, so those rows are a dot and a timestamp.
 Clicking a child focuses the parent's pane, because a subagent has no pane of its own.
 
+The tool line names the tool and what that call is working on, as `Bash: git status --short`.
+Calyx reads the arguments the CLI reported: the command for a shell tool, the path for a read or a write, the URL for a fetch, and everything else as `key: value` pairs.
+A run of whitespace collapses to a single space, so a heredoc still reads on one line, and a long line is cut at 500 characters.
+Narrow the sidebar and the line is trimmed from its end, keeping the tool name and the start of the command in view, while the elapsed time on the right keeps its width.
+Hover the row to read the whole line in a tooltip.
+A tool with nothing to summarize shows its name alone.
+
 | Agent | Subagent rows | Current tool |
 |---|---|---|
 | Claude Code | yes | yes |
@@ -132,6 +139,14 @@ A command you suspend with Ctrl-Z does not settle the row.
 
 Agents running inside herdr's own panes show up here too, labeled "via herdr" in the subtitle.
 They need none of the setup native rows do: no **Enable AI Agent IPC**, no config file to write. Calyx reads them straight from herdr's own status stream, so they appear automatically whenever herdr is installed and running.
+
+Calyx watches for herdr rather than asking on a timer, so the order you start things in does not matter.
+Start herdr while Calyx is already running and the rows fill in on their own, even with Calyx frontmost and the sidebar already open.
+Install herdr, or put it on `PATH`, after Calyx launched and it is picked up without a relaunch.
+A herdr server that restarts at the same socket path is recognized as a new session and reconnected to.
+
+Calyx retries the connection a few times over the first seconds after herdr's socket appears, because the file existing does not prove the server is listening yet.
+A server slower than that to start listening stays unreported until something else changes in its directory.
 
 A herdr row you have already opened as a Calyx tab is clickable like any other: it focuses that pane.
 A row for a herdr pane you have not opened in Calyx has nothing to focus, so it is drawn as plain text with no hover highlight. Open that workspace from the [Session Browser](/usage/sessions/#herdr-workspaces) first.

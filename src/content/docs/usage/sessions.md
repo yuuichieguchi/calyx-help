@@ -72,6 +72,7 @@ Everything above works from the UI; the CLI is there for scripting.
 
 Calyx can also show and open workspaces from herdr, a separate terminal multiplexer with its own background server, independent of the `calyx-session` daemon described above.
 If herdr is installed, its workspaces appear in the Session Browser automatically; if it isn't, nothing else on this page changes.
+Installing or starting herdr after Calyx has launched works the same way: Calyx notices it and picks it up without a relaunch.
 
 Each herdr server appears as its own row, stating how many workspaces and panes it currently holds, with its workspaces listed underneath.
 

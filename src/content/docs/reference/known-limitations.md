@@ -29,6 +29,8 @@ Setting them in the Ghostty config file has no effect.
 
 The current full list of Calyx-managed keys is shown in Settings under **Ghostty Config Compatibility**.
 
+`background-opacity-cells` is still overridden here, but Calyx exposes it: set it from its own switch in Settings under Appearance, described in [Glass opacity](/usage/customization/#glass-opacity).
+
 ## Agent rows and suspended fish jobs
 
 Calyx settles an agent row when the pane's shell returns to its prompt, and deliberately ignores a command you suspended with Ctrl-Z.
