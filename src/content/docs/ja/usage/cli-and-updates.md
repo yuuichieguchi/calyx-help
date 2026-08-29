@@ -44,7 +44,7 @@ Sparkle が自動で更新の有無を定期チェックします。
 Homebrew で入れた場合は Sparkle ではなく `brew upgrade` 経由で更新します。
 
 ```bash
-brew upgrade --cask calyx
+brew upgrade --cask yuuichieguchi/calyx/calyx
 ```
 
 混在を避けるため、Homebrew 版と直接ダウンロード版は片方に揃えて運用することをおすすめします。

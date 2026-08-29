@@ -18,11 +18,10 @@ libghostty を Metal GPU で動かしつつ、Liquid Glass の UI でラップ�
 ### Homebrew でインストールする
 
 ```bash
-brew tap yuuichieguchi/calyx
-brew install --cask calyx
+brew install --cask yuuichieguchi/calyx/calyx
 ```
 
-更新は `brew upgrade --cask calyx` で行います。
+更新は `brew upgrade --cask yuuichieguchi/calyx/calyx` で行います。
 
 ### `.zip` から手動でインストールする
 

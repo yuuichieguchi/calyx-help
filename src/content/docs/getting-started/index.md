@@ -18,11 +18,10 @@ It runs libghostty on Metal under a Liquid Glass UI.
 ### Homebrew
 
 ```bash
-brew tap yuuichieguchi/calyx
-brew install --cask calyx
+brew install --cask yuuichieguchi/calyx/calyx
 ```
 
-Update with `brew upgrade --cask calyx`.
+Update with `brew upgrade --cask yuuichieguchi/calyx/calyx`.
 
 ### Manual `.zip` install
 
