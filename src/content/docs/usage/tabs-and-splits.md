@@ -22,6 +22,10 @@ Double-click a tab to rename it.
 The `prompt_surface_title` [keybind action](/usage/customization/#keybind-actions) opens the same rename editor from a custom key.
 Drag tabs in the tab bar or sidebar to reorder them.
 
+Right-click a tab (or Ctrl+click it) in the tab bar or the sidebar to open its context menu: **Close Tab**, **Close Other Tabs**, **Close Tabs to the Right**, and **Rename Tab...**.
+Every item acts on the tab you right-clicked, and opening the menu does not switch to that tab, so from the sidebar you can close or rename a tab in another group without leaving the one you are working in.
+**Close Other Tabs** and **Close Tabs to the Right** cover the tabs in that tab's group, and are disabled when there is nothing for them to close.
+
 ## Groups
 
 Groups are containers that hold tabs.
