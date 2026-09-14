@@ -43,7 +43,7 @@ Sparkle checks periodically. When a new version is available, you'll see a notif
 Homebrew installs do not use Sparkle. Update through Homebrew instead:
 
 ```bash
-brew upgrade --cask yuuichieguchi/calyx/calyx
+brew upgrade --cask calyx
 ```
 
 Stick with one channel — Homebrew or direct download — to avoid mixed installs.
