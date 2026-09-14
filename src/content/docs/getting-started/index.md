@@ -11,7 +11,7 @@ It runs libghostty on Metal under a Liquid Glass UI.
 ## Requirements
 
 - macOS 26 Tahoe or later
-- Universal binary (Apple Silicon and Intel)
+- Apple Silicon (arm64 only)
 
 ## Install
 

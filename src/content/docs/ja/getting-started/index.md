@@ -11,7 +11,7 @@ libghostty を Metal GPU で動かしつつ、Liquid Glass の UI でラップ�
 ## 動作環境
 
 - macOS 26 Tahoe 以降
-- Apple Silicon と Intel の両方をサポート（ユニバーサルバイナリ）
+- Apple Silicon（arm64 のみ）
 
 ## インストール
 
