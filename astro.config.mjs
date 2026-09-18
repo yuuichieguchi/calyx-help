@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  site: 'https://help.calyx.app',
+  site: 'https://help.getcalyx.app',
   integrations: [
     starlight({
       title: 'Calyx Help',
