@@ -47,3 +47,16 @@ brew upgrade --cask calyx
 ```
 
 Stick with one channel — Homebrew or direct download — to avoid mixed installs.
+
+## Checking your version and getting help
+
+Choose **About Calyx** from the app menu to see which build you are running.
+The window shows the version, the build number, and the git commit the build was made from.
+Click the commit hash to open that commit on GitHub, which pins down the exact build when you report an issue.
+A build made outside a git checkout has no commit row.
+You can select and copy the version and build number.
+**Docs** opens this help center, and **GitHub** opens the Calyx repository.
+Press `Esc` or `Cmd+W` to close the window.
+
+**Help → Calyx Help** (`Cmd+?`) opens this help center in your default browser.
+macOS also adds its own search field at the top of the Help menu.

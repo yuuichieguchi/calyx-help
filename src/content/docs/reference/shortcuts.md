@@ -67,6 +67,7 @@ Some can be reassigned from Settings.
 | Command palette | `Cmd+Shift+P` |
 | Toggle compose overlay | `Cmd+Shift+E` |
 | Session Browser | `Cmd+Shift+B` |
+| Calyx Help (opens this help center) | `Cmd+?` |
 
 ## Inside the compose overlay
 

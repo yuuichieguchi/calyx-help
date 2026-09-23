@@ -29,7 +29,7 @@ Every item acts on the tab you right-clicked, and opening the menu does not swit
 ## Groups
 
 Groups are containers that hold tabs.
-There are 10 color presets, and groups can be collapsed or expanded from the sidebar using the chevron.
+Each group gets one of 10 color presets when it is created, and groups can be collapsed or expanded from the sidebar using the chevron.
 
 | Action | Shortcut |
 |---|---|
@@ -39,6 +39,20 @@ There are 10 color presets, and groups can be collapsed or expanded from the sid
 | Previous group | `Ctrl+Shift+[` |
 
 Double-click a group heading in the sidebar to rename it.
+
+Right-click a group heading in the sidebar (or Ctrl+click it) to open its context menu:
+
+- **Close Group** closes every tab in the group and removes the group.
+- **Close Other Groups** closes every other group, and is disabled when there is only one group.
+- **Close Groups Below** closes every group below this one, and is disabled on the last group.
+- **Rename Group...** opens the same inline editor as a double-click.
+- **Color** sets the group's color to one of the 10 presets, with a checkmark on the current one.
+
+Like the tab menu, every item acts on the group you right-clicked, and opening the menu does not switch to that group.
+
+Closing a group asks for confirmation only when one of its diff tabs holds review comments you have not sent.
+This applies to every way of closing a group, including the context menu and `Ctrl+Shift+W`.
+Cancel keeps that diff tab open, so its group stays with that tab while the group's other tabs still close.
 
 ## Splits
 
