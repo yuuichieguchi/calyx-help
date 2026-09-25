@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: August 18, 2026
+Last updated: September 25, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -28,7 +28,9 @@ None of it is sent off your machine.
 - Terminal scrollback (in memory, within the session)
 - Command log records (command line, exit status, and captured output) — in memory only, while **Track shell commands** is on (on by default); capped per pane, never written to disk, discarded when Calyx quits; known secret patterns (tokens, passwords, API keys, JWTs) are redacted before being stored
 - Shell integration scripts for command tracking (`~/Library/Application Support/Calyx/shell-integration`)
-- AI agent integration configs, written into each agent's own configuration directory (`~/.claude.json`, `~/.codex/`, `~/.config/opencode/`, `~/.hermes/`, `~/.grok/`); for pi, which has no configuration file of its own, this is instead a TypeScript extension at `~/.pi/agent/extensions/calyx.ts` that pi loads and runs
+- AI agent integration configs, written into each agent's own configuration directory (`~/.claude.json`, `~/.codex/`, `~/.config/opencode/`, `~/.hermes/`, `~/.grok/`) as a `calyx-ipc` entry and a `calyx-mcp` entry, each carrying the local server's bearer token; for pi, which has no configuration file of its own, this is instead a TypeScript extension at `~/.pi/agent/extensions/calyx.ts` that pi loads and runs
+- The MCP servers you add in Settings under **MCP Apps** (`~/Library/Application Support/Calyx/mcp-servers.json`, readable by your user only), with their environment values, request headers, OAuth tokens, client secrets, and registered client IDs kept in the login Keychain
+- Images an MCP App sends to an agent, written under a `calyx-mcp-apps` folder in the temporary directory
 - Browser server connection info (`~/.config/calyx/browser.json`)
 - Background language server processes for the LSP proxy
 - Browser tab storage (non-persistent — discarded when the tab closes)
@@ -65,12 +67,24 @@ Storage is non-persistent and is discarded when the tab closes.
 Creating or attaching to a remote session, and `calyx-session remote-install`, spawn `ssh` to the host you choose.
 Remote sessions generate no other traffic, and nothing connects unless you initiate it.
 
+### 6. MCP servers you add in Settings
+
+The **MCP Apps** pane of Settings holds MCP servers you add or import yourself.
+Calyx connects to them only while **Enable AI Agent IPC** is on and the server's own switch is on, and it ships with none configured.
+
+- An HTTP server is connected to at the URL you entered, with the headers you entered. Calyx sends the calling pane's working directory to a server that asks for the workspace roots.
+- A stdio server is started as a local process with the command and environment you entered. What it connects to is up to that process.
+- Signing in to a server that requires OAuth fetches the server's authorization metadata, may register Calyx as a client with the authorization server (identifying itself with `https://getcalyx.app/oauth/mcp-client.json` where that form is supported, otherwise by dynamic registration), opens the authorization page in your default browser, and exchanges the code for tokens. The redirect returns to a listener on the loopback interface, on a random port or on port 41890 when you turn that option on. Signing out deletes the tokens locally and sends nothing to the server.
+- A view an MCP App shows is rendered from HTML the server provides over that connection; Calyx fetches nothing from the web to display it. The view can make requests only to the domains its server declares for it, and none when it declares none. The view is told the theme colors and font, the locale and time zone, and the tool's arguments and result.
+- A link an app asks to open goes to your default browser only after you approve it.
+
 ## Locally-running servers
 
 Calyx hosts several servers inside its own process.
 They listen on the loopback interface (`localhost`) and are not exposed to the network.
 
-- **AI Agent IPC MCP server**: used by AI agents on the same machine
+- **AI Agent IPC MCP server**: used by AI agents on the same machine; the same port also serves the `/calyx-mcp` endpoint that republishes the MCP servers configured under **MCP Apps**
+- **OAuth redirect listener**: opened on the loopback interface only for the duration of an MCP server sign-in
 - **Browser automation server**: `localhost:41840`, used by the `calyx browser` CLI
 - **Session daemon (`calyx-session`)**: a separate local process reachable only over a Unix domain socket; it opens no network port
 

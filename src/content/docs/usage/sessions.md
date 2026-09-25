@@ -2,7 +2,7 @@
 title: Persistent sessions
 description: Daemon-backed terminal sessions that survive quit and crash, the Session Browser, remote sessions over SSH, and herdr workspaces.
 sidebar:
-  order: 11
+  order: 12
 ---
 
 Persistent sessions keep your shells alive outside the Calyx app process.

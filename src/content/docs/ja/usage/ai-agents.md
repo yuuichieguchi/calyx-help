@@ -7,6 +7,8 @@ sidebar:
 
 Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、OpenCode、Hermes、Grok、pi）を統合するための MCP サーバーが組み込まれています。
 タブやペインをまたいだエージェント同士の通信、LSP のシンボル解析、Calyx 自体を操作するコックピットツール、ターミナルのコマンドログの四つを提供します。
+同じサーバーは、Settings で追加した MCP サーバーの公開とそのビューの表示も担います。
+その部分は [MCP Apps](/ja/usage/mcp-apps/) で説明します。
 
 ## AI Agent IPC
 
@@ -29,6 +31,8 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 | Grok | `~/.grok/config.toml`、`~/.grok/hooks/calyx.json` |
 | pi | `~/.pi/agent/extensions/calyx.ts` |
 
+各エージェントには二つのエントリが書き込まれます。
+このページのツールのための `calyx-ipc` と、**MCP Apps** ペインで設定したサーバーのための `calyx-mcp` です（[MCP Apps](/ja/usage/mcp-apps/) を参照）。
 設定の書き込み後、すでに起動しているエージェントは再起動して新しい MCP サーバーを読み込ませてください。
 
 スイッチを切り替えると、その下の状態表示に結果が出ます。
@@ -43,8 +47,8 @@ Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、O
 pi は、対応するエージェントのなかで唯一、MCP クライアントの設定ファイルを持ちません。
 そのため Calyx は、pi が起動時に読み込む TypeScript の拡張を一つ書き込むことで連携します。
 この一ファイルが連携のすべてを担います。
-サイドバーの行、承認のゲート、そして下記の MCP ツールへ中継する `calyx` ツール（`{"tool": "list"}` を渡すと一覧を返します）です。
-Calyx の外で起動した pi や、herdr のペインの中で起動した pi は、何も登録しません。
+サイドバーの行、承認のゲート、下記の MCP ツールへ中継する `calyx` ツール（`{"tool": "list"}` を渡すと一覧を返します）、そして MCP Apps のサーバーに対して同じ役割を持つ `calyx_mcp` ツールです。
+Calyx の外で起動した pi や、herdr のペインの中で起動した pi は、`calyx_mcp` だけを登録します。
 
 ### 起動時と Calyx の更新後
 
@@ -278,6 +282,7 @@ Claude Code の質問（AskUserQuestion）も同じパネルに表示されま�
 行を選ぶとその要求へ直接移動するので、目的の 1 件にたどり着くために矢印で送り続ける必要がありません。
 表示中の要求を処理すると、残っている要求のうち最も近いものへ自動で進みます。
 コックピットツールの要求も同じキューに並びます。
+[MCP App](/ja/usage/mcp-apps/#同意のプロンプト) がリンクを開こうとするときやエージェントへメッセージを送ろうとするときの同意のプロンプトも、同じキューに並びます。
 要求が 1 件だけのときは、矢印と位置表示が消えます。
 
 新しい要求ごとに macOS 通知が届きます。

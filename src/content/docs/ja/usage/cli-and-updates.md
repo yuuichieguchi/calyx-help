@@ -2,7 +2,7 @@
 title: CLI と自動アップデート
 description: calyx CLI のインストール、Sparkle ベースの自動アップデート。
 sidebar:
-  order: 9
+  order: 10
 ---
 
 ## `calyx` CLI

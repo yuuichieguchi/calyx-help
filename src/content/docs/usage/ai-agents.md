@@ -7,6 +7,7 @@ sidebar:
 
 Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes, Grok, pi).
 It exposes peer-to-peer messaging between agents across tabs/panes, LSP-backed symbol lookup tools, cockpit tools for driving Calyx itself, and a terminal command log.
+The same server also republishes the MCP servers you add in Settings and hosts their views; that part is described on [MCP Apps](/usage/mcp-apps/).
 
 ## AI Agent IPC
 
@@ -29,6 +30,7 @@ Turning the switch on starts the MCP server and writes config files based on whi
 | Grok | `~/.grok/config.toml`, `~/.grok/hooks/calyx.json` |
 | pi | `~/.pi/agent/extensions/calyx.ts` |
 
+Each agent gets two entries: `calyx-ipc` for the tools on this page, and `calyx-mcp` for the servers configured in the **MCP Apps** pane (see [MCP Apps](/usage/mcp-apps/)).
 Restart any already-running agent instances so they pick up the new MCP server.
 
 After you flip the switch, a status line under it reports the result: `Running on port <port> · all agents configured`, or `Running on port <port> · <n> of <total> configured` (`Running on port <port> · no agents configured` when none succeeded) followed by one line per config or hook that failed (`✗`) or was skipped because its agent is not installed (`–`).
@@ -38,8 +40,8 @@ If you install another supported agent later, click **Refresh** below the switch
 It writes that agent's config and hooks against the server that is already running, so agents already connected keep working.
 
 pi is the one supported agent with no MCP client configuration of its own, so Calyx reaches it through a TypeScript extension that pi loads on startup.
-That single file carries the whole integration: the sidebar row, the approval gate, and a `calyx` tool that dispatches to the MCP tools below (call it with `{"tool": "list"}` to enumerate them).
-A pi started outside Calyx, or inside a herdr pane, registers nothing.
+That single file carries the whole integration: the sidebar row, the approval gate, a `calyx` tool that dispatches to the MCP tools below (call it with `{"tool": "list"}` to enumerate them), and a `calyx_mcp` tool that does the same for MCP Apps servers.
+A pi started outside Calyx, or inside a herdr pane, registers only `calyx_mcp`.
 
 ### At launch and after updating Calyx
 
@@ -246,7 +248,7 @@ When more than one request is pending, previous/next chevrons and an "N / M" pos
 Browse the queue and decide any request in any order; deciding the displayed request advances to the nearest remaining one.
 Click the position label to see the whole queue at once: every pending request across all windows, oldest first, each row reading `3. Claude Code · Bash: npm test` with a `▸` marking the one on screen.
 Picking a row jumps straight to that request, which saves paging through a backlog to reach the one you care about.
-Cockpit tool requests share the same queue.
+Cockpit tool requests share the same queue, and so do the consent prompts an [MCP App](/usage/mcp-apps/#consent-prompts) raises when it wants to open a link or send a message to the agent.
 With a single pending request the navigator disappears.
 
 A macOS notification is posted for each new request.

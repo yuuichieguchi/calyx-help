@@ -2,7 +2,7 @@
 title: Git source control
 description: Sidebar Changes view, commit graph, and inline diff review comments.
 sidebar:
-  order: 8
+  order: 9
 ---
 
 Calyx's sidebar includes a built-in Git view of the repositories open in the window.
@@ -51,6 +51,8 @@ Calyx remembers the choice per repository, so it applies again the next time tha
 A remembered reference that has since been deleted is dropped, and when none of the remembered references remain the scope returns to Auto.
 
 Each commit row shows a badge for every branch and tag that points at that commit.
+
+The graph loads commits a page at a time and requests the next page shortly before you scroll to the end of the loaded ones, so a long history scrolls through without pausing at each page.
 
 ### Refreshing
 
