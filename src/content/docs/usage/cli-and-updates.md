@@ -2,7 +2,7 @@
 title: CLI & auto-updates
 description: Installing the calyx CLI and the Sparkle-based auto-update system.
 sidebar:
-  order: 10
+  order: 11
 ---
 
 ## The `calyx` CLI

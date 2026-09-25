@@ -83,6 +83,7 @@ Alongside standard terminal actions (`new_tab`, `new_split`, `goto_split`, `goto
 | `toggle_maximize` | Toggle the window's maximized state |
 | `reset_window_size` | Reset the window to its default size |
 | `toggle_command_palette` | Open or close the command palette |
+| `toggle_tab_overview` | Open or close [Mission Map](/usage/mission-map/) |
 | `check_for_updates` | Check for Calyx updates |
 
 For example:

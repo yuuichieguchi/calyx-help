@@ -22,15 +22,17 @@ The developer has no way to observe your launch times, feature usage, or input.
 Calyx stores the following on your machine to restore state and run features.
 None of it is sent off your machine.
 
-- Open tabs, splits, and per-tab working directories (for session restore) — for a tab opened from a herdr workspace, this also includes herdr's socket path and its own pane id, so the tab can reconnect after relaunch; herdr's terminal ids are never stored
+- Open tabs, splits, per-tab working directories, and the positions of Mission Map cards you moved (for session restore) — for a tab opened from a herdr workspace, this also includes herdr's socket path and its own pane id, so the tab can reconnect after relaunch; herdr's terminal ids are never stored
 - Persistent-session bookkeeping kept by the local `calyx-session` daemon (session list and working directories) — only when persistent sessions are enabled (off by default)
 - Session history files under `~/.calyx/state/history/` — only when **Persist session history to disk** is enabled (off by default)
 - Terminal scrollback (in memory, within the session)
 - Command log records (command line, exit status, and captured output) — in memory only, while **Track shell commands** is on (on by default); capped per pane, never written to disk, discarded when Calyx quits; known secret patterns (tokens, passwords, API keys, JWTs) are redacted before being stored
+- AI Agent IPC messages, including their text, and the paths of files agents are about to write, kept for Mission Map — in memory only, up to the latest 512 messages and 256 paths; never written to disk, discarded when Calyx quits
 - Shell integration scripts for command tracking (`~/Library/Application Support/Calyx/shell-integration`)
 - AI agent integration configs, written into each agent's own configuration directory (`~/.claude.json`, `~/.codex/`, `~/.config/opencode/`, `~/.hermes/`, `~/.grok/`) as a `calyx-ipc` entry and a `calyx-mcp` entry, each carrying the local server's bearer token; for pi, which has no configuration file of its own, this is instead a TypeScript extension at `~/.pi/agent/extensions/calyx.ts` that pi loads and runs
 - The MCP servers you add in Settings under **MCP Apps** (`~/Library/Application Support/Calyx/mcp-servers.json`, readable by your user only), with their environment values, request headers, OAuth tokens, client secrets, and registered client IDs kept in the login Keychain
 - Images an MCP App sends to an agent, written under a `calyx-mcp-apps` folder in the temporary directory
+- Tool calls the approval hook passes to Calyx while AI Agent IPC is on (each Claude Code and Codex permission prompt, and every Grok tool call), and Calyx's reply to each, written to files in the temporary directory while the hook runs and deleted when it exits, including when **Show agent tool prompts in the approval banner** is off; a hook that is force-killed leaves them behind
 - Browser server connection info (`~/.config/calyx/browser.json`)
 - Background language server processes for the LSP proxy
 - Browser tab storage (non-persistent — discarded when the tab closes)

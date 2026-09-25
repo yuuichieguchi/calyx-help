@@ -2,7 +2,7 @@
 title: Git ソースコントロール
 description: サイドバーの Changes ビュー、コミットグラフ、Diff のインラインレビューコメント。
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Calyx のサイドバーには、ウィンドウで開いているリポジトリの状態を確認できる Git ビューが組み込まれています。

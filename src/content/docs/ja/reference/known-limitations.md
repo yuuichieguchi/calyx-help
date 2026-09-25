@@ -46,6 +46,16 @@ fish には、停止中のジョブがどのコマンドのものかを知る手
 Calyx は Codex が文書化している `SubagentStart` と `SubagentStop` のフックを購読していますが、実際の Codex の実行でこれらのフックを捕捉できたことはまだありません。
 Claude Code、Grok、OpenCode のサブエージェントの行は実際のセッションで確認していますが、Codex では行が出ない可能性があります。
 
+## Mission Map での herdr のエージェント
+
+herdr がホストするエージェントは[エージェントサイドバー](/ja/usage/ai-agents/#herdr-のエージェント)には並びますが、[Mission Map](/ja/usage/mission-map/) はそれを読み取りません。
+そのペインは Mission Map では薄く表示された **Terminal** のカードになり、エージェント名も状態も出ません。
+
+## ダウングレード後のセッション復元
+
+Calyx 0.44.0 は、[Mission Map](/ja/usage/mission-map/) のカードの位置を含められる新しい形式でウィンドウのレイアウトを保存します。
+Calyx 0.43.0 以前はこの形式で保存されたレイアウトを破棄するため、0.44.0 以降を使ったあとで古いバージョンに戻すと、前回のタブとスプリットは復元されず、新しいウィンドウから始まります。
+
 ## ブラウザタブの制約
 
 - 対応プロトコルは http / https のみ

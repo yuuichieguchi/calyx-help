@@ -2,7 +2,7 @@
 title: 永続セッション
 description: 終了やクラッシュ後もシェルを維持するデーモン方式のセッション、Session Browser、SSH 経由のリモートセッション、herdr ワークスペース。
 sidebar:
-  order: 12
+  order: 13
 ---
 
 永続セッションは、シェルを Calyx 本体とは別のローカルデーモン（`calyx-session`）に持たせる仕組みです。

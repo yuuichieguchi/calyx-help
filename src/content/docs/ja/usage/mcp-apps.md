@@ -2,7 +2,7 @@
 title: MCP Apps
 description: MCP サーバーを Calyx でホストし、そのツールをすべてのエージェント CLI に公開して、ツールが返す対話的なアプリを呼び出したエージェントの隣に表示する。
 sidebar:
-  order: 8
+  order: 9
 ---
 
 MCP Apps は、MCP サーバーのツールが結果と一緒に対話的なビューを返せるようにする仕組みです。
@@ -45,6 +45,8 @@ Settings（`Cmd+,`）を開き、**MCP Apps** ペインを選びます。
 
 `HTTP` サーバーでは **URL** を入力します。
 Streamable HTTP ではなく従来の HTTP+SSE トランスポートを使うサーバーには、**Legacy HTTP+SSE server** をオンにします。
+一つのレスポンス、またはサーバーが開いたままにするストリーム上の一つのイベントは 64 MiB までで、それを超えるとエラーになります。
+ストリームが運ぶデータの合計には、開いている期間にかかわらず上限がありません。
 **Headers** セクションにはリクエストヘッダーを並べ、こちらも入力後は伏せ字になります。
 **OAuth** セクションは、事前登録したクライアントでのサインインを求めるサーバーでだけ必要です。
 **Client ID**、**Client authentication**（None、Client secret (POST)、Client secret (Basic)）、**Client secret** を入力します。

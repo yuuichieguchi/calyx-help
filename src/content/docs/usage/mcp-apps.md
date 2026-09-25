@@ -2,7 +2,7 @@
 title: MCP Apps
 description: Host MCP servers in Calyx, republish their tools to every agent CLI, and show the interactive apps their tools return next to the agent that called them.
 sidebar:
-  order: 8
+  order: 9
 ---
 
 MCP Apps lets an MCP server's tool return an interactive view alongside its result.
@@ -40,6 +40,8 @@ The **Environment** section takes variables for the process; their values are ma
 
 For an `HTTP` server, enter the **URL**.
 Turn on **Legacy HTTP+SSE server** for a server that still uses the HTTP+SSE transport rather than Streamable HTTP.
+A single response, or a single event on a stream the server keeps open, can be up to 64 MiB, and a larger one is treated as an error.
+There is no limit on how much a stream carries in total, however long it stays open.
 The **Headers** section takes request headers, masked once entered.
 The **OAuth** section is only needed for a server that requires sign-in with a pre-registered client: **Client ID**, **Client authentication** (None, Client secret (POST), or Client secret (Basic)), and **Client secret**.
 **Use fixed redirect port 41890** makes the sign-in redirect land on that port instead of a random one; turn it on only for an authorization server that requires an exact redirect port.

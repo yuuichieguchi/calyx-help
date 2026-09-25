@@ -2,7 +2,7 @@
 title: Security & notifications
 description: Clipboard paste confirmation, Secure Keyboard Entry, and desktop notifications.
 sidebar:
-  order: 11
+  order: 12
 ---
 
 ## Clipboard paste confirmation

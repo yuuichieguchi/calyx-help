@@ -43,6 +43,16 @@ The command log is unaffected: each command still records its own real exit code
 Calyx subscribes to the `SubagentStart` and `SubagentStop` hooks that Codex documents, but has never managed to capture one from a real Codex run.
 Subagent rows for Claude Code, Grok, and OpenCode were verified against live sessions; Codex rows may not appear.
 
+## herdr agents in Mission Map
+
+Agents hosted by herdr appear in the [Agents Sidebar](/usage/ai-agents/#herdr-hosted-agents), but [Mission Map](/usage/mission-map/) does not read them.
+Their panes show up there as dimmed **Terminal** cards, with no agent name or state.
+
+## Session restore after downgrading
+
+Calyx 0.44.0 saves the window layout in a newer format, which also holds [Mission Map](/usage/mission-map/) card positions.
+Calyx 0.43.0 and earlier discard a layout saved in that format, so going back to one of them after running 0.44.0 or later starts with a fresh window instead of your last tabs and splits.
+
 ## Browser tab constraints
 
 - http and https only

@@ -23,10 +23,11 @@ Calyx のウィンドウは、グループ → タブ → スプリット（ペ�
 タブはタブバーまたはサイドバー上でドラッグして並び替えできます。
 
 タブバーまたはサイドバーのタブを右クリック（または Ctrl+クリック）すると、コンテキストメニューが開きます。
-項目は **Close Tab**、**Close Other Tabs**、**Close Tabs to the Right**、**Rename Tab...** の四つです。
-どの項目も右クリックしたタブを対象にし、メニューを開いてもそのタブには切り替わりません。
+項目は **Close Tab**、**Close Other Tabs**、**Close Tabs to the Right**、**Show All Tabs**、**Rename Tab...** の五つです。
+**Show All Tabs** 以外の項目は右クリックしたタブを対象にし、メニューを開いてもそのタブには切り替わりません。
 そのため、サイドバーからは、作業中のグループを離れずに別のグループのタブを閉じたり名前を変えたりできます。
 **Close Other Tabs** と **Close Tabs to the Right** は、そのタブと同じグループ内のタブが対象で、閉じるものがないときは選べません。
+**Show All Tabs** を選ぶと、ウィンドウ内のすべてのタブのペインを表示する [Mission Map](/ja/usage/mission-map/) が開きます。
 
 ## グループ
 

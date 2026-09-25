@@ -2,7 +2,7 @@
 title: Git source control
 description: Sidebar Changes view, commit graph, and inline diff review comments.
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Calyx's sidebar includes a built-in Git view of the repositories open in the window.

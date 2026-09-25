@@ -84,6 +84,7 @@ Ghostty 設定の `keybind` 行は Calyx でも機能します。
 | `toggle_maximize` | ウィンドウの最大化を切り替える |
 | `reset_window_size` | ウィンドウを既定サイズに戻す |
 | `toggle_command_palette` | コマンドパレットを開閉する |
+| `toggle_tab_overview` | [Mission Map](/ja/usage/mission-map/) を開閉する |
 | `check_for_updates` | Calyx のアップデートを確認する |
 
 設定例:

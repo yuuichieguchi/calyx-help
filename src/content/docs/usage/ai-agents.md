@@ -99,6 +99,8 @@ Click a row to focus the pane running that agent.
 The view supports Claude Code, Codex CLI, OpenCode, Hermes, Grok, and pi. Once **Enable AI Agent IPC** is on and you start an agent in a pane, that agent appears in the sidebar automatically.
 While the switch is off, the sidebar reads **AI Agent IPC is disabled** and points to Settings → Agents.
 
+To see every pane of the window at once, along with the messages agents send each other, open [Mission Map](/usage/mission-map/).
+
 ### Subagent rows
 
 An agent that runs subagents shows them as child rows under its own.
@@ -260,7 +262,8 @@ Nothing is ever auto-approved on failure.
 If Calyx is unreachable, or you do not respond within about 10 minutes, the request expires, and what happens next depends on the agent.
 Claude Code and Codex fall back to their own in-pane prompt, so the decision comes back to you there.
 Grok in always-approve mode and pi have no prompt of their own to fall back to, so an expired request is denied.
-Cancelling the tool call on the agent side removes it from the panel immediately.
+Cancelling the tool call on the agent side removes it from the panel immediately, and so does answering the same prompt in the agent's own pane.
+A request still pending when the agent finishes its turn is removed then as well.
 
 ## Terminal command log
 
