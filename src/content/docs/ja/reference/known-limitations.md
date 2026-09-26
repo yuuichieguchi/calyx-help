@@ -51,6 +51,16 @@ Claude Code、Grok、OpenCode のサブエージェントの行は実際のセ�
 herdr がホストするエージェントは[エージェントサイドバー](/ja/usage/ai-agents/#herdr-のエージェント)には並びますが、[Mission Map](/ja/usage/mission-map/) はそれを読み取りません。
 そのペインは Mission Map では薄く表示された **Terminal** のカードになり、エージェント名も状態も出ません。
 
+## リモートセッションでのセキュア入力
+
+ローカルの永続セッションでは、パスワード入力待ちになると Calyx が自動で Secure Keyboard Entry を有効にします。
+[リモートセッション](/ja/usage/sessions/#リモートセッション)ではこの自動切り替えが働きません。
+パスワードを入力する前に、アプリメニューから **Secure Keyboard Entry** をオンにしてください。
+
+## クイックターミナルで動く herdr TUI
+
+Session Browser の **Show** では、クイックターミナルで動いている herdr TUI にフォーカスを移せません。
+
 ## ダウングレード後のセッション復元
 
 Calyx 0.44.0 は、[Mission Map](/ja/usage/mission-map/) のカードの位置を含められる新しい形式でウィンドウのレイアウトを保存します。

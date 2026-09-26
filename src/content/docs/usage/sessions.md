@@ -32,6 +32,12 @@ Sessions with no window attached carry a **Detached** badge.
 - **Attach** opens the session as a new tab, titled after the session's working directory.
 - **Kill** terminates the session.
 
+If a Kill fails, the reason appears in red under that session's row (for example, a session that did not exit within 5 seconds).
+The line goes away once a refresh no longer lists that row.
+Remote sessions and herdr workspaces show no such line.
+
+Sessions that died along with an earlier daemon no longer linger as running: when a daemon starts, it marks every running session it does not own as exited.
+
 For the focused pane, the command palette also offers **Detach Session** (keep it running, release the pane) and **Kill Session**.
 
 ## Remote sessions
@@ -77,7 +83,10 @@ Installing or starting herdr after Calyx has launched works the same way: Calyx 
 Each herdr server appears as its own row, stating how many workspaces and panes it currently holds, with its workspaces listed underneath.
 
 - **New** creates a workspace on that server and opens it (herdr picks the directory: the currently focused workspace's, or your home directory if none is focused).
-- Each workspace row has its own **Attach** and **Kill**. **Attach** reads **Show** once that workspace is already open as a tab in the current window.
+- Each workspace row has its own **Attach** and **Kill**. **Attach** reads **Show** once that workspace is already open as a tab in the current window, or while a herdr TUI connected to that server runs in a Calyx pane (`herdr`, `herdr --session NAME`, or `herdr session attach NAME`). For a workspace reachable only through such a TUI, **Show** switches the TUI to that workspace and focuses its pane; a workspace open as a tab goes to the tab instead.
+
+A workspace row with a label also shows the workspace ID on its second line, for example `w2F · 1 pane(s)`.
+herdr can replace a closed last workspace with a new one under the same label, and the ID tells the two apart.
 
 Opening a workspace creates a Calyx tab split into one pane per herdr pane, matching herdr's own layout.
 Closing that tab, or a pane in it, only detaches Calyx from herdr; the workspace and its processes keep running on herdr's side.

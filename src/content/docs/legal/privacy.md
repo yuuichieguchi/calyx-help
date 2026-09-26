@@ -89,6 +89,7 @@ They listen on the loopback interface (`localhost`) and are not exposed to the n
 - **OAuth redirect listener**: opened on the loopback interface only for the duration of an MCP server sign-in
 - **Browser automation server**: `localhost:41840`, used by the `calyx browser` CLI
 - **Session daemon (`calyx-session`)**: a separate local process reachable only over a Unix domain socket; it opens no network port
+- **Secure input socket**: a Unix domain socket in the temporary directory (`$TMPDIR/calyx-secure-input-<pid>.sock`), readable and writable only by your user, opened at every launch. Through it, a persistent session reports whether it is at a password prompt; it carries only that on/off state, the pane's session and surface IDs, and a protocol version number
 
 They do not accept connections from outside the machine, so no firewall-crossing traffic is generated.
 
@@ -98,6 +99,8 @@ If herdr, a separate terminal multiplexer, is installed and running on your mach
 
 The connection is a local Unix domain socket only (for example `~/.config/herdr/herdr.sock`), never a network connection, and nothing about it leaves your machine.
 Calyx uses it to list herdr's workspaces in the Session Browser and to show herdr-hosted agents in the Agents Sidebar.
+
+To tell whether a herdr TUI is running in one of your Calyx panes, Calyx also reads the process list each time the Session Browser refreshes, and, for processes named `herdr` only, their command-line arguments and environment variables. Only your own user's processes are read, nothing is saved, and nothing leaves your machine.
 
 ## Interactions with AI agents
 

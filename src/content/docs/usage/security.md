@@ -20,6 +20,11 @@ Use it when entering sensitive input such as passwords or SSH passphrases.
 
 Toggle from the app menu.
 
+Even with the menu item off, Calyx turns Secure Keyboard Entry on by itself while the focused pane is at a password prompt (for example `sudo`, an `ssh` password prompt, or `read -s`), and shows a lock icon in the pane's top-right corner.
+Click the icon for an explanation.
+This also works in panes backed by a local [persistent session](/usage/sessions/): the session daemon notices the password prompt and tells Calyx.
+Remote persistent sessions are not covered; see [Known limitations](/reference/known-limitations/).
+
 ## Desktop notifications
 
 Calyx supports OSC 9 / 99 / 777 escape sequences and forwards notifications to macOS Notification Center.

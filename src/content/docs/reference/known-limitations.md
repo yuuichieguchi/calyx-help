@@ -48,6 +48,15 @@ Subagent rows for Claude Code, Grok, and OpenCode were verified against live ses
 Agents hosted by herdr appear in the [Agents Sidebar](/usage/ai-agents/#herdr-hosted-agents), but [Mission Map](/usage/mission-map/) does not read them.
 Their panes show up there as dimmed **Terminal** cards, with no agent name or state.
 
+## Secure input in remote sessions
+
+Calyx turns on Secure Keyboard Entry automatically at a password prompt in local persistent sessions, but not in [remote sessions](/usage/sessions/#remote-sessions).
+Before typing a password there, turn on **Secure Keyboard Entry** from the app menu.
+
+## herdr TUI in the Quick Terminal
+
+**Show** in the Session Browser cannot focus a herdr TUI running in the Quick Terminal.
+
 ## Session restore after downgrading
 
 Calyx 0.44.0 saves the window layout in a newer format, which also holds [Mission Map](/usage/mission-map/) card positions.
