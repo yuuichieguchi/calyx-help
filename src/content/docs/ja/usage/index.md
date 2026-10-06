@@ -17,6 +17,7 @@ sidebar:
 - [AI エージェント連携](/ja/usage/ai-agents/) — MCP IPC、エージェントサイドバー、コックピットツール、コマンドログ、LSP Proxy MCP
 - [Mission Map](/ja/usage/mission-map/) — ウィンドウ内の全ペインをカードで一覧し、エージェントの状態、承認、エージェント間のメッセージを表示
 - [MCP Apps](/ja/usage/mcp-apps/) — MCP サーバーのホスト、ツールのエージェントへの公開、呼び出し元ペインの隣に出るアプリ
+- [トークン使用量の記録](/ja/usage/usage-tracking/) — Claude Code のトークン使用量をモデル、effort、スレッド、プロジェクトごとに確認
 - [Git ソースコントロール](/ja/usage/git/) — サイドバーの変更ビューとレビューコメント
 - [CLI と自動アップデート](/ja/usage/cli-and-updates/) — `calyx` CLI、Sparkle ベースの更新
 - [セキュリティと通知](/ja/usage/security/) — クリップボード確認、セキュア入力、デスクトップ通知

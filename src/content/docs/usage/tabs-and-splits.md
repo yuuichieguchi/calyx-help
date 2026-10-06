@@ -21,6 +21,7 @@ A Calyx window is structured as three layers: groups → tabs → splits (panes)
 Double-click a tab to rename it.
 The `prompt_surface_title` [keybind action](/usage/customization/#keybind-actions) opens the same rename editor from a custom key.
 Drag tabs in the tab bar or sidebar to reorder them.
+In the sidebar you can also drag a tab into another group, as described under [Moving groups and tabs by dragging](#moving-groups-and-tabs-by-dragging).
 
 Right-click a tab (or Ctrl+click it) in the tab bar or the sidebar to open its context menu: **Close Tab**, **Close Other Tabs**, **Close Tabs to the Right**, **Show All Tabs**, and **Rename Tab...**.
 Every item except **Show All Tabs** acts on the tab you right-clicked, and opening the menu does not switch to that tab, so from the sidebar you can close or rename a tab in another group without leaving the one you are working in.
@@ -54,6 +55,25 @@ Like the tab menu, every item acts on the group you right-clicked, and opening t
 Closing a group asks for confirmation only when one of its diff tabs holds review comments you have not sent.
 This applies to every way of closing a group, including the context menu and `Ctrl+Shift+W`.
 Cancel keeps that diff tab open, so its group stays with that tab while the group's other tabs still close.
+
+### Moving groups and tabs by dragging
+
+With two or more groups in the window, you can rearrange groups and tabs by dragging them in the sidebar.
+
+- Drag a group heading up or down to reorder the groups. The group moves with all of its tabs, and a collapsed group can be dragged too.
+- Drag a tab to move it into another group. Dropping it between two tabs places it there. Dropping it on a group heading makes it the first tab of that group, or the last one when the group is collapsed.
+
+An accent-colored line shows where the tab or group will land, and a heading you are about to drop a tab on gains an accent-colored border.
+The order does not change until you release the mouse button.
+
+A group whose last tab you moved away is removed.
+When you move the tab that is on screen, it stays on screen and its new group becomes the current group.
+Moving any other tab leaves the tab on screen as it is.
+The new order is saved with the window layout (see [Session restore](#session-restore)).
+
+Dragging is the only way to do either move: there is no shortcut, menu item, or palette command for them.
+A tab cannot be dragged to another window, and the tabs of a collapsed group cannot be dragged because their rows are hidden.
+Dragging in the tab bar still reorders tabs within the current group only.
 
 ## Splits
 

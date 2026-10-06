@@ -68,6 +68,7 @@ Some can be reassigned from Settings.
 | Toggle compose overlay | `Cmd+Shift+E` |
 | Session Browser | `Cmd+Shift+B` |
 | Toggle Mission Map | `Cmd+Shift+M` |
+| Usage window | `Cmd+Option+U` |
 | Calyx Help (opens this help center) | `Cmd+?` |
 
 ## Inside Mission Map

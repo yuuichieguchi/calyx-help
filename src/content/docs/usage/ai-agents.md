@@ -6,7 +6,7 @@ sidebar:
 ---
 
 Calyx ships with an MCP server that integrates with CLI AI agents (Claude Code, Codex CLI, OpenCode, Hermes, Grok, pi).
-It exposes peer-to-peer messaging between agents across tabs/panes, LSP-backed symbol lookup tools, cockpit tools for driving Calyx itself, and a terminal command log.
+It exposes peer-to-peer messaging between agents across tabs/panes, LSP-backed symbol lookup tools, cockpit tools for driving Calyx itself, a terminal command log, and a report of Claude Code's token usage.
 The same server also republishes the MCP servers you add in Settings and hosts their views; that part is described on [MCP Apps](/usage/mcp-apps/).
 
 ## AI Agent IPC
@@ -290,6 +290,12 @@ This runs automatically and cannot be turned off.
 
 Redacting a large capture happens in the background so the terminal is never blocked waiting for it.
 While that is in progress, the command still reports as running: `terminal_read_output` returns `{"output_pending": true}` instead of the output (call it again shortly), and `terminal_list_commands` withholds the exit code and duration until redaction finishes.
+
+## Token usage report
+
+With [Usage tracking](/usage/usage-tracking/) on, agents can call `usage_report` to read Claude Code's token usage, grouped by model, effort, thread, agent type, day, project, or session.
+The tool is always listed, and returns an error that says to turn on Usage Tracking when it is off.
+[Asking from an agent](/usage/usage-tracking/#asking-from-an-agent) lists its arguments.
 
 ## LSP Proxy MCP
 

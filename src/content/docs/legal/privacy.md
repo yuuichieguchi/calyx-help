@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-Last updated: September 25, 2026
+Last updated: October 6, 2026
 
 Calyx is a macOS terminal application that runs locally.
 This page describes the data Calyx handles and the network traffic it generates.
@@ -13,9 +13,10 @@ This page describes the data Calyx handles and the network traffic it generates.
 ## User information collected
 
 Calyx does not collect any user identifiers, usage logs, or crash reports.
-No analytics or telemetry is sent.
+Calyx sends no analytics or telemetry.
 
 The developer has no way to observe your launch times, feature usage, or input.
+The optional [Usage Tracking](#claude-code-usage-tracking) feature keeps Claude Code's token counts on your machine, and the developer does not receive them.
 
 ## Information stored locally
 
@@ -30,6 +31,9 @@ None of it is sent off your machine.
 - AI Agent IPC messages, including their text, and the paths of files agents are about to write, kept for Mission Map — in memory only, up to the latest 512 messages and 256 paths; never written to disk, discarded when Calyx quits
 - Shell integration scripts for command tracking (`~/Library/Application Support/Calyx/shell-integration`)
 - AI agent integration configs, written into each agent's own configuration directory (`~/.claude.json`, `~/.codex/`, `~/.config/opencode/`, `~/.hermes/`, `~/.grok/`) as a `calyx-ipc` entry and a `calyx-mcp` entry, each carrying the local server's bearer token; for pi, which has no configuration file of its own, this is instead a TypeScript extension at `~/.pi/agent/extensions/calyx.ts` that pi loads and runs
+- Claude Code token usage (`~/Library/Application Support/Calyx/usage/usage.sqlite`, readable by your user only) — only once **Usage Tracking** has been turned on (off by default): token counts with their model, effort, thread, agent type, and session ID, each session's project path and working directory, the path of its Claude Code transcript file, the time each count was received, when each Claude Code process started and its start type (for example a fresh start), when each run in the transcript began and ended, and how far Calyx has read the transcript; never conversation text; kept, also after Usage Tracking is turned off, until you erase it with **Delete Usage Data…**, after which the file remains and holds only SHA-256 digests identifying the Claude Code processes heard so far (so that their earlier usage is not counted again), the time tracking restarted, and whether tracking is on; a database Calyx cannot read is kept beside it as `usage.sqlite.corrupt-…` and is not erased by **Delete Usage Data…**
+- Telemetry settings added to Claude Code's own settings file (`~/.claude/settings.json`) — only while **Usage Tracking** and **Enable AI Agent IPC** are both on: nine `env` entries and an `otelHeadersHelper` entry that point Claude Code's metrics exporter at Calyx's server on `127.0.0.1`; removed when either switch is turned off, but not when Calyx quits
+- The bearer token Claude Code presents with those counts (`~/Library/Application Support/Calyx/usage-otel-headers.json`, readable by your user only) — created the first time Usage Tracking is used, and kept afterwards
 - The MCP servers you add in Settings under **MCP Apps** (`~/Library/Application Support/Calyx/mcp-servers.json`, readable by your user only), with their environment values, request headers, OAuth tokens, client secrets, and registered client IDs kept in the login Keychain
 - Images an MCP App sends to an agent, written under a `calyx-mcp-apps` folder in the temporary directory
 - Tool calls the approval hook passes to Calyx while AI Agent IPC is on (each Claude Code and Codex permission prompt, and every Grok tool call), and Calyx's reply to each, written to files in the temporary directory while the hook runs and deleted when it exits, including when **Show agent tool prompts in the approval banner** is off; a hook that is force-killed leaves them behind
@@ -85,7 +89,7 @@ Calyx connects to them only while **Enable AI Agent IPC** is on and the server's
 Calyx hosts several servers inside its own process.
 They listen on the loopback interface (`localhost`) and are not exposed to the network.
 
-- **AI Agent IPC MCP server**: used by AI agents on the same machine; the same port also serves the `/calyx-mcp` endpoint that republishes the MCP servers configured under **MCP Apps**
+- **AI Agent IPC MCP server**: used by AI agents on the same machine; the same port also serves the `/calyx-mcp` endpoint that republishes the MCP servers configured under **MCP Apps**, and the `/usage/v1/metrics` endpoint for Claude Code's token counts, which are stored only while **Usage Tracking** is on and discarded otherwise
 - **OAuth redirect listener**: opened on the loopback interface only for the duration of an MCP server sign-in
 - **Browser automation server**: `localhost:41840`, used by the `calyx browser` CLI
 - **Session daemon (`calyx-session`)**: a separate local process reachable only over a Unix domain socket; it opens no network port
@@ -107,6 +111,20 @@ To tell whether a herdr TUI is running in one of your Calyx panes, Calyx also re
 When you use AI agents (Claude Code, Codex CLI, OpenCode, Hermes, Grok, pi) through Calyx, the prompts you type and the responses you receive flow through Calyx and appear in the terminal, but Calyx itself does not record or transmit them.
 
 What each agent sends to its provider's API is governed by that agent's own privacy policy.
+
+## Claude Code usage tracking
+
+Usage Tracking is off by default.
+While it is on, Calyx adds telemetry settings to `~/.claude/settings.json` so that Claude Code sends its token counts to Calyx's server on the loopback interface.
+Calyx configures only Claude Code's metrics exporter, and only with that loopback address.
+The settings apply to every Claude Code session started on the Mac while they are in place, including sessions started outside Calyx, and they stay in the file while Calyx is not running.
+
+Of what Claude Code sends, Calyx stores only the token counts and labels listed under [Information stored locally](#information-stored-locally).
+To account for tokens it did not receive, Calyx reads the transcript file Claude Code keeps for each tracked session under `~/.claude/projects/`, and keeps only timestamps, the working directory, and the per-model token totals written there.
+It also runs `git` in that working directory to find the project's root.
+None of this leaves your machine.
+
+What Claude Code itself does once its telemetry is enabled is governed by Claude Code's own documentation and privacy policy.
 
 ## Diff review comments
 

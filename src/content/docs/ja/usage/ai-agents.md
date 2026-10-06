@@ -6,7 +6,7 @@ sidebar:
 ---
 
 Calyx には、複数の CLI AI エージェント（Claude Code、Codex CLI、OpenCode、Hermes、Grok、pi）を統合するための MCP サーバーが組み込まれています。
-タブやペインをまたいだエージェント同士の通信、LSP のシンボル解析、Calyx 自体を操作するコックピットツール、ターミナルのコマンドログの四つを提供します。
+タブやペインをまたいだエージェント同士の通信、LSP のシンボル解析、Calyx 自体を操作するコックピットツール、ターミナルのコマンドログ、Claude Code のトークン使用量のレポートの五つを提供します。
 同じサーバーは、Settings で追加した MCP サーバーの公開とそのビューの表示も担います。
 その部分は [MCP Apps](/ja/usage/mcp-apps/) で説明します。
 
@@ -328,6 +328,13 @@ Settings の **Agents** ペインで **Track shell commands** がオンの間、
 大きな出力の redaction はバックグラウンドで行われるため、ターミナルが処理待ちでブロックされることはありません。
 処理が完了するまでの間、コマンドは実行中として報告されます。
 `terminal_read_output` は出力の代わりに `{"output_pending": true}` を返すので（しばらくしてから再度呼び出します）、`terminal_list_commands` は redaction が終わるまで終了コードと実行時間を伏せます。
+
+## トークン使用量のレポート
+
+[Usage Tracking](/ja/usage/usage-tracking/) がオンの間、エージェントは `usage_report` を呼び出して、Claude Code のトークン使用量を取得できます。
+分類には、モデル、effort、スレッド、エージェントの種類、日、プロジェクト、セッションを使えます。
+このツールは常に一覧に出ますが、Usage Tracking がオフの間に呼び出すと、オンにするよう促すエラーを返します。
+引数は[エージェントから問い合わせる](/ja/usage/usage-tracking/#エージェントから問い合わせる)にまとめています。
 
 ## LSP Proxy MCP
 

@@ -48,6 +48,24 @@ Subagent rows for Claude Code, Grok, and OpenCode were verified against live ses
 Agents hosted by herdr appear in the [Agents Sidebar](/usage/ai-agents/#herdr-hosted-agents), but [Mission Map](/usage/mission-map/) does not read them.
 Their panes show up there as dimmed **Terminal** cards, with no agent name or state.
 
+## Claude Code usage totals
+
+[Usage tracking](/usage/usage-tracking/) counts a Claude Code session only if it was started while tracking was on, because Claude Code reads the telemetry settings when it starts.
+Restart the sessions that were already running.
+A session that starts and ends while Calyx is not running is not counted at all.
+
+What a counted session used while Calyx was not running is counted when Calyx next hears from that Claude Code process.
+If the process ended before that, the tokens appear as unreported rows, per model and without effort or thread, dated at the end of that run.
+
+In `usage_report`, the agents you define yourself appear under the agent type `custom`, because that is the name Claude Code reports them under.
+
+Calyx does not detect telemetry configured through shell environment variables instead of `~/.claude/settings.json`.
+
+If Calyx's server comes up on a different port after a restart, the Claude Code sessions started before it keep sending to the old port.
+Restart those sessions.
+
+Before going back to a Calyx version without this feature (0.45.1 or earlier), turn Usage Tracking off so that Calyx removes its settings from `~/.claude/settings.json`.
+
 ## Secure input in remote sessions
 
 Calyx turns on Secure Keyboard Entry automatically at a password prompt in local persistent sessions, but not in [remote sessions](/usage/sessions/#remote-sessions).

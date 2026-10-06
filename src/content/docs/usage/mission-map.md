@@ -38,6 +38,7 @@ A card shows:
 - The agent's name, for example Claude Code or Codex, and a badge counting its unread AI Agent IPC messages.
 - The pane's title and its working directory.
 - For a working directory inside a Git repository, the branch (or the short commit hash when no branch is checked out) and, when there are any, the number of changed files. This line refreshes every 5 seconds while the map is open.
+- With [Usage tracking](/usage/usage-tracking/) on, the token usage of the pane's Claude Code session, for example `45.2k out · 1.2M in`: output tokens, then input tokens including cache reads and cache writes. The line appears once Calyx has received counts for the session. After you turn tracking off, the line keeps its last total until Calyx quits or you delete the usage data.
 - The tool the agent is running right now.
 - One row per running subagent, with a state dot and its current tool, or its state when it is not running one.
 

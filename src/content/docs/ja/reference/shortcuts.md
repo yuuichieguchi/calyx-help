@@ -68,6 +68,7 @@ Settings から個別に変更できる項目もあります。
 | コンポーズオーバーレイの開閉 | `Cmd+Shift+E` |
 | Session Browser を開く | `Cmd+Shift+B` |
 | Mission Map の開閉 | `Cmd+Shift+M` |
+| Usage ウィンドウを開く | `Cmd+Option+U` |
 | Calyx Help（このヘルプセンターを開く） | `Cmd+?` |
 
 ## Mission Map 内

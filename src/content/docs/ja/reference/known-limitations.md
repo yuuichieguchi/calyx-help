@@ -51,6 +51,26 @@ Claude Code、Grok、OpenCode のサブエージェントの行は実際のセ�
 herdr がホストするエージェントは[エージェントサイドバー](/ja/usage/ai-agents/#herdr-のエージェント)には並びますが、[Mission Map](/ja/usage/mission-map/) はそれを読み取りません。
 そのペインは Mission Map では薄く表示された **Terminal** のカードになり、エージェント名も状態も出ません。
 
+## Claude Code の使用量の合計
+
+[Usage Tracking](/ja/usage/usage-tracking/) が数えるのは、オンの間に開始した Claude Code のセッションだけです。
+Claude Code がテレメトリの設定を読むのは起動時だからです。
+すでに動いていたセッションは再起動してください。
+Calyx が動いていない間に開始して終了したセッションは、まったく数えられません。
+
+記録対象のセッションが Calyx の停止中に使ったトークンは、Calyx がその Claude Code のプロセスから次に受信したときに加算されます。
+その前にプロセスが終了していた場合は、その実行の終了時点の日付で、モデルごとの unreported の行として現れます（effort とスレッドは付きません）。
+
+`usage_report` では、利用者が自分で定義したエージェントは、エージェントの種類が `custom` として現れます。
+Claude Code がその名前で報告するためです。
+
+`~/.claude/settings.json` ではなくシェルの環境変数で設定したテレメトリを、Calyx は検出しません。
+
+Calyx の再起動後にサーバーが以前と異なるポートで起動した場合、それより前に開始した Claude Code のセッションは古いポートへ送り続けます。
+そのセッションは再起動してください。
+
+この機能がない Calyx（0.45.1 以前）に戻す前に、Usage Tracking をオフにして、Calyx が `~/.claude/settings.json` に追加した設定を取り除いてください。
+
 ## リモートセッションでのセキュア入力
 
 ローカルの永続セッションでは、パスワード入力待ちになると Calyx が自動で Secure Keyboard Entry を有効にします。
