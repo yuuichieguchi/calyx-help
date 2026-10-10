@@ -11,7 +11,7 @@ This section walks through Calyx's major features, grouped by purpose.
 
 - [Tabs, groups, and splits](/usage/tabs-and-splits/) — tabs, groups, and pane splits
 - [Command palette & input helpers](/usage/command-palette/) — `Cmd+Shift+P`, quick terminal, compose overlay
-- [Terminal features](/usage/terminal/) — scrollback search, drag-and-drop, click-to-move
+- [Terminal features](/usage/terminal/) — scrollback search, drag-and-drop, click-to-move, VoiceOver
 - [Customization](/usage/customization/) — theme color, Ghostty config compatibility
 - [Browser tabs and automation](/usage/browser/) — WKWebView tabs and the `calyx browser` CLI
 - [AI agent integration](/usage/ai-agents/) — MCP IPC, Agents sidebar, cockpit tools, command log, and LSP Proxy MCP

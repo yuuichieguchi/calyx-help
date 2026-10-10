@@ -11,7 +11,7 @@ sidebar:
 
 - [タブ・グループ・スプリット](/ja/usage/tabs-and-splits/) — タブとグループの操作、ペイン分割
 - [コマンドパレットと入力補助](/ja/usage/command-palette/) — `Cmd+Shift+P`、クイックターミナル、コンポーズオーバーレイ
-- [ターミナル機能](/ja/usage/terminal/) — スクロールバック検索、ドラッグアンドドロップ、クリックでカーソル移動
+- [ターミナル機能](/ja/usage/terminal/) — スクロールバック検索、ドラッグアンドドロップ、クリックでカーソル移動、VoiceOver での読み上げ
 - [カスタマイズ](/ja/usage/customization/) — テーマカラー、Ghostty 設定との互換性
 - [ブラウザタブと自動化](/ja/usage/browser/) — WKWebView ベースのブラウザタブと `calyx browser` CLI
 - [AI エージェント連携](/ja/usage/ai-agents/) — MCP IPC、エージェントサイドバー、コックピットツール、コマンドログ、LSP Proxy MCP
