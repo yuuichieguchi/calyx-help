@@ -23,7 +23,6 @@ Ghostty 設定ファイルに書いても反映されません。
 - `background-opacity`
 - `background-blur`
 - `background-opacity-cells`
-- `font-codepoint-map`
 - `foreground`
 
 現時点で Calyx が管理しているキーの完全な一覧は、Settings の **Ghostty Config Compatibility** で確認できます。

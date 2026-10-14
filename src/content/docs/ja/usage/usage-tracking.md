@@ -43,10 +43,13 @@ Calyx が書き込むのは、`env` の下の九つの項目と、トップレ�
 | `OTEL_METRIC_EXPORT_INTERVAL` | `5000` |
 | `OTEL_METRICS_INCLUDE_SESSION_ID` | `true` |
 | `OTEL_METRICS_INCLUDE_ACCOUNT_UUID` | `false` |
-| `otelHeadersHelper` | `~/Library/Application Support/Calyx/usage-otel-headers.json` を出力する `cat` コマンド（ファイルがないときは `{}` を出力） |
+| `otelHeadersHelper` | `~/Library/Application Support/Calyx/bin/` の補助スクリプト `calyx-usage-headers` をサーバーのポートを引数にして呼ぶコマンド。`agent-endpoint.json` を書いた Calyx がそのポートで動いている間だけトークンのヘッダーを出力し、それ以外は `{}` を出力する |
 
 設定するのはメトリクスのエクスポーターだけで、送信先はこのループバックアドレスだけです。
-Claude Code が Calyx に提示するベアラートークンは、利用者本人だけが読める `usage-otel-headers.json` に保存され、`settings.json` には書き込まれません。
+Claude Code が Calyx に提示するベアラートークンは、利用者本人だけが読める `usage-otel-credential.json` に保存され、`settings.json` には書き込まれません。
+Calyx の再起動時に前回のポートが使われていた場合は、IPC のトークンと一緒に更新されます。
+Calyx 0.47.0 以前は `usage-otel-headers.json` に保存していました。
+このファイルは削除されるため、それらのバージョンで始めた Claude Code のセッションは、再起動するまでトークンを送りません。
 Calyx はファイルのほかの部分を変更せず、`~/.claude` が存在しないときは何も作成しません。
 
 `settings.json` に利用者自身のテレメトリ設定（上の表のいずれかの項目、ほかの `OTEL_` 変数、`otelHeadersHelper`）がすでにある場合、Calyx はファイルを変更せず、見つけた項目の名前をステータス行に表示します。
@@ -55,7 +58,7 @@ Usage Tracking を使うには、それらを取り除いたうえで、スイ�
 ### オフにしたとき
 
 **Track Claude Code usage** か **Enable AI Agent IPC** をオフにすると、Calyx は追加した十個の項目を取り除きます。
-記録済みの使用量は残り、データベースと `usage-otel-headers.json` も残ります。
+記録済みの使用量は残り、データベースと `usage-otel-credential.json` も残ります。
 
 Calyx を終了しても、設定は取り除かれません。
 記録対象のセッションが Calyx の停止中に使ったトークンは、Calyx がその Claude Code のプロセスから次に受信したときに加算されます。

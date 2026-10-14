@@ -40,10 +40,12 @@ Calyx writes nine entries under `env` and one top-level `otelHeadersHelper` entr
 | `OTEL_METRIC_EXPORT_INTERVAL` | `5000` |
 | `OTEL_METRICS_INCLUDE_SESSION_ID` | `true` |
 | `OTEL_METRICS_INCLUDE_ACCOUNT_UUID` | `false` |
-| `otelHeadersHelper` | A `cat` command that prints `~/Library/Application Support/Calyx/usage-otel-headers.json`, or `{}` when the file is missing |
+| `otelHeadersHelper` | The `calyx-usage-headers` helper in `~/Library/Application Support/Calyx/bin/`, called with the server's port; it prints the token header only while the Calyx that wrote `agent-endpoint.json` is running on that port, and `{}` otherwise |
 
 Only the metrics exporter is configured, and only with that loopback address.
-The bearer token Claude Code presents to Calyx is kept in `usage-otel-headers.json`, readable by your user only, and is not written into `settings.json`.
+The bearer token Claude Code presents to Calyx is kept in `usage-otel-credential.json`, readable by your user only, and is not written into `settings.json`.
+It is renewed together with the IPC token when a Calyx restart finds its previous port taken.
+Calyx 0.47.0 and earlier kept it in `usage-otel-headers.json`; that file is deleted, so a Claude Code session started under one of those versions sends no token until it is restarted.
 Calyx changes nothing else in the file, and creates nothing when `~/.claude` does not exist.
 
 If `settings.json` already holds telemetry settings of your own (any of the entries above, any other `OTEL_` variable, or an `otelHeadersHelper`), Calyx leaves the file as it is, and the status line names the entries it found.
@@ -52,7 +54,7 @@ To use Usage Tracking, remove them, then turn the switch off and on again.
 ### Turning it off
 
 Turning off **Track Claude Code usage**, or **Enable AI Agent IPC**, removes the ten entries again.
-The recorded usage stays, and so do the database and `usage-otel-headers.json`.
+The recorded usage stays, and so do the database and `usage-otel-credential.json`.
 
 Quitting Calyx does not remove the entries.
 What a tracked session uses while Calyx is not running is counted when Calyx next hears from that Claude Code process.

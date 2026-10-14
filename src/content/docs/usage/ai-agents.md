@@ -48,6 +48,8 @@ A pi started outside Calyx, or inside a herdr pane, registers only `calyx_mcp`.
 Calyx remembers the switch.
 While it is on, every launch starts the server and rewrites the config entries and hooks above, so an update that changes what belongs in them needs no step from you.
 Calyx reuses the previous run's port and token when it can, so an agent in a persistent session that outlives a Calyx restart keeps connecting.
+A new token is issued only when another process holds the previous port at restart.
+The **Agents** pane then says that the token was renewed: agent sessions started before that launch keep the old port and must be restarted, while new sessions need no change.
 
 Calyx 0.41.0 and earlier did not remember the setting, so after updating from one of them the switch starts off.
 If you used AI Agent IPC before, turn it on once in Settings.
@@ -56,6 +58,18 @@ Rewriting at launch leaves config you maintain yourself intact.
 Calyx edits only its own entry and keeps the rest of each file byte for byte, including key order, indentation, and line endings.
 The Codex hooks block in `~/.codex/config.toml` and the Calyx block in `~/.hermes/config.yaml` are rewritten where they already sit, and anything inside one of them that Calyx does not own is moved out to just above the block instead of being replaced.
 A file is not written at all when nothing needs to change.
+
+### How agents get the token
+
+Calyx writes the server's port and bearer token to `~/Library/Application Support/Calyx/agent-endpoint.json`, readable by your user only, together with the process ID and start time of the Calyx that wrote it.
+The hook scripts, the shell integration, the OpenCode plugin, and the pi extension read this file each time and send the token only when that Calyx is still running.
+
+Claude Code and Codex do not keep the token in their config files.
+Their entries name a helper script, `calyx-mcp-headers`, which prints the token only while the Calyx that wrote the endpoint file is running on the port the entry was written for.
+Grok 1.0.52 or later reads the token on every request from `calyx-bearer-token-<port>`, a file next to the endpoint file that holds only the token.
+Older Grok, OpenCode, and Hermes still carry the token in their config files.
+
+The approval hook and the wake hook act only on answers that the running Calyx has signed with a key it creates at each start, so another process listening on the port cannot approve a tool call or wake a pane.
 
 ### Available MCP tools
 
@@ -68,12 +82,39 @@ A file is not written at all when nothing needs to change.
 
 See the [demo video](https://www.youtube.com/watch?v=Xty0ad9gGcM).
 
+### Waking Claude Code on messages
+
+**Wake Claude Code on IPC messages**, under **AI Agent IPC** in the **Agents** pane of Settings, is off by default.
+With it on, a message that arrives for a Claude Code pane idle at its prompt wakes that pane, and the agent starts a turn on its own.
+It applies to Claude Code only and needs a Claude Code version that supports `asyncRewake` hooks.
+No other setup is needed: the wake hook is installed with Calyx's other Claude Code hooks while AI Agent IPC is on, and the pane is bound to its peer when Claude Code connects to `calyx-ipc` from it or calls `register_peer`.
+
+The wake hands the agent a short note saying how many messages are waiting and which peer id to read them with.
+The agent reads them itself with `receive_messages`; Calyx never reads a message for it, and the note contains nothing written by another agent.
+A message wakes a pane at most once.
+
+A pane can be woken only while its wake hook is waiting.
+The hook starts waiting when a turn ends or a session starts (including a resumed, cleared, or compacted one), and waits for about 10 minutes.
+A turn interrupted with Esc starts no new wait, though a wait left from the previous turn can still wake the pane.
+A wake that arrives during a turn is absorbed into that turn after the running tool finishes.
+So a pane is not woken:
+
+- about 10 minutes after its last wait began, that is, after its last completed turn or session start
+- after Calyx or its IPC server restarted, until the next wait begins
+- right after the switch was turned on, until the next wait begins
+- after a persistent session was reattached to another pane
+- while a `claude` started inside the same pane has taken the hook over (the wake goes to that one)
+
+Turning the switch off stops waking at once.
+As before, `send_message` to an expired peer fails; a peer expires only when 10 minutes have passed since its last IPC call and it is neither the sender nor the recipient of an undelivered message.
+
 ### Disable
 
 Turn off **Enable AI Agent IPC** in the **Agents** pane of Settings.
 Calyx stops the server and removes its own entries and hooks.
 Files that belong to Calyx alone (`~/.grok/hooks/calyx.json` and `~/.pi/agent/extensions/calyx.ts`) are deleted.
 A shared file that ends up empty stays on disk as an empty file, and a file that did not exist is never created.
+The hook and helper scripts under `~/Library/Application Support/Calyx/bin/` stay in place.
 
 ## Agents Sidebar
 
@@ -179,11 +220,12 @@ See [Persistent sessions](/usage/sessions/) for the toggles.
 
 Agents can drive Calyx itself through the same MCP server.
 
-Three tools run immediately, without confirmation:
+Four tools run immediately, without confirmation:
 
 - `pane_list` — list the terminal panes in the current window
 - `pane_split` — split a pane to the right or down
 - `tab_create` — open a new tab, optionally in a given group and working directory
+- `agent_status` — report, for every pane or for one `surface_id`, the agent's state and current tool, its subagents, unread IPC messages, pending approvals, and its Git branch, changed-file count, and worktree task (all skipped with `include_git: false`), and, with Usage Tracking on, token usage; it does not change unread counts
 
 Three tools type into your terminal or execute app commands, so each call is gated behind your approval:
 

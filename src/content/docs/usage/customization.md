@@ -59,12 +59,15 @@ Some keys that conflict with the Liquid Glass UI are overridden by Calyx and won
 - `background-opacity`
 - `background-blur`
 - `background-opacity-cells`
-- `font-codepoint-map`
 - `foreground`
 
 These are managed by Calyx to keep the Glass UI consistent.
 The full current list is shown in Settings under **Ghostty Config Compatibility**.
 `background-opacity-cells` is the one you can still set yourself, from its own switch in Settings; see [Glass opacity](#glass-opacity).
+
+Calyx 0.47.0 and earlier also managed `font-codepoint-map`, mapping eight emoji ranges onto Apple Color Emoji.
+That mapping also turned text-style symbols in those ranges into color emoji, so Calyx no longer sets it.
+Emoji now come from Ghostty's own font fallback, which honors the text and emoji variation selectors, and you can set `font-codepoint-map` yourself.
 
 ## Keybind actions
 

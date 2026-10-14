@@ -18,7 +18,8 @@ This section walks through Calyx's major features, grouped by purpose.
 - [Mission Map](/usage/mission-map/) — every pane in the window as a card, with agent state, approvals, and the messages agents exchange
 - [MCP Apps](/usage/mcp-apps/) — host MCP servers, republish their tools to agents, and show their apps next to the calling pane
 - [Usage tracking](/usage/usage-tracking/) — Claude Code's token usage per model, effort, thread, and project
-- [Git source control](/usage/git/) — Changes view and inline review comments
+- [Git source control](/usage/git/) — Changes view, diff preview tab, and inline review comments
+- [Worktree tasks](/usage/worktree-tasks/) — a branch and a linked worktree per agent task, with merge and discard
 - [CLI & auto-updates](/usage/cli-and-updates/) — `calyx` CLI, Sparkle-based updates
 - [Security & notifications](/usage/security/) — clipboard prompt, Secure Keyboard Entry, desktop notifications
 - [Persistent sessions](/usage/sessions/) — daemon-backed sessions that survive quit and crash, SSH remote sessions, and herdr workspaces

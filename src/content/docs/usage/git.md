@@ -1,6 +1,6 @@
 ---
 title: Git source control
-description: Sidebar Changes view, commit graph, and inline diff review comments.
+description: Sidebar Changes view, commit graph, diff preview tab, and inline diff review comments.
 sidebar:
   order: 11
 ---
@@ -15,6 +15,7 @@ Calyx reads the working directory of every terminal tab in the window, and for e
 
 A section header shows the directory's name, the branch it is on (or a short commit hash when the branch is unknown), a badge counting its changed files, and a filter button that chooses which references the commit graph covers.
 An icon marks what kind of section it is: a folder for a repository, a branch for a linked worktree, a box for a submodule.
+A linked worktree that Calyx created as a [worktree task](/usage/worktree-tasks/) also carries a checklist icon whose menu merges or discards the task, and the **+** button next to the **Changes** title opens the sheet that creates one.
 Sections are grouped by the repository they belong to rather than nested inside it, and within a group they run in order: the repository, then its linked worktrees, then its submodules.
 So a submodule gets a section of its own, and you can review its uncommitted work without moving a pane into it.
 
@@ -28,6 +29,24 @@ An expanded section shows three things, scoped to that repository:
 - **Inline diff viewer**: per-line diff for the selected file
 
 Opening a file's diff uses that section's repository, so a file inside a submodule or a second repository opens against the right one.
+
+### Opening a diff in a preview tab
+
+A single click on a file (staged, unstaged, untracked, or inside an expanded commit) opens its diff in the group's preview tab, the way VS Code's preview editor does.
+The tab's title is shown in italic.
+Each group has at most one preview tab: the next single click opens the new file in the same tab, and if the file's diff is already open in a tab of the active group, that tab is activated instead.
+
+To keep a diff tab, do any of the following:
+
+- Double-click the file in the Changes sidebar.
+- Double-click the preview tab in the tab bar or the sidebar.
+- Choose **Keep Open** in the tab's context menu (shown for preview tabs only), or run **Keep Tab Open** from the command palette.
+- Add a review comment to the diff.
+
+A kept tab is an ordinary diff tab, and the next single click opens a new preview tab.
+
+**Open diffs in a preview tab**, under **Changes** in the **Appearance** pane of Settings, is on by default.
+Turn it off to have every click open a diff tab of its own.
 
 ### Choosing which commits the graph shows
 

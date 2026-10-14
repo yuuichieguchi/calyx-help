@@ -30,10 +30,15 @@ Calyx は、起動状態の復元と機能の動作のために、利用者の�
 - コマンドログの記録（コマンド行、終了ステータス、キャプチャした出力。**Track shell commands** がオンの間だけメモリ上に保持され、標準ではオン。ディスクには書き込まれず、Calyx の終了時に破棄されます。既知のシークレットのパターン（トークン、パスワード、API キー、JWT）は保存前に redaction されます）
 - AI Agent IPC のメッセージ（本文を含む）と、エージェントが書き込もうとしたファイルのパス（Mission Map の表示用。メモリ上にだけ保持され、メッセージは直近 512 件、パスは直近 256 件まで。ディスクには書き込まれず、Calyx の終了時に破棄されます）
 - コマンド追跡用のシェル統合スクリプト（`~/Library/Application Support/Calyx/shell-integration`）
-- AI エージェント連携用の設定（各エージェント自身の設定ディレクトリに書き込まれます。`~/.claude.json`、`~/.codex/`、`~/.config/opencode/`、`~/.hermes/`、`~/.grok/`。`calyx-ipc` と `calyx-mcp` の二つのエントリからなり、それぞれローカルサーバーのベアラートークンを含みます。設定ファイルを持たない pi については、pi が読み込んで実行する TypeScript の拡張 `~/.pi/agent/extensions/calyx.ts`）
+- AI エージェント連携用の設定（各エージェント自身の設定ディレクトリに書き込まれます。`~/.claude.json`、`~/.codex/`、`~/.config/opencode/`、`~/.hermes/`、`~/.grok/`。`calyx-ipc` と `calyx-mcp` の二つのエントリからなります。OpenCode、Hermes、1.0.52 より前の Grok では各エントリにローカルサーバーのベアラートークンを含み、Claude Code、Codex、1.0.52 以降の Grok では代わりに後述の補助スクリプトまたはトークンファイルを参照します。設定ファイルを持たない pi については、pi が読み込んで実行する TypeScript の拡張 `~/.pi/agent/extensions/calyx.ts`）
+- ローカルの IPC サーバーのエンドポイントファイル（`~/Library/Application Support/Calyx/agent-endpoint.json`。利用者本人だけが読めます。**Enable AI Agent IPC** がオンの間、サーバーのポートとベアラートークン、書き込んだ Calyx のプロセス ID と起動時刻、Calyx が承認の応答とウェイクのメモに署名するための鍵を保持します。起動のたびに書き直され、サーバーが止まると削除されます）
+- 1.0.52 以降の Grok 用のトークンファイル（`~/Library/Application Support/Calyx/calyx-bearer-token-<ポート>`。利用者本人だけが読めます。ベアラートークンだけを収め、エンドポイントファイルと一緒に削除されます）
+- `~/Library/Application Support/Calyx/bin/` のフックと補助スクリプト（承認フック、Claude Code のウェイクフック、`calyx-mcp-headers`、`calyx-usage-headers`。**Enable AI Agent IPC** がオンの間に書き込まれ、オフにしても残ります）
+- Claude Code 自身の設定ファイル（`~/.claude/settings.json`）に追加する Calyx のフックの項目（`Stop` と `SessionStart` のウェイクフックを含む。**Enable AI Agent IPC** がオンの間だけで、オフにすると取り除かれます）
+- [Worktree タスク](/ja/usage/worktree-tasks/)ごとの、`~/.calyx/worktrees/<リポジトリ名>/<ブランチ名>` の worktree と、そのリポジトリの Git 設定の `branch.<ブランチ名>.calyxbase` の項目（タスクをマージまたは破棄すると削除されます）
 - Claude Code のトークン使用量（`~/Library/Application Support/Calyx/usage/usage.sqlite`。利用者本人だけが読めます。**Usage Tracking** をオンにした場合のみで、標準ではオフ。トークン数と、それが属するモデル、effort、スレッド、エージェントの種類、セッション ID、各セッションのプロジェクトのパスと作業ディレクトリ、Claude Code のトランスクリプトファイルのパス、トークン数を受信した時刻、Claude Code の各プロセスの開始時刻と開始の種別（新規開始など）、トランスクリプト内の各実行の開始と終了の時刻、トランスクリプトを読み進めた位置を保存します。会話の本文は保存しません。Usage Tracking をオフにしても残り、**Delete Usage Data…** で消去するまで保持されます。消去後もファイルは残り、それまでに受信した Claude Code のプロセスを識別する SHA-256 ダイジェスト、記録を再開した時刻、記録がオンかどうかだけを保持します。ダイジェストは、そのプロセスの消去前の使用量を数え直さないためのものです。Calyx が読めなくなったデータベースは同じフォルダに `usage.sqlite.corrupt-…` として残り、**Delete Usage Data…** では消えません）
 - Claude Code 自身の設定ファイル（`~/.claude/settings.json`）に追加するテレメトリの設定（**Usage Tracking** と **Enable AI Agent IPC** が両方オンの間だけ。`env` の九つの項目と `otelHeadersHelper` からなり、Claude Code のメトリクスのエクスポーターを `127.0.0.1` 上の Calyx のサーバーに向けます。どちらかをオフにすると取り除かれますが、Calyx の終了時には取り除かれません）
-- Claude Code がそのトークン数に添えて提示するベアラートークン（`~/Library/Application Support/Calyx/usage-otel-headers.json`。利用者本人だけが読めます。Usage Tracking を初めて使うときに作成され、以後は残ります）
+- Claude Code がそのトークン数に添えて提示するベアラートークン（`~/Library/Application Support/Calyx/usage-otel-credential.json`。利用者本人だけが読め、補助スクリプト `calyx-usage-headers` だけが読み取ります。Usage Tracking を初めて使うときに作成され、以後は残ります。Calyx 0.47.0 以前が使っていた `usage-otel-headers.json` は削除されます）
 - Settings の **MCP Apps** で追加した MCP サーバー（`~/Library/Application Support/Calyx/mcp-servers.json`。利用者本人だけが読めます。環境変数の値、リクエストヘッダー、OAuth のトークン、クライアントシークレット、登録したクライアント ID はログインキーチェーンに保存されます）
 - MCP App がエージェントに送る画像（一時ディレクトリの `calyx-mcp-apps` フォルダに書き出されます）
 - AI Agent IPC がオンの間に承認フックが Calyx に渡すツール呼び出しと、それに対する Calyx の応答（Claude Code と Codex では許可プロンプトごと、Grok ではすべてのツール呼び出し。フックの実行中に一時ディレクトリのファイルへ書き出され、フックの終了時に削除されます。**Show agent tool prompts in the approval banner** がオフでも書き出されます。フックが強制終了された場合はファイルが残ります）
@@ -117,6 +122,9 @@ herdr TUI が Calyx のペインで動いているかを判定するため、Cal
 Calyx を介して AI エージェント（Claude Code、Codex CLI、OpenCode、Hermes、Grok、pi）を利用した場合、入力されたプロンプトや受信したレスポンスは Calyx を経由してターミナル上に表示されますが、Calyx 自体がそれらを記録・送信することはありません。
 
 各エージェントがどのようなデータを外部 API に送信するかは、それぞれのエージェント提供者のプライバシーポリシーに従います。
+
+**Wake Claude Code on IPC messages** がオンのとき、Calyx は待機中の Claude Code のペインに、待っている AI Agent IPC メッセージの件数と、読み出しに使うピア ID を記した短いメモを渡します。
+メモにほかのエージェントが書いた文章は含まれず、Calyx がエージェントの代わりにメッセージを読むこともありません。
 
 ## Claude Code の使用量の記録
 

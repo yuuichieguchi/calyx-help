@@ -19,6 +19,7 @@ A Calyx window is structured as three layers: groups → tabs → splits (panes)
 | Previous tab | `Cmd+Shift+[` |
 
 Double-click a tab to rename it.
+A diff preview tab is the exception: double-clicking it keeps the tab open instead (see [Opening a diff in a preview tab](/usage/git/#opening-a-diff-in-a-preview-tab)), and **Rename Tab...** in its context menu still renames it.
 The `prompt_surface_title` [keybind action](/usage/customization/#keybind-actions) opens the same rename editor from a custom key.
 Drag tabs in the tab bar or sidebar to reorder them.
 In the sidebar you can also drag a tab into another group, as described under [Moving groups and tabs by dragging](#moving-groups-and-tabs-by-dragging).
@@ -26,6 +27,7 @@ In the sidebar you can also drag a tab into another group, as described under [M
 Right-click a tab (or Ctrl+click it) in the tab bar or the sidebar to open its context menu: **Close Tab**, **Close Other Tabs**, **Close Tabs to the Right**, **Show All Tabs**, and **Rename Tab...**.
 Every item except **Show All Tabs** acts on the tab you right-clicked, and opening the menu does not switch to that tab, so from the sidebar you can close or rename a tab in another group without leaving the one you are working in.
 **Close Other Tabs** and **Close Tabs to the Right** cover the tabs in that tab's group, and are disabled when there is nothing for them to close.
+A diff preview tab also offers **Keep Open**, which turns it into an ordinary diff tab.
 **Show All Tabs** opens [Mission Map](/usage/mission-map/), which shows every pane of every tab in the window.
 
 ## Groups

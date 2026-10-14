@@ -24,7 +24,6 @@ Setting them in the Ghostty config file has no effect.
 - `background-opacity`
 - `background-blur`
 - `background-opacity-cells`
-- `font-codepoint-map`
 - `foreground`
 
 The current full list of Calyx-managed keys is shown in Settings under **Ghostty Config Compatibility**.

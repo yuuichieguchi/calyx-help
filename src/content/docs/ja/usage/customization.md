@@ -59,13 +59,17 @@ Calyx は Ghostty の設定ファイル `~/.config/ghostty/config` を読み込�
 - `background-opacity`
 - `background-blur`
 - `background-opacity-cells`
-- `font-codepoint-map`
 - `foreground`
 
 これらは Glass UI の見た目と整合させるため、Calyx が独自に管理しています。
 Settings の **Ghostty Config Compatibility** に、現時点で Calyx が管理しているキーの一覧が表示されます。
 このうち `background-opacity-cells` だけは、Settings の専用のスイッチから変更できます。
 詳細は [ガラスの不透明度](#ガラスの不透明度) を参照してください。
+
+Calyx 0.47.0 以前は `font-codepoint-map` も管理し、絵文字の八つの範囲を Apple Color Emoji に割り当てていました。
+この割り当てでは、同じ範囲にあるテキスト表示の記号までカラー絵文字になってしまうため、Calyx はこのキーを設定しなくなりました。
+絵文字は Ghostty 自身のフォントフォールバックで表示され、テキスト表示と絵文字表示を切り替える異体字セレクタも尊重されます。
+`font-codepoint-map` は利用者自身で設定できます。
 
 ## キーバインドアクション
 

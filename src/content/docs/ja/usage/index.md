@@ -18,7 +18,8 @@ sidebar:
 - [Mission Map](/ja/usage/mission-map/) — ウィンドウ内の全ペインをカードで一覧し、エージェントの状態、承認、エージェント間のメッセージを表示
 - [MCP Apps](/ja/usage/mcp-apps/) — MCP サーバーのホスト、ツールのエージェントへの公開、呼び出し元ペインの隣に出るアプリ
 - [トークン使用量の記録](/ja/usage/usage-tracking/) — Claude Code のトークン使用量をモデル、effort、スレッド、プロジェクトごとに確認
-- [Git ソースコントロール](/ja/usage/git/) — サイドバーの変更ビューとレビューコメント
+- [Git ソースコントロール](/ja/usage/git/) — サイドバーの変更ビュー、Diff のプレビュータブ、レビューコメント
+- [Worktree タスク](/ja/usage/worktree-tasks/) — エージェントのタスクごとにブランチと worktree を作り、マージまたは破棄する
 - [CLI と自動アップデート](/ja/usage/cli-and-updates/) — `calyx` CLI、Sparkle ベースの更新
 - [セキュリティと通知](/ja/usage/security/) — クリップボード確認、セキュア入力、デスクトップ通知
 - [永続セッション](/ja/usage/sessions/) — 終了やクラッシュ後も生き残るセッションと、SSH 経由のリモートセッション、herdr ワークスペース
