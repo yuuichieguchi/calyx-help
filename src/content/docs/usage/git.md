@@ -1,6 +1,6 @@
 ---
 title: Git source control
-description: Sidebar Changes view, commit graph, diff preview tab, and inline diff review comments.
+description: Sidebar Changes view, commit graph, the diff view and its preview tab, and inline diff review comments.
 sidebar:
   order: 11
 ---
@@ -22,12 +22,12 @@ So a submodule gets a section of its own, and you can review its uncommitted wor
 Sections start collapsed.
 The section holding the pane you are working in is expanded for you the first time it appears; collapse it and it stays collapsed.
 
-An expanded section shows three things, scoped to that repository:
+An expanded section shows two things, scoped to that repository:
 
 - **Working tree**: staged, unstaged, and untracked files
 - **Commit graph**: branch-visualized commit history
-- **Inline diff viewer**: per-line diff for the selected file
 
+Clicking a file in either one opens its diff in a tab, described under [The diff view](#the-diff-view).
 Opening a file's diff uses that section's repository, so a file inside a submodule or a second repository opens against the right one.
 
 ### Opening a diff in a preview tab
@@ -85,9 +85,102 @@ A refresh that fails leaves the contents on screen and adds a warning icon whose
 A repository Calyx could not reach is kept in the list rather than dropped, and a section that failed to load offers a **Retry** button.
 The next successful refresh clears the warning.
 
+## The diff view
+
+A diff tab shows the whole file, not only the lines around each change.
+
+Changed lines get a light red or green background.
+When a deleted line is paired with an added line, the characters that actually differ get a stronger highlight, so a one-word edit stands out inside a long line.
+Lines that were only added or only deleted get the line background alone.
+
+At the right end of the diff's toolbar sit up and down chevron buttons for moving between changes and a **…** menu with the options described below.
+
+### Choosing a layout
+
+The diff can be laid out in three ways:
+
+- **Inline**: one pane with two line-number columns, original and modified. Each change lists its deleted lines in red, then its added lines in green.
+- **Side by Side**: the original file on the left and the modified file on the right, each with its own line numbers. Drag the divider between them to resize the panes, which always scroll up and down together. Where one side has no matching line, hatched rows fill the gap so the two sides stay level.
+- **Automatic**: side by side while the diff area is wider than 900 points, inline at 900 points or narrower. This is the default. The layout switches as you resize the window or the sidebar, and the line at the top of the view stays in place.
+
+Choose a layout from the **Diff View** submenu of the **…** menu, from **Diff layout** under **Changes** in the **Appearance** pane of Settings, or with the **Diff View: Automatic**, **Diff View: Inline**, and **Diff View: Side by Side** commands in the command palette.
+**Toggle Inline View** in the command palette switches to Side by Side from Inline and to Inline from either of the other two.
+The choice applies to every diff tab.
+
+### Collapsing unchanged regions
+
+Turn on **Collapse Unchanged Regions** in the **…** menu, or **Collapse unchanged regions** in Settings, to hide long runs of unchanged lines.
+Calyx keeps three lines next to each change and replaces the rest of the run with a gray row that reads "⋯ N unchanged lines ⋯", as long as that hides at least three lines.
+A run that holds a review comment is never collapsed.
+The option is off by default.
+
+The gutter of a collapsed row has three buttons:
+
+- ▲ shows 20 more lines at the top of the hidden run.
+- ▼ shows 20 more lines at its bottom.
+- ↕ shows the whole run. Clicking the row's label does the same.
+
+The command palette also has **Toggle Collapse Unchanged Regions**, **Collapse All Unchanged Regions**, and **Show All Unchanged Regions**.
+
+### Ignoring leading and trailing whitespace
+
+**Ignore Trim Whitespace** is on by default.
+While it is on, lines that differ only in leading or trailing whitespace count as unchanged, so re-indented lines and stripped trailing spaces do not show up as changes.
+A file whose only changes are of that kind shows no changes at all.
+
+Turn it off in the **…** menu, with **Ignore trim whitespace** in Settings, or with **Toggle Ignore Trim Whitespace** in the command palette.
+Every open diff tab is recomputed in place when you change it.
+
+### Moving between changes
+
+When a diff tab opens, or a tab starts showing a different file, the view scrolls so that the first change is in the middle.
+A refresh of the same file keeps the scroll position.
+
+To jump from one change to another:
+
+- **Go to Next Change**: `Option+F5`, the down chevron in the diff's toolbar, the **View** menu, or the command palette
+- **Go to Previous Change**: `Option+Shift+F5`, the up chevron, the **View** menu, or the command palette
+
+Each jump centers the change it lands on.
+Navigation wraps around: going forward from the last change returns to the first, and going back from the first change moves to the last.
+On a Mac keyboard whose top row controls brightness and volume, hold `Fn` with `F5` unless **Use F1, F2, etc. keys as standard function keys** is turned on in the macOS keyboard settings.
+
+### Overview ruler
+
+A narrow strip along the right edge of the diff maps the whole file: deleted lines are marked in red on its left half and added lines in green on its right half.
+A translucent slider shows which part of the file is on screen, and clicking or dragging in the strip scrolls there.
+Turn the ruler off with **Show overview ruler** in Settings; it is on by default.
+
+### Word wrap
+
+Word wrap is on by default, so long lines wrap at the width of their pane instead of scrolling sideways.
+The continuation rows of a wrapped line are indented to match the line, and only its first row carries the line number.
+In Side by Side, each pane wraps at its own width, and the shorter side of each block gets hatched rows so the two sides stay level.
+
+Toggle it with **View → Word Wrap** (`Option+Z`), **Word Wrap** in the **…** menu, **Word wrap** in Settings, or **Toggle Word Wrap** in the command palette.
+The setting applies to every diff tab and is kept across launches.
+With word wrap off, long lines scroll sideways, and in Side by Side the two panes scroll sideways together.
+
+`Option+F5`, `Option+Shift+F5`, and `Option+Z` act on the diff only while a diff tab is active.
+In any other tab the keys reach the focused pane, so a program running in the terminal still receives them.
+
+### Selecting and finding text
+
+Select text by dragging, double-clicking a word, or triple-clicking a line, then copy it with `Cmd+C`.
+With the diff text focused, `Cmd+F` opens a find bar for that pane, and `Cmd+G` and `Cmd+Shift+G` move to the next and previous match.
+In Side by Side, the search covers the pane that has focus.
+
+### Very large diffs
+
+- When git's output for a file is larger than 50 MB, Calyx shows the two versions without comparing them, under the banner "File too large to compare (> 50 MB)".
+- When the comparison runs for 5 seconds, Calyx stops and shows the result so far, under the banner "Diff computation stopped early (5000 ms)".
+- A line longer than 10,000 characters is cut off and ends in "[truncated]".
+
 ## Review comments
 
-Click the gutter `+` button next to a diff line to add an inline comment.
+Hover over a line in the diff and click the `+` button that appears in the gutter to add an inline comment.
+Because the diff shows the whole file, any line on screen can take a comment, in either pane of Side by Side.
+A line inside a collapsed region can take one once you show it.
 You can add multiple comments and then click **Submit Review** to send them straight to an AI agent's terminal tab.
 
 ### Targets

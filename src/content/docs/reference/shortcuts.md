@@ -78,6 +78,17 @@ Some can be reassigned from Settings.
 |---|---|
 | Clear the selection, or close Mission Map when nothing is selected | `Escape` |
 
+## Inside a diff tab
+
+| Action | Shortcut |
+|---|---|
+| Go to next change | `Option+F5` |
+| Go to previous change | `Option+Shift+F5` |
+| Toggle word wrap | `Option+Z` |
+
+In any other tab, these keys reach the focused pane, so a program running in the terminal still receives them.
+See [The diff view](/usage/git/#the-diff-view).
+
 ## Inside the compose overlay
 
 | Action | Shortcut |
